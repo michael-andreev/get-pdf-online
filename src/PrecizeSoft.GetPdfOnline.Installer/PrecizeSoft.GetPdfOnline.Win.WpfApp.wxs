@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+    <Fragment>
+        <DirectoryRef Id="WIN_APPLICATION_DIR">
+            <Component Id="cmp4B5AE885BBFDD172E831972B09C33089" Guid="{7E4E6E6B-7C87-4B9E-AB67-EE24B9127801}">
+                <File Id="fil55C7186DB790D1C6C6B2E4A967F92234" KeyPath="yes" Source="$(var.WIN_APPLICATION_SOURCE)\PrecizeSoft.GetPdfOnline.Win.WpfApp.exe.config" />
+            </Component>
+            <Component Id="cmpBB27AEDBF85E1B79E937CEC14AEDA253" Guid="{C608B370-C3A6-412C-A7A3-E3514050799A}">
+                <File Id="fil3924CD66492E8DAC7824E7D9663B93B2" KeyPath="yes" Source="$(var.WIN_APPLICATION_SOURCE)\PrecizeSoft.GetPdfOnline.Win.WpfApp.pdb" />
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <ComponentGroup Id="WinApplicationComponentGroup">
+            <ComponentRef Id="cmp4B5AE885BBFDD172E831972B09C33089" />
+            <ComponentRef Id="cmpBB27AEDBF85E1B79E937CEC14AEDA253" />
+        </ComponentGroup>
+    </Fragment>
+</Wix>

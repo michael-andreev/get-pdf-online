@@ -1,0 +1,10 @@
+﻿// Changes will take effect immediately after you save changes to file
+{
+	"Host": {
+		"TcpPort": 9436
+	},
+	"LibreOffice": {
+		"UseCustomUnoPath": true,
+		"CustomUnoPath": "LO\\App\\libreoffice\\program"
+	}
+}

@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net462</TargetFramework>
+    <RuntimeIdentifier>win7-x86</RuntimeIdentifier>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="usersettings.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="wwwroot\images\icon.ico" />
+    <Content Include="wwwroot\images\icon.png" />
+    <Content Include="wwwroot\images\pdf-icon-png-2064 (2).png" />
+    <Content Include="wwwroot\images\pdf-icon-png-2064-16x16 (3).ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore" Version="1.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Hosting" Version="1.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Hosting.WindowsServices" Version="1.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="1.1.2" />
+    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="1.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="1.1.1" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink" Version="1.1.0" />
+    <PackageReference Include="System.ServiceModel.Primitives" Version="4.3.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="1.0.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\precizesoft-io\src\PrecizeSoft.IO.WcfClients\PrecizeSoft.IO.WcfClients.csproj" />
+    <ProjectReference Include="..\..\..\precizesoft-io\src\PrecizeSoft.IO\PrecizeSoft.IO.csproj" />
+  </ItemGroup>
+
+</Project>

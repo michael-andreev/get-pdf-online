@@ -1,0 +1,14 @@
+﻿// Changes will take effect immediately after you save changes to configuration file,
+// except Host.TcpPort field.
+// At this time you need manually restart Windows Service "GetPDF.online Web Application"
+// after change Host.TcpPort field.
+{
+  "Host": {
+    "TcpPort": 9435
+  },
+  "ServiceClients": {
+    "ConverterV1Service": {
+      "Address": "http://localhost:9436/Converter/V1/Service.svc"
+    }
+  }
+}
