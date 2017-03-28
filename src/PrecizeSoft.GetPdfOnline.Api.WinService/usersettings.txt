@@ -5,6 +5,8 @@
 	},
 	"LibreOffice": {
 		"UseCustomUnoPath": true,
-		"CustomUnoPath": "LO\\App\\libreoffice\\program"
+//		"CustomUnoPath": "LO\\App\\libreoffice\\program"
+		"CustomUnoPath": "D:\\LibreOfficePortable\\App\\libreoffice\\program"
+
 	}
 }

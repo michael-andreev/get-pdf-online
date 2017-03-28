@@ -33,6 +33,7 @@ namespace PrecizeSoft.GetPdfOnline.Web.MvcCoreApp
             services.AddMvc();
 
             services.Configure<ConverterV1ServiceOptions>(Configuration.GetSection("ServiceClients:ConverterV1Service"));
+            services.Configure<TitleOptions>(Configuration.GetSection("View:Title"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

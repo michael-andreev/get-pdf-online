@@ -15,5 +15,7 @@ namespace PrecizeSoft.GetPdfOnline.Web.MvcCoreApp.Configuration
         public HostOptions Host { get; set; } = new HostOptions();
 
         public ServiceClientsOptions ServiceClients { get; set; } = new ServiceClientsOptions();
+
+        public ViewOptions View { get; set; } = new ViewOptions();
     }
 }

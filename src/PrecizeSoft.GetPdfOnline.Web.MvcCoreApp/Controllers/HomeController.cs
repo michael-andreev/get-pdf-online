@@ -10,6 +10,7 @@ using System.Diagnostics;
 using PrecizeSoft.IO.Converters;
 using Microsoft.Extensions.Options;
 using PrecizeSoft.GetPdfOnline.Web.MvcCoreApp.Configuration;
+using System.Net;
 
 namespace PrecizeSoft.GetPdfOnline.Web.MvcCoreApp.Controllers
 {
@@ -68,7 +69,8 @@ namespace PrecizeSoft.GetPdfOnline.Web.MvcCoreApp.Controllers
 
         public IActionResult Download()
         {
-            ViewData["Message"] = "Your application description page.";
+            
+            ViewData["Message"] = HttpContext.Request.Host.Port; //"Your application description page.";
 
             return View();
         }

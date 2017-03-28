@@ -11,6 +11,9 @@ namespace PrecizeSoft.GetPdfOnline.Cmd.ConsoleApp
     {
         static void Main(string[] args)
         {
+            var converter = new ConverterFactory().CreateRestConverterV1(new EndpointAddress("http://misha-ws:9436/Converter/V1/Service.svc"));
+            converter.Convert(@"d:\LO-PDF\test.txt", @"d:\LO-PDF\resume.pdf");
+
             //(new PrecizeSoft.IO.Tests.Converters.LOToPdfConverterTests()).ParallelTest(@"..\..\..\precizesoft-io\tests\samples\mini.docx", 100, 2, false);
 
             //ConvertBytesTest(@"d:\LO-PDF\resume.docx", @"d:\LO-PDF\resume.pdf");
