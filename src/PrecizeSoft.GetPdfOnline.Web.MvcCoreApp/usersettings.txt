@@ -4,7 +4,6 @@
 // after change Host.TcpPort field.
 {
   "Host": {
-    // Default value: 9435
     "TcpPort": 9435
   },
   "ServiceClients": {

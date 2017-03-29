@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net462</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Models\" />
+    <Folder Include="Validators\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.ServiceModel.Primitives" Version="4.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\precizesoft-io\src\PrecizeSoft.IO.WcfClients\PrecizeSoft.IO.WcfClients.csproj" />
+    <ProjectReference Include="..\..\..\precizesoft-io\src\PrecizeSoft.IO\PrecizeSoft.IO.csproj" />
+  </ItemGroup>
+
+</Project>

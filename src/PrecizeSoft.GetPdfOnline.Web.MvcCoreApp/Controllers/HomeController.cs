@@ -11,6 +11,8 @@ using PrecizeSoft.IO.Converters;
 using Microsoft.Extensions.Options;
 using PrecizeSoft.GetPdfOnline.Web.MvcCoreApp.Configuration;
 using System.Net;
+using PrecizeSoft.GetPdfOnline.Domain.Configuration;
+using PrecizeSoft.GetPdfOnline.Domain.Handlers;
 
 namespace PrecizeSoft.GetPdfOnline.Web.MvcCoreApp.Controllers
 {
@@ -36,33 +38,27 @@ namespace PrecizeSoft.GetPdfOnline.Web.MvcCoreApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                var factory = new ConverterFactory();
-                //var pdfConverter = factory.CreateWcfConverterV1(new EndpointAddress(@"http://misha-ws.home.local/PrecizeSoft.GetPdfOnline.Api.Host/Converter/V1/Service.svc"));
-                //var pdfConverter = factory.CreateWcfConverterV1(new EndpointAddress(@"http://localhost:9436/Converter/V1/Service.svc"));
-                var pdfConverter = factory.CreateWcfConverterV1(new EndpointAddress(this.options.Address));
+                ConvertToPdf handler = new ConvertToPdf(this.options, new ModelStateWrapper(ModelState));
 
-                //ServiceClient client = new ServiceClient();
-
-                byte[] inputFileBytes;
+                byte[] resultPdfBytes = null;
 
                 using (Stream inputFileStream = converter.InputFile.OpenReadStream())
                 {
-                    inputFileBytes = new byte[inputFileStream.Length];
-                    inputFileStream.Read(inputFileBytes, 0, (int)inputFileStream.Length);
+                    resultPdfBytes = handler.Execute(inputFileStream, converter.InputFile.FileName);
                 }
 
-                string extension = Path.GetExtension(converter.InputFile.FileName);
-
-                //byte[] resultPdfBytes = client.ConvertToPdfAsync(inputFileBytes, extension).Result;
-                byte[] resultPdfBytes = pdfConverter.Convert(inputFileBytes, extension);
-
-                return File(resultPdfBytes, "application/pdf",
-                    System.IO.Path.GetFileNameWithoutExtension(converter.InputFile.FileName) + ".pdf");
+                if (resultPdfBytes != null)
+                {
+                    return File(resultPdfBytes, "application/pdf",
+                        System.IO.Path.GetFileNameWithoutExtension(converter.InputFile.FileName) + ".pdf");
+                }
+                else
+                {
+                    return View();
+                }
             }
             else
             {
-                ViewData["Message"] = "ERROR";
-
                 return View();
             }
         }
