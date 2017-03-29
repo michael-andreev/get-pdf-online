@@ -180,14 +180,14 @@
                   Target="[SystemFolder]msiexec.exe"
                   Arguments="/x [ProductCode]"/>-->
         <RemoveFolder Id="ApplicationMenuFolder" On="uninstall"/>
-        <RegistryValue Root="HKMU" Key="Software\PrecizeSoft\GetPdf.online" Name="getpdfonlineinstalled" Type="integer" Value="1" KeyPath="yes"/>
+        <RegistryValue Root="HKMU" Key="Software\PrecizeSoft\GetPdf.online" Name="installed" Type="integer" Value="1" KeyPath="yes"/>
       </Component>
     </ComponentGroup>
   </Fragment>
 
   <Fragment>
     <ComponentGroup Id="LibreOfficePortableComponents" Directory="LIBRE_OFFICE_PORTABLE_DIR">
-      <ComponentGroupRef Id="LibreOfficePortableComponentGroup" />
+      <!--<ComponentGroupRef Id="LibreOfficePortableComponentGroup" />-->
     </ComponentGroup>
   </Fragment>
 </Wix>

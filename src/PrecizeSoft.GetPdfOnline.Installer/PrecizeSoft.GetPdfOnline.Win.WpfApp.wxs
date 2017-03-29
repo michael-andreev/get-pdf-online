@@ -2,10 +2,10 @@
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
     <Fragment>
         <DirectoryRef Id="WIN_APPLICATION_DIR">
-            <Component Id="cmp4B5AE885BBFDD172E831972B09C33089" Guid="{21093111-EAA2-4ED0-902E-939F63A7C1F3}">
+            <Component Id="cmp4B5AE885BBFDD172E831972B09C33089" Guid="{A7E993B1-917F-4FBB-B7CD-BC448428840D}">
                 <File Id="fil55C7186DB790D1C6C6B2E4A967F92234" KeyPath="yes" Source="$(var.WIN_APPLICATION_SOURCE)\PrecizeSoft.GetPdfOnline.Win.WpfApp.exe.config" />
             </Component>
-            <Component Id="cmpBB27AEDBF85E1B79E937CEC14AEDA253" Guid="{A062377D-9DD3-425C-9DF0-9ACBABF5AC62}">
+            <Component Id="cmpBB27AEDBF85E1B79E937CEC14AEDA253" Guid="{CA466250-13BA-4946-B237-2E6FCE2A9F53}">
                 <File Id="fil3924CD66492E8DAC7824E7D9663B93B2" KeyPath="yes" Source="$(var.WIN_APPLICATION_SOURCE)\PrecizeSoft.GetPdfOnline.Win.WpfApp.pdb" />
             </Component>
         </DirectoryRef>
