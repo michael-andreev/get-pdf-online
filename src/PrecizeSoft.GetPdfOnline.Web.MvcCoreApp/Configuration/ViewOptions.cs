@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 
 namespace PrecizeSoft.GetPdfOnline.Web.MvcCoreApp.Configuration
 {
-    public class ServiceClientsOptions
+    public class ViewOptions
     {
-        public ConverterV1ServiceOptions ConverterV1Service { get; set; } = new ConverterV1ServiceOptions();
+        public TitleOptions Title { get; set; } = new TitleOptions();
     }
 }

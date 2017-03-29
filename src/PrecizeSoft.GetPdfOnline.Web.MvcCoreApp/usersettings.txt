@@ -10,5 +10,13 @@
     "ConverterV1Service": {
       "Address": "http://localhost:9436/Converter/V1/Service.svc"
     }
+  },
+  "View": {
+    "Title": {
+      // Available values: true, false
+      "IncludeSuffix": true,
+      // Suffix supports {HostName} and {Port} templates for writing Hostname and Port values
+      "Suffix": "@{HostName}:{Port}"
+    }
   }
 }
