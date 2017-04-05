@@ -12,12 +12,14 @@ namespace PrecizeSoft.GetPdfOnline.Model
 
         public string FileExtension { get; set; }
 
-        public int? FileTypeId { get; set; }
+        public int FileTypeId { get; set; }
 
         public int FileSize { get; set; }
 
         public FileType FileType { get; set; }
 
         public ConvertResponse Response { get; set; }
+
+        public string CustomAttributes { get; set; }
     }
 }

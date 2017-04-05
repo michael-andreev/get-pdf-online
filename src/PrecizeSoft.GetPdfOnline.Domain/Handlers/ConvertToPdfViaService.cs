@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.ServiceModel;
@@ -9,27 +10,28 @@ using PrecizeSoft.IO.Converters;
 
 namespace PrecizeSoft.GetPdfOnline.Domain.Handlers
 {
-    public class ConvertToPdf
+    public class ConvertToPdfViaService
     {
         protected ConverterV1ServiceOptions serviceOptions;
         protected IValidationDictionary validationDictionary;
 
-        public ConvertToPdf(ConverterV1ServiceOptions serviceOptions, IValidationDictionary validationDictionary)
+        public ConvertToPdfViaService(ConverterV1ServiceOptions serviceOptions, IValidationDictionary validationDictionary)
         {
             this.serviceOptions = serviceOptions;
             this.validationDictionary = validationDictionary;
         }
 
-        public byte[] Execute(Stream fileStream, string fileName)
+        public byte[] Execute(Stream fileStream, string fileName, IDictionary customAttributes)
         {
-            var pdfConverter = new ConverterFactory().CreateWcfConverterV1(new EndpointAddress(this.serviceOptions.Address));
-
             byte[] inputFileBytes;
 
                 inputFileBytes = new byte[fileStream.Length];
                 fileStream.Read(inputFileBytes, 0, (int)fileStream.Length);
 
             string extension = Path.GetExtension(fileName);
+
+            var pdfConverter = new ConverterFactory().CreateWcfConverterV1(new EndpointAddress(this.serviceOptions.Address),
+                customAttributes);
 
             byte[] resultPdfBytes = null;
 
@@ -48,6 +50,10 @@ namespace PrecizeSoft.GetPdfOnline.Domain.Handlers
             catch (EndpointNotFoundException)
             {
                 this.validationDictionary.AddError("ApiService", "Service is unavailable. Please try again later.");
+            }
+            catch
+            {
+                this.validationDictionary.AddError("ApiService", "An unexpected error occurred. Please try again. If the problem persists, please contact the developer.");
             }
 
             return resultPdfBytes;

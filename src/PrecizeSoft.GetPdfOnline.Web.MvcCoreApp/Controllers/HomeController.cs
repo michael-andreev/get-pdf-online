@@ -18,9 +18,9 @@ namespace PrecizeSoft.GetPdfOnline.Web.MvcCoreApp.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ConverterV1ServiceOptions options;
+        private readonly UserSettingsOptions options;
 
-        public HomeController(IOptionsSnapshot<ConverterV1ServiceOptions> optionsAccessor)
+        public HomeController(IOptionsSnapshot<UserSettingsOptions> optionsAccessor)
         {
             this.options = optionsAccessor.Value;
         }
@@ -38,13 +38,22 @@ namespace PrecizeSoft.GetPdfOnline.Web.MvcCoreApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                ConvertToPdf handler = new ConvertToPdf(this.options, new ModelStateWrapper(ModelState));
+                Dictionary<string, string> headers = null;
+                if (this.options.ServiceClients.ConverterV1Service.ConvertRequest.AddClientHttpHeadersToCustomAttributes)
+                {
+                    headers =
+                        (from P in Request.Headers
+                         where this.options.ServiceClients.ConverterV1Service.ConvertRequest.ClientHttpHeaders.Contains(P.Key)
+                         select P).ToDictionary(P => P.Key, P => P.Value.ToString());
+                }
+
+                ConvertToPdfViaService handler = new ConvertToPdfViaService(this.options.ServiceClients.ConverterV1Service, new ModelStateWrapper(ModelState));
 
                 byte[] resultPdfBytes = null;
 
                 using (Stream inputFileStream = converter.InputFile.OpenReadStream())
                 {
-                    resultPdfBytes = handler.Execute(inputFileStream, converter.InputFile.FileName);
+                    resultPdfBytes = handler.Execute(inputFileStream, converter.InputFile.FileName, headers);
                 }
 
                 if (resultPdfBytes != null)
@@ -65,8 +74,8 @@ namespace PrecizeSoft.GetPdfOnline.Web.MvcCoreApp.Controllers
 
         public IActionResult Download()
         {
-            
-            ViewData["Message"] = HttpContext.Request.Host.Port; //"Your application description page.";
+
+            ViewData["Message"] = "Your application description page.";
 
             return View();
         }
@@ -80,16 +89,23 @@ namespace PrecizeSoft.GetPdfOnline.Web.MvcCoreApp.Controllers
 
         public IActionResult Statistics()
         {
-            ViewData["Message"] = "Your application description page.";
-
-            return View();
+            Statistics model = new Models.Statistics()
+            {
+                Summary = new GetSummaryStatViaService(this.options.ServiceClients.ConversionStatisticsV1Service).Execute(),
+                StatByFileCategories = new GetStatByFileCategoriesViaService(this.options.ServiceClients.ConversionStatisticsV1Service).Execute(),
+                DailyStat = new GetStatByHoursViaService(this.options.ServiceClients.ConversionStatisticsV1Service).Execute(DateTimeOffset.Now.Date)
+            };
+            return View(model);
         }
 
         public IActionResult Developers()
         {
-            ViewData["Message"] = "Your application description page.";
+            Developers model = new Models.Developers();
+            model.ApiUrl = this.options.View.Links.ApiUrl;
 
-            return View();
+            ViewData["Message"] = "Api";
+
+            return View(model);
         }
 
         public IActionResult Comments()

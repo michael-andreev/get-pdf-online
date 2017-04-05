@@ -13,9 +13,13 @@ namespace PrecizeSoft.GetPdfOnline.Api.WinService
 <BODY>
 <H1>GetPDF.online API</H1>
 <H2>Available services:</H2>
-Converter V1 Service (SOAP) - <a href=""{0}Converter/V1/Service.svc"">{0}Converter/V1/Service.svc</a>
+<UL>
+<LI>Converter V1 Service (SOAP) - <a href=""{0}Converter/V1/Service.svc"">{0}Converter/V1/Service.svc</a></LI>
+<LI>Conversion Statistics V1 Service (SOAP) - <a href=""{0}ConversionStatistics/V1/Service.svc"">{0}ConversionStatistics/V1/Service.svc</a></LI>
+</UL>
 </BODY>
 </HTML>";
+
         private string error404Template = @"<HTML>
 <BODY>
 <H1>Page not found (HTTP ERROR 404)</H1>

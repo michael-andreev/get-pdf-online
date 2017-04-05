@@ -5,7 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Models\" />
     <Folder Include="Validators\" />
   </ItemGroup>
 
@@ -16,6 +15,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\precizesoft-io\src\PrecizeSoft.IO.WcfClients\PrecizeSoft.IO.WcfClients.csproj" />
     <ProjectReference Include="..\..\..\precizesoft-io\src\PrecizeSoft.IO\PrecizeSoft.IO.csproj" />
+    <ProjectReference Include="..\PrecizeSoft.GetPdfOnline.Data\PrecizeSoft.GetPdfOnline.Data.csproj" />
   </ItemGroup>
 
 </Project>

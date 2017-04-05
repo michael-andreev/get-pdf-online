@@ -6,12 +6,22 @@ namespace PrecizeSoft.GetPdfOnline.Data
 {
     public interface IConvertLogRepository
     {
-        void CreateRequest(ConvertRequest convertRequest);
+        void CreateConvertRequest(ConvertRequest convertRequest);
 
-        void CreateResponse(ConvertResponse convertResponse);
+        void CreateConvertResponse(ConvertResponse convertResponse);
 
         IEnumerable<FileCategory> GetFileCategories();
 
         IEnumerable<FileType> GetFileTypes();
+
+        FileType GetFileTypeByExtension(string fileExtension);
+
+        ConvertLog GetConvertLog(Guid convertRequestId);
+
+        ConvertStatTotal GetConvertStatTotal();
+
+        IEnumerable<ConvertStatByFileCategory> GetConvertStatByFileCategories();
+
+        IEnumerable<ConvertStatByHour> GetConvertStatByHoursForDay(DateTimeOffset dateWithTimeZone);
     }
 }

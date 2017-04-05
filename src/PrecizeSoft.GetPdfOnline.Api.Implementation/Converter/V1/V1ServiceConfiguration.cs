@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using PrecizeSoft.GetPdfOnline.Data;
 
 namespace PrecizeSoft.GetPdfOnline.Api.Implementation.Converter.V1
 {
-    public static class ServiceConverterConfiguration
+    public static class V1ServiceConfiguration
     {
         public static string LibreOfficePath { get; set; } = null;
+
+        public static string ConnectionString { get; set; }
     }
 }

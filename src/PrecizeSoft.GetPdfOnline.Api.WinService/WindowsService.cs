@@ -10,9 +10,14 @@ using System.ServiceModel;
 using System.ServiceProcess;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.Configuration;
 using PrecizeSoft.GetPdfOnline.Api.Implementation.Converter.V1;
 using PrecizeSoft.GetPdfOnline.Api.WinService.Configuration;
+using PrecizeSoft.GetPdfOnline.Data;
+using PrecizeSoft.GetPdfOnline.Data.SQLite;
+using PrecizeSoft.GetPdfOnline.Data.SQLite.Repositories;
 
 namespace PrecizeSoft.GetPdfOnline.Api.WinService
 {
@@ -20,6 +25,7 @@ namespace PrecizeSoft.GetPdfOnline.Api.WinService
     {
         private RootPageHost rootPageHost = null;
         private ServiceHost converterV1ServiceHost = null;
+        private ServiceHost conversionStatisticsV1ServiceHost = null;
 
         public WindowsService()
         {
@@ -36,16 +42,26 @@ namespace PrecizeSoft.GetPdfOnline.Api.WinService
 
             UserSettingsOptions options = configuration.Get<UserSettingsOptions>();
 
-            this.CreateAndOpenHosts(options.Host.TcpPort, options.LibreOffice.UseCustomUnoPath, options.LibreOffice.CustomUnoPath);
+            GetPdfOnlineDbContext context = new GetPdfOnlineDbContext(options.Data.ConnectionString);
+            context.Database.Migrate();
+            //context.Seed();
+            //context.SaveChanges();
+
+            this.CreateAndOpenHosts(options.Host.TcpPort, options.LibreOffice.UseCustomUnoPath, options.LibreOffice.CustomUnoPath,
+                options.Data.ConnectionString);
         }
 
-        protected void CreateAndOpenHosts(int port, bool useLibreOfficeCustomPath, string libreOfficeCustomPath)
+        protected void CreateAndOpenHosts(int port, bool useLibreOfficeCustomPath, string libreOfficeCustomPath,
+            string connectionString)
         {
             this.rootPageHost = new RootPageHost();
             this.rootPageHost.Open(port);
 
-            converterV1ServiceHost = new ConverterV1ServiceHost(port, useLibreOfficeCustomPath, libreOfficeCustomPath);
+            converterV1ServiceHost = new ConverterV1ServiceHost(port, useLibreOfficeCustomPath, libreOfficeCustomPath, connectionString);
             converterV1ServiceHost.Open();
+
+            conversionStatisticsV1ServiceHost = new ConversionStatisticsV1ServiceHost(port, connectionString);
+            conversionStatisticsV1ServiceHost.Open();
         }
 
         protected void CloseHosts()
@@ -58,6 +74,11 @@ namespace PrecizeSoft.GetPdfOnline.Api.WinService
             if ((this.converterV1ServiceHost != null) && (this.converterV1ServiceHost.State != CommunicationState.Closed))
             {
                 this.converterV1ServiceHost.Close();
+            }
+
+            if ((this.conversionStatisticsV1ServiceHost != null) && (this.conversionStatisticsV1ServiceHost.State != CommunicationState.Closed))
+            {
+                this.conversionStatisticsV1ServiceHost.Close();
             }
         }
 

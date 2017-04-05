@@ -17,6 +17,9 @@
     <ProjectReference Include="..\..\..\precizesoft-io\src\PrecizeSoft.IO.LibreOffice\PrecizeSoft.IO.LibreOffice.csproj" />
     <ProjectReference Include="..\..\..\precizesoft-io\src\PrecizeSoft.IO.WcfServices\PrecizeSoft.IO.WcfServices.csproj" />
     <ProjectReference Include="..\..\..\precizesoft-io\src\PrecizeSoft.IO\PrecizeSoft.IO.csproj" />
+    <ProjectReference Include="..\PrecizeSoft.GetPdfOnline.Data.SQLite\PrecizeSoft.GetPdfOnline.Data.SQLite.csproj" />
+    <ProjectReference Include="..\PrecizeSoft.GetPdfOnline.Data\PrecizeSoft.GetPdfOnline.Data.csproj" />
+    <ProjectReference Include="..\PrecizeSoft.GetPdfOnline.Domain\PrecizeSoft.GetPdfOnline.Domain.csproj" />
   </ItemGroup>
 
 </Project>

@@ -8,7 +8,14 @@
   },
   "ServiceClients": {
     "ConverterV1Service": {
-      "Address": "http://localhost:9436/Converter/V1/Service.svc"
+      "Address": "http://localhost:9436/Converter/V1/Service.svc",
+	  "ConvertRequest": {
+		"AddClientHttpHeadersToCustomAttributes": "true",
+		"ClientHttpHeaders": [ "User-Agent", "Accept-Language", "X-Original-For", "X-Forwarded-For" ]
+	  }
+    },
+    "ConversionStatisticsV1Service": {
+      "Address": "http://localhost:9436/ConversionStatistics/V1/Service.svc"
     }
   },
   "View": {
@@ -17,6 +24,9 @@
       "IncludeSuffix": true,
       // Suffix supports {HostName} and {Port} templates for writing Hostname and Port values
       "Suffix": "@{HostName}:{Port}"
-    }
+    },
+	"Links": {
+	  "ApiUrl": "http://localhost:9436"
+	}
   }
 }

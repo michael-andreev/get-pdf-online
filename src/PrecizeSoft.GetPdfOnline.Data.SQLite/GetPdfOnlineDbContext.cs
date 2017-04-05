@@ -7,7 +7,7 @@ using PrecizeSoft.GetPdfOnline.Model;
 
 namespace PrecizeSoft.GetPdfOnline.Data.SQLite
 {
-    public partial class GetPdfOnlineDbContext: DbContext, IUnitOfWork
+    public partial class GetPdfOnlineDbContext : DbContext, IUnitOfWork
     {
         public GetPdfOnlineDbContext() :
             base(new DbContextOptionsBuilder().UseSqlite("Data Source=test.db").Options)
@@ -15,18 +15,16 @@ namespace PrecizeSoft.GetPdfOnline.Data.SQLite
 
         }
 
-        public GetPdfOnlineDbContext(DbContextOptions<GetPdfOnlineDbContext> options):
+        public GetPdfOnlineDbContext(DbContextOptions<GetPdfOnlineDbContext> options) :
             base(options)
         {
         }
 
-        public GetPdfOnlineDbContext(string dbFileName):
-            base(new DbContextOptionsBuilder().UseSqlite($"Data Source={dbFileName}").Options)
+        public GetPdfOnlineDbContext(string connectionString) :
+            base(new DbContextOptionsBuilder().UseSqlite(connectionString).Options)
         {
 
         }
-
-        public DbSet<ConvertLog> ConvertLogs { get; private set; }
 
         public DbSet<ConvertRequest> ConvertRequests { get; private set; }
 
@@ -37,6 +35,14 @@ namespace PrecizeSoft.GetPdfOnline.Data.SQLite
         public DbSet<FileCategory> FileCategories { get; private set; }
 
         public DbSet<FileType> FileTypes { get; private set; }
+
+        public DbSet<ConvertLog> ConvertLogs { get; private set; }
+
+        public DbSet<ConvertStatByFileCategory> ConvertStatByFileCategory { get; private set; }
+
+        public DbSet<ConvertStatTotal> ConvertStatTotal { get; private set; }
+
+        public DbSet<ConvertStatByHour> ConvertStatByHour { get; private set; }
 
         /// <summary>
         /// Allows saving changes via the IUnitOfWork interface.
@@ -55,11 +61,15 @@ namespace PrecizeSoft.GetPdfOnline.Data.SQLite
             this.SetupConvertResultTypes(modelBuilder);
             this.SetupConvertRequests(modelBuilder);
             this.SetupConvertResponses(modelBuilder);
+            this.SetupConvertLogs(modelBuilder);
+            this.SetupConvertStatByFileCategory(modelBuilder);
+            this.SetupConvertStatTotal(modelBuilder);
+            this.SetupConvertStatByHour(modelBuilder);
         }
 
         private void SetupFileCategories(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<FileCategory>().ToTable("tbFileCategory");
+            modelBuilder.Entity<FileCategory>().ToTable("tbFileCategories");
 
             modelBuilder.Entity<FileCategory>().HasKey(p => new { p.FileCategoryId });
             modelBuilder.Entity<FileCategory>().Property(p => p.FileCategoryId).ValueGeneratedNever();
@@ -110,7 +120,7 @@ namespace PrecizeSoft.GetPdfOnline.Data.SQLite
             modelBuilder.Entity<ConvertRequest>().Property(p => p.ConvertRequestId).ValueGeneratedNever();
             modelBuilder.Entity<ConvertRequest>().HasIndex(p => new { p.ConvertRequestId }).IsUnique();
 
-            modelBuilder.Entity<ConvertRequest>().Property(p => p.RequestDateUtc).IsRequired();
+            modelBuilder.Entity<ConvertRequest>().Property(p => p.RequestDateUtc).IsRequired().ForSqliteHasColumnType("REAL");
             modelBuilder.Entity<ConvertRequest>().HasIndex(p => new { p.RequestDateUtc });
 
             modelBuilder.Entity<ConvertRequest>().Property(p => p.SenderIp).IsRequired();
@@ -119,13 +129,15 @@ namespace PrecizeSoft.GetPdfOnline.Data.SQLite
             modelBuilder.Entity<ConvertRequest>().Property(p => p.FileExtension);
             modelBuilder.Entity<ConvertRequest>().HasIndex(p => new { p.FileExtension });
 
-            modelBuilder.Entity<ConvertRequest>().Property(p => p.FileTypeId);
+            modelBuilder.Entity<ConvertRequest>().Property(p => p.FileTypeId).IsRequired();
             modelBuilder.Entity<ConvertRequest>().HasIndex(p => new { p.FileTypeId });
             modelBuilder.Entity<ConvertRequest>().HasOne(p => p.FileType).WithMany(p => p.ConvertRequests)
                 .HasForeignKey(p => p.FileTypeId).HasPrincipalKey(p => p.FileTypeId)
                 .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<ConvertRequest>().Property(p => p.FileSize).IsRequired();
+
+            modelBuilder.Entity<ConvertRequest>().Property(p => p.CustomAttributes);
         }
 
         private void SetupConvertResponses(ModelBuilder modelBuilder)
@@ -140,16 +152,48 @@ namespace PrecizeSoft.GetPdfOnline.Data.SQLite
                 .HasPrincipalKey<ConvertRequest>(p => p.ConvertRequestId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            modelBuilder.Entity<ConvertResponse>().Property(p => p.ResponseDateUtc).IsRequired();
+            modelBuilder.Entity<ConvertResponse>().Property(p => p.ResponseDateUtc).IsRequired().ForSqliteHasColumnType("REAL");
             modelBuilder.Entity<ConvertResponse>().HasIndex(p => new { p.ResponseDateUtc });
 
-            modelBuilder.Entity<ConvertResponse>().Property(p => p.ResultTypeId);
+            modelBuilder.Entity<ConvertResponse>().Property(p => p.ResultTypeId).IsRequired();
             modelBuilder.Entity<ConvertResponse>().HasIndex(p => new { p.ResultTypeId });
             modelBuilder.Entity<ConvertResponse>().HasOne(p => p.ResultType).WithMany(p => p.ConvertResponses)
                 .HasForeignKey(p => p.ResultTypeId).HasPrincipalKey(p => p.ConvertResultTypeId)
                 .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<ConvertRequest>().Property(p => p.FileSize).IsRequired();
+        }
+
+        private void SetupConvertLogs(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<ConvertLog>().ToTable("vwConvertLogs");
+
+            modelBuilder.Entity<ConvertLog>().HasKey(p => new { p.ConvertRequestId });
+            modelBuilder.Entity<ConvertLog>().Property(p => p.ConvertRequestId).ValueGeneratedNever();
+        }
+
+        private void SetupConvertStatByFileCategory(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<ConvertStatByFileCategory>().ToTable("vwConvertStatByFileCategory");
+
+            modelBuilder.Entity<ConvertStatByFileCategory>().HasKey(p => new { p.FileCategoryId });
+            modelBuilder.Entity<ConvertStatByFileCategory>().Property(p => p.FileCategoryId).ValueGeneratedNever();
+        }
+
+        private void SetupConvertStatTotal(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<ConvertStatTotal>().ToTable("vwConvertStatTotal");
+
+            modelBuilder.Entity<ConvertStatTotal>().HasKey(p => new { p.ConvertStatTotalId });
+            modelBuilder.Entity<ConvertStatTotal>().Property(p => p.ConvertStatTotalId).ValueGeneratedNever();
+        }
+
+        private void SetupConvertStatByHour(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<ConvertStatByHour>().ToTable("vwConvertStatByHour");
+
+            modelBuilder.Entity<ConvertStatByHour>().HasKey(p => new { p.BeginRequestDateUtc });
+            modelBuilder.Entity<ConvertStatByHour>().Property(p => p.BeginRequestDateUtc).ValueGeneratedNever();
         }
     }
 }

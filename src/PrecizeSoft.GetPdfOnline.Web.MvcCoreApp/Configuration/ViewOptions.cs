@@ -8,5 +8,7 @@ namespace PrecizeSoft.GetPdfOnline.Web.MvcCoreApp.Configuration
     public class ViewOptions
     {
         public TitleOptions Title { get; set; } = new TitleOptions();
+
+        public LinksOptions Links { get; set; } = new LinksOptions();
     }
 }

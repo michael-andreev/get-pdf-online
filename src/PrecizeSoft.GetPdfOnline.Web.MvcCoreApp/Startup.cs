@@ -33,7 +33,7 @@ namespace PrecizeSoft.GetPdfOnline.Web.MvcCoreApp
             // Add framework services.
             services.AddMvc();
 
-            services.Configure<ConverterV1ServiceOptions>(Configuration.GetSection("ServiceClients:ConverterV1Service"));
+            services.Configure<UserSettingsOptions>(Configuration);
             services.Configure<TitleOptions>(Configuration.GetSection("View:Title"));
         }
 

@@ -1,7 +1,8 @@
-﻿@{
+﻿@model PrecizeSoft.GetPdfOnline.Web.MvcCoreApp.Models.Developers
+@{
     ViewData["Title"] = "Developers";
 }
 <h2>@ViewData["Title"]</h2>
 <h3>@ViewData["Message"]</h3>
 
-<p>Use this area to provide additional information.</p>
+<p><a href="@Model.ApiUrl" target="_blank">@Model.ApiUrl</a></p>

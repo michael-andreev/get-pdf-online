@@ -6,5 +6,8 @@
 	"LibreOffice": {
 		"UseCustomUnoPath": true,
 		"CustomUnoPath": "LO\\App\\libreoffice\\program"
+	},
+	"Data": {
+		"ConnectionString": "Data Source=GetPdfOnline.db"
 	}
 }

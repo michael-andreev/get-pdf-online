@@ -11,8 +11,8 @@ namespace PrecizeSoft.GetPdfOnline.Api.Implementation.Converter.V1
     {
         public ServiceConverter():base(new List<IFileConverter>()
         {
-            new ConverterFactory().CreateLOToPdfConverter(true, ServiceConverterConfiguration.LibreOfficePath),
-            new ConverterFactory().CreateImageMagickToPdfConverter()
+            new ConverterFactory().CreateImageMagickToPdfConverter(),
+            new ConverterFactory().CreateLOToPdfConverter(true, V1ServiceConfiguration.LibreOfficePath)
         })
         {
             

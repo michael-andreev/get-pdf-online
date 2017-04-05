@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 
 namespace PrecizeSoft.GetPdfOnline.Domain.Configuration
 {
-    public class ServiceClientsOptions
+    public class ConversionStatisticsV1ServiceOptions
     {
-        public ConverterV1ServiceOptions ConverterV1Service { get; set; } = new ConverterV1ServiceOptions();
+        public string Address { get; set; } = "http://localhost:9436/ConversionStatistics/V1/Service.svc";
     }
 }
