@@ -1,14 +1,19 @@
-﻿@model PrecizeSoft.GetPdfOnline.Web.MvcCoreApp.Models.Converter
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+
+@model PrecizeSoft.GetPdfOnline.Web.MvcCoreApp.Models.Converter
+
+@inject IViewLocalizer Localizer
+
 @{
-    ViewData["Title"] = "Convert to PDF";
+    ViewData["Title"] = Localizer["Convert to PDF"];
 }
 <div class="jumbotron">
-    <h1>Convert to PDF</h1>
-    <p>Convert your files to PDF online and free! Just upload your file and click the button below.</p>
+    <h1>@Localizer["Convert to PDF"]</h1>
+    <p>@Localizer["Convert your files to PDF online and free! Just select your file and click the button."]</p>
     <form asp-action="Index" method="post" enctype="multipart/form-data">
         <div asp-validation-summary="All"></div>
         <input class="form-control" asp-for="InputFile" type="file" />
         <br />
-        <button type="submit" class="btn btn-lg btn-danger">Get PDF online!</button>
+        <button type="submit" class="btn btn-lg btn-danger">@Localizer["Get PDF online!"]</button>
     </form>
 </div>

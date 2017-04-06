@@ -1,11 +1,22 @@
-﻿@inject Microsoft.ApplicationInsights.AspNetCore.JavaScriptSnippet JavaScriptSnippet
+﻿@using System.Globalization
+@using Microsoft.AspNetCore.Builder
+@using Microsoft.AspNetCore.Http.Features
+@using Microsoft.AspNetCore.Localization
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Microsoft.Extensions.Options
 @using PrecizeSoft.GetPdfOnline.Web.MvcCoreApp.ViewComponents
+
+@inject Microsoft.ApplicationInsights.AspNetCore.JavaScriptSnippet JavaScriptSnippet
+
+@inject IViewLocalizer Localizer
+@inject IOptions<RequestLocalizationOptions> LocOptions
+
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - GetPDF.online@{Write(await Component.InvokeAsync(typeof(NameSuffixViewComponent)));}</title>
+    <title>@ViewData["Title"] - GetPDF@{Write(await Component.InvokeAsync(typeof(NameSuffixViewComponent)));}</title>
 
     <environment names="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
@@ -32,24 +43,31 @@
 
                     </button>
                     <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">
-                        Get<span style="color:#d9534f;font-weight:800;margin-left:1px;">PDF</span>.online<span style="color:#d9534f;">@{
-                        Write(await Component.InvokeAsync(typeof(NameSuffixViewComponent)));}</span>
+                        Get<span style="color:#d9534f;font-weight:800;margin-left:1px;">PDF</span>@{
+                            Write(await Component.InvokeAsync(typeof(NameSuffixViewComponent)));}
                     </a>
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li><a asp-area="" asp-controller="Home" asp-action="Index">Convert to PDF</a></li>
-                        <li><a asp-area="" asp-controller="Home" asp-action="Download">Download</a></li>
-                        <li><a asp-area="" asp-controller="Home" asp-action="Statistics">Statistics</a></li>
-                        <li><a asp-area="" asp-controller="Home" asp-action="Developers">Developers</a></li>
-                        <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
+                        <li><a asp-area="" asp-controller="Home" asp-action="Index">@Localizer["Convert to PDF"]</a></li>
+                        <li><a asp-area="" asp-controller="Home" asp-action="Download">@Localizer["Download"]</a></li>
+                        <li><a asp-area="" asp-controller="Home" asp-action="Statistics">@Localizer["Statistics"]</a></li>
+                        <li><a asp-area="" asp-controller="Home" asp-action="Developers">@Localizer["Developers"]</a></li>
+                        <li><a asp-area="" asp-controller="Home" asp-action="About">@Localizer["About"]</a></li>
                     </ul>
+                    @{
+                        var requestCulture = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(Context.Features.Get<IRequestCultureFeature>().RequestCulture.UICulture.NativeName);
+                        var cultureItems = LocOptions.Value.SupportedUICultures
+                            .ToDictionary(p => p.Name, p => CultureInfo.CurrentCulture.TextInfo.ToTitleCase(p.NativeName));
+                    }
                     <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">English <span class="caret"></span></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">@requestCulture<span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">English</a></li>
-                                <li><a href="#">Русский</a></li>
+                                @foreach (var p in cultureItems)
+                                {
+                                    <li><a asp-area="" asp-controller="Home" asp-action="SetLanguage" asp-route-culture="@p.Key" asp-route-returnUrl="@Context.Request.Path">@p.Value</a></li>
+                                }
                             </ul>
                         </li>
                     </ul>
@@ -59,7 +77,11 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; 2017 - GetPDF.online</p>
+            <div class="row">
+                <div class="col-md-12">
+                    <p>&copy; 2017 - GetPDF.online</p>
+                </div>
+            </div>
         </footer>
         <!--<div class="container body-content">
             <hr />

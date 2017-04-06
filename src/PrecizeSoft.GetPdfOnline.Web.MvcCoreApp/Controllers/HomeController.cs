@@ -13,6 +13,8 @@ using PrecizeSoft.GetPdfOnline.Web.MvcCoreApp.Configuration;
 using System.Net;
 using PrecizeSoft.GetPdfOnline.Domain.Configuration;
 using PrecizeSoft.GetPdfOnline.Domain.Handlers;
+using Microsoft.AspNetCore.Localization;
+using Microsoft.AspNetCore.Http;
 
 namespace PrecizeSoft.GetPdfOnline.Web.MvcCoreApp.Controllers
 {
@@ -131,6 +133,18 @@ namespace PrecizeSoft.GetPdfOnline.Web.MvcCoreApp.Controllers
 
             return View();
         }*/
+
+        [HttpGet]
+        public IActionResult SetLanguage(string culture, string returnUrl)
+        {
+            Response.Cookies.Append(
+                CookieRequestCultureProvider.DefaultCookieName,
+                CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(culture)),
+                new CookieOptions { Expires = DateTimeOffset.UtcNow.AddYears(1) }
+            );
+
+            return LocalRedirect(returnUrl);
+        }
 
         public IActionResult Error()
         {
