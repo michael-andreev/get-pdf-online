@@ -49,11 +49,11 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li><a asp-area="" asp-controller="Home" asp-action="Index">@Localizer["Convert to PDF"]</a></li>
-                        <li><a asp-area="" asp-controller="Home" asp-action="Download">@Localizer["Download"]</a></li>
-                        <li><a asp-area="" asp-controller="Home" asp-action="Statistics">@Localizer["Statistics"]</a></li>
-                        <li><a asp-area="" asp-controller="Home" asp-action="Developers">@Localizer["Developers"]</a></li>
-                        <li><a asp-area="" asp-controller="Home" asp-action="About">@Localizer["About"]</a></li>
+                        <menulink controller-name="Home" action-name="Index" menu-text="@Localizer["Convert to PDF"]"></menulink>
+                        <menulink controller-name="Home" action-name="Download" menu-text="@Localizer["Download"]"></menulink>
+                        <menulink controller-name="Home" action-name="Statistics" menu-text="@Localizer["Statistics"]"></menulink>
+                        <menulink controller-name="Home" action-name="Developers" menu-text="@Localizer["Developers"]"></menulink>
+                        <menulink controller-name="Home" action-name="About" menu-text="@Localizer["About"]"></menulink>
                     </ul>
                     @{
                         var requestCulture = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(Context.Features.Get<IRequestCultureFeature>().RequestCulture.UICulture.NativeName);
@@ -79,7 +79,7 @@
         <footer>
             <div class="row">
                 <div class="col-md-12">
-                    <p>&copy; 2017 - GetPDF.online</p>
+                    <p>&copy; 2017 - <a href="http://andreev.work" target="_blank">@Localizer["Mikhail Andreev"]</a></p>
                 </div>
             </div>
         </footer>

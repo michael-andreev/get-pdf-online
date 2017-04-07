@@ -15,5 +15,9 @@ namespace PrecizeSoft.GetPdfOnline.Web.MvcCoreApp.Models
             get;
             set;
         }
+
+        public string SupportedFormatsString { get; set; }
+
+        public int SupportedFormatsCount { get; set; }
     }
 }

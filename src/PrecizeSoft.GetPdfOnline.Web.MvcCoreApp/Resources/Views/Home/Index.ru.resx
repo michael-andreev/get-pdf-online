@@ -117,13 +117,97 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="&amp;nbsp;to PDF, support all platforms and mobile devices." xml:space="preserve">
+    <value>, поддерживаем любые платформы и мобильные устройства.</value>
+  </data>
+  <data name="and all your files will be deleted from our servers forever in an hour after the conversion." xml:space="preserve">
+    <value>а ваши файлы удаляются с наших серверов навсегда через час после конвертации.</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Закрыть</value>
+  </data>
   <data name="Convert to PDF" xml:space="preserve">
     <value>Конвертировать в PDF</value>
   </data>
   <data name="Convert your files to PDF online and free! Just select your file and click the button." xml:space="preserve">
     <value>Конвертируйте ваши файлы в PDF онлайн и бесплатно! Просто выберите файл и нажмите на кнопку.</value>
   </data>
+  <data name="Converted files" xml:space="preserve">
+    <value>Конвертированные файлы</value>
+  </data>
+  <data name="different file types" xml:space="preserve">
+    <value>различных вида файлов</value>
+  </data>
+  <data name="Excellent tool" xml:space="preserve">
+    <value>Превосходный инструмент</value>
+  </data>
   <data name="Get PDF online!" xml:space="preserve">
     <value>Получить PDF онлайн!</value>
+  </data>
+  <data name="Go to Download Page" xml:space="preserve">
+    <value>Страница загрузки</value>
+  </data>
+  <data name="It also can works via local area network in a browser if you will install required components." xml:space="preserve">
+    <value>Оно также может работать по локальной сети через интернет-браузер, если вы установите необходимые компоненты.</value>
+  </data>
+  <data name="It works under Windows operating system (7 and above) and installs in one click." xml:space="preserve">
+    <value>Приложение работает под операционной системой Windows (версии 7 или выше) и устанавливается за один клик.</value>
+  </data>
+  <data name="List of supported file formats:" xml:space="preserve">
+    <value>Список поддерживаемых форматов файлов:</value>
+  </data>
+  <data name="Offline App" xml:space="preserve">
+    <value>Оффлайн-приложение</value>
+  </data>
+  <data name="Read more" xml:space="preserve">
+    <value>Подробнее</value>
+  </data>
+  <data name="We can convert" xml:space="preserve">
+    <value>Мы можем сконвертировать в PDF&lt;br/&gt;</value>
+  </data>
+  <data name="We do it for free, because we don't use any 3rd party commercial software." xml:space="preserve">
+    <value>Мы делаем это бесплатно, потому что не используем никакого стороннего платного программного обеспечения.</value>
+  </data>
+  <data name="You can download our offline application and convert files on your PC without need to send files via the Internet." xml:space="preserve">
+    <value>Вы можете загрузить наше оффлайн-приложение и конвертировать файлы на своём компьютере без необходимости передачи их через Интернет.</value>
+  </data>
+  <data name="Your PDF files will appear here, once you convert them." xml:space="preserve">
+    <value>Ваши PDF-файлы появятся здесь (сразу после конвертации).</value>
+  </data>
+  <data name="Your privacy is very important to us. We are using https protocol for encrypting all communications," xml:space="preserve">
+    <value>Безопасность ваших данных чрезвычайно важна для нас: мы используем https-протокол для шифрования всех запросов,</value>
+  </data>
+  <data name="Easy integration" xml:space="preserve">
+    <value>Легкая интеграция</value>
+  </data>
+  <data name="If you are .NET developer, you can download our libraries from Nuget and connect it to your project directly." xml:space="preserve">
+    <value>Если вы .NET-разработчик, у вас есть возможность скачать наши библиотеки из Nuget и подключить их к своему проекту напрямую.</value>
+  </data>
+  <data name="If you are developer and looking for a free solution to convert files to PDF," xml:space="preserve">
+    <value>Если вы разработчик, ищущий бесплатное решение для конвертации файлов в PDF,</value>
+  </data>
+  <data name="If you need to work offline, you can install our free Offline Application, which contains the same API services, and use it locally." xml:space="preserve">
+    <value>Если вам требуется оффлайн-решение, просто установите наше приложение, которое содержит идентичные API-сервисы, и используйте их локально.</value>
+  </data>
+  <data name="Really excellent?" xml:space="preserve">
+    <value>Действительно превосходно?</value>
+  </data>
+  <data name="That's what I need!" xml:space="preserve">
+    <value>Это то, что мне нужно!</value>
+  </data>
+  <data name="View statistics" xml:space="preserve">
+    <value>Просмотреть статистику</value>
+  </data>
+  <data name="We collect data about files quality, their size and the time spent for converting to analyze it and make our service more better." xml:space="preserve">
+    <value>Мы собираем статистику по качеству файлов, времени их обработки и размеру для последующего анализа, чтобы сделать сервис ещё лучше.</value>
+  </data>
+  <data name="you can easily integrate with our REST or SOAP API from any platform in just few minutes." xml:space="preserve">
+    <value>вы можете интегрироваться с нашим REST или SOAP API на любой платформе за считанные минуты.</value>
+  </data>
+  <data name="You can evaluate work of our service at any time by viewing statistics of its work." xml:space="preserve">
+    <value>Вы можете оценить качество работы сервиса в любой момент, просмотрев статистику его работы.</value>
+  </data>
+  <data name="Your opinion is very important for us. Please rate the quality of generated PDF files after you convert them." xml:space="preserve">
+    <value>Для нас очень важно ваше мнение. Пожалуйста, оцените качество сформированных PDF-файлов сразу после конвертации.</value>
   </data>
 </root>

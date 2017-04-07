@@ -30,14 +30,24 @@ namespace PrecizeSoft.GetPdfOnline.Web.MvcCoreApp.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            ViewData["Message"] = "Convert your files to PDF online";
+            Converter model = new Converter();
 
-            return View();
+            IEnumerable<string> formats = new GetSupportedFormatsViaService(this.options.ServiceClients.ConverterV1Service).Execute();
+            model.SupportedFormatsCount = formats.Count();
+            model.SupportedFormatsString = string.Join(", ", formats);
+
+            return View(model);
         }
 
         [HttpPost]
         public IActionResult Index(Converter converter)
         {
+            Converter model = new Converter();
+
+            IEnumerable<string> formats = new GetSupportedFormatsViaService(this.options.ServiceClients.ConverterV1Service).Execute();
+            model.SupportedFormatsCount = formats.Count();
+            model.SupportedFormatsString = string.Join(", ", formats);
+
             if (ModelState.IsValid)
             {
                 Dictionary<string, string> headers = null;
@@ -65,12 +75,12 @@ namespace PrecizeSoft.GetPdfOnline.Web.MvcCoreApp.Controllers
                 }
                 else
                 {
-                    return View();
+                    return View(model);
                 }
             }
             else
             {
-                return View();
+                return View(model);
             }
         }
 

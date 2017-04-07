@@ -129,6 +129,9 @@
   <data name="Download" xml:space="preserve">
     <value>Загрузка</value>
   </data>
+  <data name="Mikhail Andreev" xml:space="preserve">
+    <value>Михаил Андреев</value>
+  </data>
   <data name="Statistics" xml:space="preserve">
     <value>Статистика</value>
   </data>
