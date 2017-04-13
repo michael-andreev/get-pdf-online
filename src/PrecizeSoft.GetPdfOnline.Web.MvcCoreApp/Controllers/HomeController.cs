@@ -15,6 +15,8 @@ using PrecizeSoft.GetPdfOnline.Domain.Configuration;
 using PrecizeSoft.GetPdfOnline.Domain.Handlers;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Http;
+using PrecizeSoft.GetPdfOnline.Data;
+using PrecizeSoft.GetPdfOnline.Domain.Models;
 
 namespace PrecizeSoft.GetPdfOnline.Web.MvcCoreApp.Controllers
 {
@@ -22,9 +24,12 @@ namespace PrecizeSoft.GetPdfOnline.Web.MvcCoreApp.Controllers
     {
         private readonly UserSettingsOptions options;
 
-        public HomeController(IOptionsSnapshot<UserSettingsOptions> optionsAccessor)
+        private readonly ICacheRepository cacheRepository;
+
+        public HomeController(IOptionsSnapshot<UserSettingsOptions> optionsAccessor, ICacheRepository cacheRepository)
         {
             this.options = optionsAccessor.Value;
+            this.cacheRepository = cacheRepository;
         }
 
         [HttpGet]
@@ -35,6 +40,10 @@ namespace PrecizeSoft.GetPdfOnline.Web.MvcCoreApp.Controllers
             IEnumerable<string> formats = new GetSupportedFormatsViaService(this.options.ServiceClients.ConverterV1Service).Execute();
             model.SupportedFormatsCount = formats.Count();
             model.SupportedFormatsString = string.Join(", ", formats);
+            {
+                GetConvertedFilesInfo handler = new GetConvertedFilesInfo(this.cacheRepository);
+                model.ConvertedFiles = handler.Execute(HttpContext.Session.Id);
+            }
 
             return View(model);
         }
@@ -42,12 +51,6 @@ namespace PrecizeSoft.GetPdfOnline.Web.MvcCoreApp.Controllers
         [HttpPost]
         public IActionResult Index(Converter converter)
         {
-            Converter model = new Converter();
-
-            IEnumerable<string> formats = new GetSupportedFormatsViaService(this.options.ServiceClients.ConverterV1Service).Execute();
-            model.SupportedFormatsCount = formats.Count();
-            model.SupportedFormatsString = string.Join(", ", formats);
-
             if (ModelState.IsValid)
             {
                 Dictionary<string, string> headers = null;
@@ -59,29 +62,38 @@ namespace PrecizeSoft.GetPdfOnline.Web.MvcCoreApp.Controllers
                          select P).ToDictionary(P => P.Key, P => P.Value.ToString());
                 }
 
-                ConvertToPdfViaService handler = new ConvertToPdfViaService(this.options.ServiceClients.ConverterV1Service, new ModelStateWrapper(ModelState));
+                ConvertToPdfViaService handler = new ConvertToPdfViaService(this.options.ServiceClients.ConverterV1Service,
+                    new ModelStateWrapper(ModelState), this.cacheRepository);
 
-                byte[] resultPdfBytes = null;
+                bool result = false;
 
                 using (Stream inputFileStream = converter.InputFile.OpenReadStream())
                 {
-                    resultPdfBytes = handler.Execute(inputFileStream, converter.InputFile.FileName, headers);
+                    result = handler.Execute(inputFileStream, converter.InputFile.FileName, headers, HttpContext.Session.Id);
                 }
+            }
 
-                if (resultPdfBytes != null)
-                {
-                    return File(resultPdfBytes, "application/pdf",
-                        System.IO.Path.GetFileNameWithoutExtension(converter.InputFile.FileName) + ".pdf");
-                }
-                else
-                {
-                    return View(model);
-                }
-            }
-            else
+            Converter model = new Converter();
+
+            IEnumerable<string> formats = new GetSupportedFormatsViaService(this.options.ServiceClients.ConverterV1Service).Execute();
+            model.SupportedFormatsCount = formats.Count();
+            model.SupportedFormatsString = string.Join(", ", formats);
             {
-                return View(model);
+                GetConvertedFilesInfo handler = new GetConvertedFilesInfo(this.cacheRepository);
+                model.ConvertedFiles = handler.Execute(HttpContext.Session.Id);
             }
+
+            return View(model);
+        }
+
+        [HttpGet]
+        public FileContentResult GetPdf(Guid id)
+        {
+            GetConvertedFile handler = new GetConvertedFile(this.cacheRepository);
+
+            ConvertedFile file = handler.Execute(id);
+
+            return File(file.FileBytes, "application/pdf", file.FileName);
         }
 
         public IActionResult Download()

@@ -1,9 +1,11 @@
-﻿using System;
-using System.IO;
-using System.ServiceModel;
-using System.Threading;
-using System.Threading.Tasks;
-using PrecizeSoft.IO.Converters;
+﻿using Microsoft.Data.Sqlite;
+using Microsoft.EntityFrameworkCore;
+using PrecizeSoft.GetPdfOnline.Data.SQLite;
+using PrecizeSoft.GetPdfOnline.Data.SQLite.Repositories;
+using PrecizeSoft.GetPdfOnline.Model;
+using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace PrecizeSoft.GetPdfOnline.Cmd.ConsoleApp
 {
@@ -11,8 +13,10 @@ namespace PrecizeSoft.GetPdfOnline.Cmd.ConsoleApp
     {
         static void Main(string[] args)
         {
-            var converter = new ConverterFactory().CreateWcfConverterV1(new EndpointAddress("http://misha-ws:9436/Converter/V1/Service.svc"));
-            converter.Convert(@"d:\LO-PDF\test.txt", @"d:\LO-PDF\resume.pdf");
+            CreateResultFileTest();
+
+            /*var converter = new ConverterFactory().CreateWcfConverterV1(new EndpointAddress("http://misha-ws:9436/Converter/V1/Service.svc"));
+            converter.Convert(@"d:\LO-PDF\test.txt", @"d:\LO-PDF\resume.pdf");*/
 
             //(new PrecizeSoft.IO.Tests.Converters.LOToPdfConverterTests()).ParallelTest(@"..\..\..\precizesoft-io\tests\samples\mini.docx", 100, 2, false);
 
@@ -36,7 +40,41 @@ namespace PrecizeSoft.GetPdfOnline.Cmd.ConsoleApp
             Console.ReadKey();
         }
 
-        static public void ConvertBytesTest(string sourceFileName, string destinationFileName)
+        public static void CreateResultFileTest()
+        {
+            SqliteConnection connection = new SqliteConnection("Data Source=cache.db");
+            connection.Open();
+
+            DbContextOptionsBuilder<CacheDbContext> optionsBuilder = new DbContextOptionsBuilder<CacheDbContext>()
+                .UseSqlite(connection);
+
+            CacheDbContext context = new CacheDbContext(optionsBuilder.Options);
+            context.Database.EnsureCreated();
+
+            CacheRepository repository = new CacheRepository(context);
+
+            Guid resultFileId = Guid.NewGuid();
+
+            byte[] fileBytes = new byte[1];
+            fileBytes[0] = 1;
+
+            ResultFile resultFile = new ResultFile
+            {
+                ResultFileId = resultFileId,
+                CreateDateUtc = DateTime.Now,
+                ExpireDateUtc = DateTime.Now,
+                FileName = "test.pdf",
+                SessionId = "SessionId",
+                Content = new ResultFileContent
+                {
+                    FileBytes = fileBytes
+                }
+            };
+
+            repository.CreateResultFile(resultFile);
+        }
+
+        /*static public void ConvertBytesTest(string sourceFileName, string destinationFileName)
         {
             byte[] sourceFileBytes = File.ReadAllBytes(sourceFileName);
             string sourceFileExtension = Path.GetExtension(sourceFileName);
@@ -46,7 +84,7 @@ namespace PrecizeSoft.GetPdfOnline.Cmd.ConsoleApp
             File.WriteAllBytes(destinationFileName, converter.Convert(sourceFileBytes, sourceFileExtension));
 
             FileInfo fi = new FileInfo(destinationFileName);
-        }
+        }*/
 
     }
 }

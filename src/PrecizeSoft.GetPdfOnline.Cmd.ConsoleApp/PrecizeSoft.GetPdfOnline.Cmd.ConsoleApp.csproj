@@ -3,21 +3,16 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net462</TargetFramework>
-    <RuntimeIdentifiers>win-x86</RuntimeIdentifiers>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <PlatformTarget>x86</PlatformTarget>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <PlatformTarget>x86</PlatformTarget>
+    <RuntimeIdentifier>win7-x86</RuntimeIdentifier>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\precizesoft-io\src\PrecizeSoft.IO.LibreOffice\PrecizeSoft.IO.LibreOffice.csproj" />
-    <ProjectReference Include="..\..\..\precizesoft-io\src\PrecizeSoft.IO.WcfClients\PrecizeSoft.IO.WcfClients.csproj" />
-    <ProjectReference Include="..\..\..\precizesoft-io\tests\PrecizeSoft.IO.LibreOffice.Tests\PrecizeSoft.IO.LibreOffice.Tests.csproj" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="1.1.1" />
+    <PackageReference Include="System.Data.Common" Version="4.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PrecizeSoft.GetPdfOnline.Data.SQLite\PrecizeSoft.GetPdfOnline.Data.SQLite.csproj" />
   </ItemGroup>
 
 </Project>

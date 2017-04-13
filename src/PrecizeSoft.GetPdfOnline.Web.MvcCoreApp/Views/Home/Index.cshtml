@@ -1,4 +1,5 @@
-﻿@using Microsoft.AspNetCore.Mvc.Localization
+﻿@using Microsoft.AspNetCore.Localization
+@using Microsoft.AspNetCore.Mvc.Localization
 
 @model PrecizeSoft.GetPdfOnline.Web.MvcCoreApp.Models.Converter
 
@@ -8,29 +9,70 @@
     ViewData["Title"] = Localizer["Convert to PDF"];
 }
 <div class="row">
-    <div class="col-md-9">
+    <div class="col-md-12">
         <div class="jumbotron">
-            <h1>@Localizer["Convert to PDF"]</h1>
-            <p>@Localizer["Convert your files to PDF online and free! Just select your file and click the button."]</p>
-            <form asp-action="Index" method="post" enctype="multipart/form-data">
-                <div asp-validation-summary="All"></div>
-                <input class="form-control" asp-for="InputFile" type="file" />
-                <br />
-                <button type="submit" class="btn btn-lg btn-danger">@Localizer["Get PDF online!"]</button>
-            </form>
+                @{
+                    var cultureName = Context.Features.Get<IRequestCultureFeature>().RequestCulture.UICulture.Name;
+                }
+                <h1 class="@cultureName">@Localizer["Convert to PDF"]</h1>
+                <p>@Localizer["Convert your files to PDF online and free!"]
+                <br/>
+                @Localizer["Just drop file here or click the button"]</p>
+                <form id="UploadForm" asp-action="Index" method="post" enctype="multipart/form-data">
+                    <div asp-validation-summary="All"></div>
+                    <div>
+                        <label asp-for="InputFile" class="btn btn-lg btn-danger">@Localizer["Select file"]</label>
+                        <input type="file" class="hidden-file-input" asp-for="InputFile" />
+                    </div>
+                </form>
         </div>
     </div>
-    <div class="col-md-3">
+    <div class="col-md-3" style="display:none;">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title">@Localizer["Converted files"]</h3>
             </div>
-            <div class="panel-body">
-                <p class="text-muted">@Localizer["Your PDF files will appear here, once you convert them."]</p>
-            </div>
+            @if (Model.ConvertedFiles.Count() == 0)
+            {
+                    <div class="panel-body">
+                        <p class="text-muted">@Localizer["Your PDF files will appear here,<br/>once you convert them."]</p>
+                    </div>
+            }
+            else
+            {
+                <ul class="list-group">
+                    @foreach (var f in Model.ConvertedFiles)
+                    {
+                        <li class="list-group-item">
+                            <span class="pdf-icon"></span>
+                            <div class="pdf-info">
+                                <a asp-area="" asp-controller="Home" asp-action="GetPdf" asp-route-id="@f.ConvertedFileId">@f.FileNameWithoutExtension</a>
+                                <small class="text-muted">@f.FileSizeKb @Localizer["Kb"]</small>
+                            </div>
+                        </li>
+                    }
+                </ul>
+            }
         </div>
     </div>
 </div>
+
+@if (Model.ConvertedFiles.Count() > 0)
+{
+    <ul class="list-group">
+        @foreach (var f in Model.ConvertedFiles)
+        {
+            <li class="list-group-item">
+                <span class="pdf-icon"></span>
+                <div class="pdf-info">
+                    <a asp-area="" asp-controller="Home" asp-action="GetPdf" asp-route-id="@f.ConvertedFileId">@f.FileNameWithoutExtension</a>
+                    <small class="text-muted">@f.FileSizeKb @Localizer["Kb"]</small>
+                </div>
+            </li>
+        }
+    </ul>
+}
+
 <div class="row">
     <div class="col-md-3">
         <h2>@Localizer["Excellent tool"]</h2>
@@ -57,7 +99,7 @@
             @Localizer["If you are developer and looking for a free solution to convert files to PDF,"]
             @Localizer["you can easily integrate with our REST or SOAP API from any platform in just few minutes."]
             @Localizer["If you need to work offline, you can install our free Offline Application, which contains the same API services, and use it locally."]
-            @Localizer["If you are .NET developer, you can download our libraries from Nuget and connect it to your project directly."]
+            @Localizer["If you are .NET developer, just download our libraries from Nuget."]
         </p>
         <p><a class="btn btn-default btn-sm" asp-controller="Home" asp-action="Developers">@Localizer["That's what I need!"] »</a></p>
     </div>

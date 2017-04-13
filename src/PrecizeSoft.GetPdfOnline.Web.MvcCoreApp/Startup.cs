@@ -7,12 +7,19 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc.Razor;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using PrecizeSoft.GetPdfOnline.Domain.Configuration;
 using PrecizeSoft.GetPdfOnline.Web.MvcCoreApp.Configuration;
+using PrecizeSoft.GetPdfOnline.Data.SQLite;
+using Microsoft.Data.Sqlite;
+using PrecizeSoft.GetPdfOnline.Data;
+using PrecizeSoft.GetPdfOnline.Data.SQLite.Repositories;
+using PrecizeSoft.GetPdfOnline.Model;
+using Microsoft.AspNetCore.Http;
 
 namespace PrecizeSoft.GetPdfOnline.Web.MvcCoreApp
 {
@@ -31,9 +38,25 @@ namespace PrecizeSoft.GetPdfOnline.Web.MvcCoreApp
 
         public IConfigurationRoot Configuration { get; }
 
+        private SqliteConnection cacheConnection = null;
+
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            cacheConnection = new SqliteConnection("Data Source=:memory:");
+            cacheConnection.Open();
+
+            using (CacheDbContext ctx = new CacheDbContext(new DbContextOptionsBuilder<CacheDbContext>()
+                    .UseSqlite(cacheConnection).Options))
+            { 
+                ctx.Database.EnsureCreated();
+            }
+
+            services.AddDbContext<CacheDbContext>(options =>
+                options.UseSqlite(cacheConnection));
+
+            services.AddTransient<ICacheRepository, CacheRepository>();
+
             // Add the localization services to the services container
             services.AddLocalization(options => options.ResourcesPath = "Resources");
 
@@ -81,6 +104,15 @@ namespace PrecizeSoft.GetPdfOnline.Web.MvcCoreApp
                 //  return new ProviderCultureResult("en");
                 //}));
             });
+
+            // Adds a default in-memory implementation of IDistributedCache.
+            services.AddDistributedMemoryCache();
+
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromHours(1);
+                options.CookieHttpOnly = true;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -103,6 +135,22 @@ namespace PrecizeSoft.GetPdfOnline.Web.MvcCoreApp
             }
 
             app.UseStaticFiles();
+
+            app.UseSession();
+            //When using cookie - based session state, ASP.NET does not allocate storage for session data until the Session object
+            //is used.As a result, a new session ID is generated for each page request until the session object is accessed.
+            app.Use((httpContext, nextMiddleware) =>
+            {
+                httpContext.Session.SetInt32("InitSessionId", 1);
+
+                /*using (CacheDbContext ctx = new CacheDbContext(new DbContextOptionsBuilder<CacheDbContext>()
+                        .UseSqlite(cacheConnection).Options))
+                {
+                    ctx.SeedForSession(httpContext.Session.Id);
+                }*/
+
+                return nextMiddleware();
+            });
 
             app.UseMvc(routes =>
             {

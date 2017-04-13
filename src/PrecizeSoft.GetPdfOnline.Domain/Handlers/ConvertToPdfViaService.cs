@@ -6,7 +6,13 @@ using System.ServiceModel;
 using System.Text;
 using PrecizeSoft.GetPdfOnline.Domain.Configuration;
 using PrecizeSoft.GetPdfOnline.Domain.Contracts;
+using PrecizeSoft.GetPdfOnline.Domain.Models;
 using PrecizeSoft.IO.Converters;
+using PrecizeSoft.GetPdfOnline.Data;
+using PrecizeSoft.GetPdfOnline.Model;
+using PrecizeSoft.IO.Services.Clients.Converter.V1;
+using PrecizeSoft.IO.Services.MessageContracts.Converter.V1;
+using PrecizeSoft.IO.Services.DataContracts.Converter.V1;
 
 namespace PrecizeSoft.GetPdfOnline.Domain.Handlers
 {
@@ -14,14 +20,16 @@ namespace PrecizeSoft.GetPdfOnline.Domain.Handlers
     {
         protected ConverterV1ServiceOptions serviceOptions;
         protected IValidationDictionary validationDictionary;
+        protected ICacheRepository cacheRepository;
 
-        public ConvertToPdfViaService(ConverterV1ServiceOptions serviceOptions, IValidationDictionary validationDictionary)
+        public ConvertToPdfViaService(ConverterV1ServiceOptions serviceOptions, IValidationDictionary validationDictionary, ICacheRepository cacheRepository)
         {
             this.serviceOptions = serviceOptions;
             this.validationDictionary = validationDictionary;
+            this.cacheRepository = cacheRepository;
         }
 
-        public byte[] Execute(Stream fileStream, string fileName, IDictionary customAttributes)
+        public bool Execute(Stream fileStream, string fileName, IDictionary customAttributes, string sessionId = null)
         {
             byte[] inputFileBytes;
 
@@ -30,14 +38,32 @@ namespace PrecizeSoft.GetPdfOnline.Domain.Handlers
 
             string extension = Path.GetExtension(fileName);
 
-            var pdfConverter = new ConverterFactory().CreateWcfConverterV1(new EndpointAddress(this.serviceOptions.Address),
-                customAttributes);
+            List<CustomAttribute> attr = null;
 
-            byte[] resultPdfBytes = null;
+            if (customAttributes != null)
+            {
+                attr = new List<CustomAttribute>();
+
+                foreach (var p in customAttributes.Keys)
+                    attr.Add(new CustomAttribute
+                    {
+                        Name = p.ToString(),
+                        Value = customAttributes[p].ToString()
+                    });
+            }
+
+            var pdfConverter = new ServiceClient(new EndpointAddress(this.serviceOptions.Address));
+
+            ConvertResponseMessage result = null;
 
             try
             {
-                resultPdfBytes = pdfConverter.Convert(inputFileBytes, extension);
+                result = pdfConverter.Convert(new ConvertMessage
+                {
+                    FileBytes = inputFileBytes,
+                    FileExtension = extension,
+                    CustomAttributes = attr
+                });
             }
             catch (FileExtensionNullException)
             {
@@ -56,7 +82,28 @@ namespace PrecizeSoft.GetPdfOnline.Domain.Handlers
                 this.validationDictionary.AddError("ApiService", "An unexpected error occurred. Please try again. If the problem persists, please contact the developer.");
             }
 
-            return resultPdfBytes;
+            ResultFile resultFile = null;
+
+            if (result != null)
+            {
+                resultFile = new ResultFile
+                {
+                    ResultFileId = result.RequestId,
+                    CreateDateUtc = DateTime.Now.ToUniversalTime(),
+                    ExpireDateUtc = DateTime.Now.ToUniversalTime() + TimeSpan.FromHours(1),
+                    FileName = Path.GetFileNameWithoutExtension(fileName) + ".pdf",
+                    FileSize = result.FileBytes.Length,
+                    SessionId = sessionId,
+                    Content = new ResultFileContent
+                    {
+                        FileBytes = result.FileBytes
+                    }
+                };
+
+                cacheRepository.CreateResultFile(resultFile);
+            }
+
+            return (result != null);
         }
     }
 }

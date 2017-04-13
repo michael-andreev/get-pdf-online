@@ -11,8 +11,7 @@
     </Content>
     <Content Include="wwwroot\images\icon.ico" />
     <Content Include="wwwroot\images\icon.png" />
-    <Content Include="wwwroot\images\pdf-icon-png-2064 (2).png" />
-    <Content Include="wwwroot\images\pdf-icon-png-2064-16x16 (3).ico" />
+    <Content Include="wwwroot\images\pdf-icon-512.png" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.0.0" />
@@ -20,15 +19,19 @@
     <PackageReference Include="Microsoft.AspNetCore.Hosting" Version="1.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.Hosting.WindowsServices" Version="1.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="1.1.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Session" Version="1.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="1.1.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="1.1.1" />
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="1.1.1" />
     <PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink" Version="1.1.0" />
+    <PackageReference Include="System.Data.Common" Version="4.3.0" />
     <PackageReference Include="System.ServiceModel.Primitives" Version="4.3.0" />
   </ItemGroup>
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="1.0.0" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\PrecizeSoft.GetPdfOnline.Data.SQLite\PrecizeSoft.GetPdfOnline.Data.SQLite.csproj" />
     <ProjectReference Include="..\PrecizeSoft.GetPdfOnline.Domain\PrecizeSoft.GetPdfOnline.Domain.csproj" />
   </ItemGroup>
   <ItemGroup>
@@ -45,5 +48,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
     </EmbeddedResource>
   </ItemGroup>
+  <ProjectExtensions><VisualStudio><UserProperties wwwroot_4lib_4bootstrap_4dist_4css_4bootstrap-theme_1css_1map__JSONSchema="http://json.schemastore.org/tsconfig" /></VisualStudio></ProjectExtensions>
 
 </Project>

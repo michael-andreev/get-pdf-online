@@ -20,13 +20,18 @@
 
     <environment names="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap-theme.css" />
         <link rel="stylesheet" href="~/css/site.css" />
     </environment>
     <environment names="Staging,Production">
         <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
               asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
-        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap-theme.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+        <link rel="stylesheet" href="~/css/site.css" />
+        <!--<link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />-->
     </environment>
     @Html.Raw(JavaScriptSnippet.FullScript)
 </head>
@@ -43,18 +48,11 @@
 
                     </button>
                     <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">
-                        Get<span style="color:#d9534f;font-weight:800;margin-left:1px;">PDF</span>@{
+                        Get<span style="color:#c81b00;font-weight:800;margin-left:1px;">PDF</span>@{
                             Write(await Component.InvokeAsync(typeof(NameSuffixViewComponent)));}
                     </a>
                 </div>
                 <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <menulink controller-name="Home" action-name="Index" menu-text="@Localizer["Convert to PDF"]"></menulink>
-                        <menulink controller-name="Home" action-name="Download" menu-text="@Localizer["Download"]"></menulink>
-                        <menulink controller-name="Home" action-name="Statistics" menu-text="@Localizer["Statistics"]"></menulink>
-                        <menulink controller-name="Home" action-name="Developers" menu-text="@Localizer["Developers"]"></menulink>
-                        <menulink controller-name="Home" action-name="About" menu-text="@Localizer["About"]"></menulink>
-                    </ul>
                     @{
                         var requestCulture = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(Context.Features.Get<IRequestCultureFeature>().RequestCulture.UICulture.NativeName);
                         var cultureItems = LocOptions.Value.SupportedUICultures
@@ -70,6 +68,13 @@
                                 }
                             </ul>
                         </li>
+                    </ul>
+                    <ul class="nav navbar-nav">
+                        <menulink controller-name="Home" action-name="Index" menu-text="@Localizer["Convert to PDF"]"></menulink>
+                        <menulink controller-name="Home" action-name="Download" menu-text="@Localizer["Download"]"></menulink>
+                        <menulink controller-name="Home" action-name="Statistics" menu-text="@Localizer["Statistics"]"></menulink>
+                        <menulink controller-name="Home" action-name="Developers" menu-text="@Localizer["Developers"]"></menulink>
+                        <menulink controller-name="Home" action-name="About" menu-text="@Localizer["About"]"></menulink>
                     </ul>
                 </div>
             </div>
@@ -109,7 +114,8 @@
                 crossorigin="anonymous"
                 integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
         </script>
-        <script src="~/js/site.min.js" asp-append-version="true"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+        <!--<script src="~/js/site.min.js" asp-append-version="true"></script>-->
     </environment>
 
     @RenderSection("Scripts", required: false)
