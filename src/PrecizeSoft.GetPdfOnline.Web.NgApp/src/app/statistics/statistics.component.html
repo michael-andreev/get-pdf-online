@@ -1,1 +1,57 @@
-<h2>Statistics</h2>
+<h2 i18n>Statistics</h2>
+<div class="row">
+    <div class="col-md-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title" i18n>Summary</h3>
+            </div>
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <ng-container i18n>Total queries count:</ng-container> {{statistics?.summary?.totalCount}} <small class="text-muted">({{statistics?.summary?.positiveResultCount}} <ng-container>Good</ng-container>, {{statistics?.summary?.negativeResultCount}} <ng-container>Bad</ng-container>)</small>
+                </li>
+                <li class="list-group-item">
+                    <ng-container i18n>First request:</ng-container> {{statistics?.summary?.firstRequestDateUtc | date:'medium'}}
+                </li>
+                <li class="list-group-item">
+                    <ng-container i18n>Last request:</ng-container> {{statistics?.summary?.lastRequestDateUtc | date:'medium'}}
+                </li>
+                <li class="list-group-item">
+                    <ng-container i18n>Average query duration (sec):</ng-container> {{statistics?.summary?.durationInSecondsAvg | number:'1.0-2'}} <small class="text-muted">(<ng-container i18n>Min</ng-container> {{statistics?.summary?.durationInSecondsMin | number:'1.0-2'}}, <ng-container i18n>Max</ng-container> {{statistics?.summary?.durationInSecondsMax | number:'1.0-2'}})</small>
+                </li>
+                <li class="list-group-item">
+                    <ng-container i18n>Average input file size (Kb):</ng-container> {{statistics?.summary?.fileSizeAvg / 1024 | number:'1.0-2'}} <small class="text-muted">(<ng-container i18n>Min</ng-container> {{statistics?.summary?.fileSizeMin / 1024 | number:'1.0-2'}}, <ng-container>Max</ng-container> {{statistics?.summary?.fileSizeMax / 1024 | number:'1.0-2'}})</small>
+                </li>
+                <li class="list-group-item">
+                    <ng-container i18n>Average output file size (Kb):</ng-container> {{statistics?.summary?.resultFileSizeAvg / 1024 | number:'1.0-2'}} <small class="text-muted">(<ng-container>Min</ng-container> {{statistics?.summary?.resultFileSizeMin / 1024 | number:'1.0-2'}}, <ng-container>Max</ng-container> {{statistics?.summary?.resultFileSizeMax / 1024 | number:'1.0-2'}})</small>
+                </li>
+                <li class="list-group-item">
+                    <ng-container i18n>Total traffic (Kb):</ng-container> {{statistics?.summary?.totalFileSizeSum / 1024 | number:'1.0-2'}} <small class="text-muted">(<ng-container i18n>Input</ng-container> {{statistics?.summary?.fileSizeSum / 1024 | number:'1.0-2'}}, <ng-container>Output</ng-container> {{statistics?.summary?.resultFileSizeSum / 1024 | number:'1.0-2'}})</small>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title" i18n>File types</h3>
+            </div>
+            <ul class="list-group">
+                <li class="list-group-item" *ngFor="let cat of statistics?.statByFileCategories">{{cat.fileCategoryCode}}: {{cat.totalCount}}</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title" i18n>Daily stat</h3>
+            </div>
+            <ul class="list-group">
+                <li class="list-group-item" *ngFor="let hour of statistics?.dailyStat">{{hour.hour}}:00-{{hour.hour + 1}}:00: {{hour.totalCount}}</li>
+            </ul>
+        </div>
+    </div>
+</div>

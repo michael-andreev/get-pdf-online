@@ -1,10 +1,10 @@
-import { PrecizeSoft.GetPdfOnline.Web.NgAppPage } from './app.po';
+import { GetPdfOnlinePage } from './app.po';
 
-describe('precize-soft.get-pdf-online.web.ng-app App', () => {
-  let page: PrecizeSoft.GetPdfOnline.Web.NgAppPage;
+describe('get-pdf-online App', () => {
+  let page: GetPdfOnlinePage;
 
   beforeEach(() => {
-    page = new PrecizeSoft.GetPdfOnline.Web.NgAppPage();
+    page = new GetPdfOnlinePage();
   });
 
   it('should display message saying app works', () => {

@@ -1,6 +1,6 @@
 import { browser, element, by } from 'protractor';
 
-export class PrecizeSoft.GetPdfOnline.Web.NgAppPage {
+export class GetPdfOnlinePage {
   navigateTo() {
     return browser.get('/');
   }
