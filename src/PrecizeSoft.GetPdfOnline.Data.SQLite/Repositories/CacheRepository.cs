@@ -17,32 +17,70 @@ namespace PrecizeSoft.GetPdfOnline.Data.SQLite.Repositories
             this.context = dbContext;
         }
 
-        public void CreateResultFile(ResultFile resultFile)
+        public void CreateFile(BinaryFile file)
         {
-            this.context.ResultFiles.Add(resultFile);
+            this.context.BinaryFiles.Add(file);
             this.context.SaveChanges();
         }
 
-        public void DeleteResultFile(Guid resultFileId)
+        public void CreateJob(ConvertJob job)
         {
-            throw new NotImplementedException();
+            this.context.ConvertJobs.Add(job);
+            this.context.SaveChanges();
         }
 
-        public ResultFile GetResultFile(Guid resultFileId, bool includeContent = false)
+        public BinaryFile GetFile(Guid fileId, bool includeContent = false)
         {
-            IQueryable<ResultFile> q = this.context.ResultFiles;
+            IQueryable<BinaryFile> q = this.context.BinaryFiles;
 
             if (includeContent)
             {
-                q = q.Include("Content");
+                q = q.Include(c => c.Content);
             }
 
-            return q.Where(p => p.ResultFileId == resultFileId).SingleOrDefault();
+            return q.Where(p => p.FileId == fileId).SingleOrDefault();
         }
 
-        public IEnumerable<ResultFile> GetResultFilesBySessionId(string sessionId)
+        public IEnumerable<BinaryFile> GetFiles(IEnumerable<Guid> fileIds)
         {
-            return this.context.ResultFiles.Where(p => p.SessionId == sessionId).ToList();
+            return this.context.BinaryFiles.Where(p => fileIds.Contains(p.FileId)).ToList();
+        }
+
+        public ConvertJob GetJob(Guid jobId)
+        {
+            return this.context.ConvertJobs.Where(p => p.ConvertJobId == jobId).SingleOrDefault();
+        }
+
+        public IEnumerable<ConvertJob> GetJobsBySession(Guid sessionId, bool includeFiles = false)
+        {
+            IQueryable<ConvertJob> q = this.context.ConvertJobs;
+
+            if (includeFiles)
+            {
+                q = q.Include(c => c.InputFile).Include(c => c.OutputFile);
+            }
+
+            return q.Where(p => p.SessionId == sessionId).ToList();
+        }
+
+        public void UpdateJob(Guid jobId, byte? rating)
+        {
+            ConvertJob job = this.context.ConvertJobs.Where(p => p.ConvertJobId == jobId).Single();
+
+            job.Rating = rating;
+
+            this.context.ConvertJobs.Update(job);
+
+            /*ConvertJob job = new ConvertJob
+            {
+                ConvertJobId = jobId
+            };
+
+            this.context.ConvertJobs.Attach(job);
+
+            job.Rating = rating;*/
+
+            this.context.SaveChanges();
         }
     }
 }

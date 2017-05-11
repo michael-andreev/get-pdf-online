@@ -1,0 +1,14 @@
+﻿{
+  "compilerOptions": {
+    "noImplicitAny": true,
+    "noEmitOnError": true,
+    "sourceMap": true,
+    "allowJs": true,
+    "target": "es5",
+    "outDir": "wwwroot/js"
+  },
+  "include": [
+    "Client"
+  ],
+  "compileOnSave": true
+}

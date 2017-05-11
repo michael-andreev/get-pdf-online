@@ -42,7 +42,7 @@ namespace PrecizeSoft.GetPdfOnline.Web.MvcCoreApp.Controllers
             model.SupportedFormatsString = string.Join(", ", formats);
             {
                 GetConvertedFilesInfo handler = new GetConvertedFilesInfo(this.cacheRepository);
-                model.ConvertedFiles = handler.Execute(HttpContext.Session.Id);
+                model.ConvertedFiles = handler.Execute(Guid.Parse(HttpContext.Session.Id));
             }
 
             return View(model);
@@ -69,7 +69,7 @@ namespace PrecizeSoft.GetPdfOnline.Web.MvcCoreApp.Controllers
 
                 using (Stream inputFileStream = converter.InputFile.OpenReadStream())
                 {
-                    result = handler.Execute(inputFileStream, converter.InputFile.FileName, headers, HttpContext.Session.Id);
+                    result = handler.Execute(inputFileStream, converter.InputFile.FileName, headers, Guid.Parse(HttpContext.Session.Id));
                 }
             }
 
@@ -80,7 +80,7 @@ namespace PrecizeSoft.GetPdfOnline.Web.MvcCoreApp.Controllers
             model.SupportedFormatsString = string.Join(", ", formats);
             {
                 GetConvertedFilesInfo handler = new GetConvertedFilesInfo(this.cacheRepository);
-                model.ConvertedFiles = handler.Execute(HttpContext.Session.Id);
+                model.ConvertedFiles = handler.Execute(Guid.Parse(HttpContext.Session.Id));
             }
 
             return View(model);
@@ -93,7 +93,7 @@ namespace PrecizeSoft.GetPdfOnline.Web.MvcCoreApp.Controllers
 
             ConvertedFile file = handler.Execute(id);
 
-            return File(file.FileBytes, "application/pdf", file.FileName);
+            return File(file.Bytes, "application/pdf", file.FileName);
         }
 
         public IActionResult Download()

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using PrecizeSoft.GetPdfOnline.Data;
 using PrecizeSoft.GetPdfOnline.Domain.Models;
+using PrecizeSoft.IO.Contracts.ConversionStatistics;
 
 namespace PrecizeSoft.GetPdfOnline.Domain.Handlers
 {
@@ -17,7 +18,7 @@ namespace PrecizeSoft.GetPdfOnline.Domain.Handlers
             this.convertLogRepository = convertLogRepository;
         }
 
-        public IEnumerable<StatByFileCategory> Execute()
+        public IEnumerable<IStatByFileCategory> Execute()
         {
             List<StatByFileCategory> result =
                 (from P in this.convertLogRepository.GetConvertStatByFileCategories()

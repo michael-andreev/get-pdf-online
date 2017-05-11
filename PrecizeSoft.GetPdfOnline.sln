@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26228.9
+VisualStudioVersion = 15.0.26403.7
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PrecizeSoft.GetPdfOnline", "PrecizeSoft.GetPdfOnline", "{CE90ADFB-6052-46E9-AEC1-89CEEAAFB40C}"
 EndProject
@@ -22,8 +22,6 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrecizeSoft.IO.WcfClients", "..\precizesoft-io\src\PrecizeSoft.IO.WcfClients\PrecizeSoft.IO.WcfClients.csproj", "{74FCB31D-D4BC-46DD-843A-BF4219372EEB}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrecizeSoft.IO.WcfServices", "..\precizesoft-io\src\PrecizeSoft.IO.WcfServices\PrecizeSoft.IO.WcfServices.csproj", "{9DF6C8C0-50EF-45D5-950F-4B813A5ADD66}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrecizeSoft.GetPdfOnline.Api.Implementation", "src\PrecizeSoft.GetPdfOnline.Api.Implementation\PrecizeSoft.GetPdfOnline.Api.Implementation.csproj", "{E607C681-B8B2-4056-A6FD-70C44D393AA5}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrecizeSoft.GetPdfOnline.Api.WinService", "src\PrecizeSoft.GetPdfOnline.Api.WinService\PrecizeSoft.GetPdfOnline.Api.WinService.csproj", "{ACD6658C-8C8B-4D46-90EB-3B20D96EADD0}"
 EndProject
@@ -60,6 +58,14 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrecizeSoft.GetPdfOnline.Domain.Tests", "tests\PrecizeSoft.GetPdfOnline.Domain.Tests\PrecizeSoft.GetPdfOnline.Domain.Tests.csproj", "{7996004A-9819-4DE5-A32C-D0D09F989A66}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrecizeSoft.IO.LibreOffice.Tests", "..\precizesoft-io\tests\PrecizeSoft.IO.LibreOffice.Tests\PrecizeSoft.IO.LibreOffice.Tests.csproj", "{A85C8236-70BE-4F9C-A6D4-EB3A7590867E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrecizeSoft.GetPdfOnline.Api.MvcCoreApp", "src\PrecizeSoft.GetPdfOnline.Api.MvcCoreApp\PrecizeSoft.GetPdfOnline.Api.MvcCoreApp.csproj", "{7DF3BB23-AD30-4B83-A1BC-343258AB12C5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrecizeSoft.GetPdfOnline.Api.Soap.Host", "src\PrecizeSoft.GetPdfOnline.Api.Soap.Host\PrecizeSoft.GetPdfOnline.Api.Soap.Host.csproj", "{2A6F20D7-1DC8-411B-B6DF-4A63C7EF4D50}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrecizeSoft.IO.WebApi", "..\precizesoft-io\src\PrecizeSoft.IO.WebApi\PrecizeSoft.IO.WebApi.csproj", "{ECF1B449-0884-43AB-B5A2-9B7B691C39E8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrecizeSoft.GetPdfOnline.Api.Soap.Implementation", "src\PrecizeSoft.GetPdfOnline.Api.Soap.Implementation\PrecizeSoft.GetPdfOnline.Api.Soap.Implementation.csproj", "{54A819F7-2828-4089-B66A-C3A7533DA068}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -117,14 +123,6 @@ Global
 		{9DF6C8C0-50EF-45D5-950F-4B813A5ADD66}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9DF6C8C0-50EF-45D5-950F-4B813A5ADD66}.Release|x86.ActiveCfg = Release|Any CPU
 		{9DF6C8C0-50EF-45D5-950F-4B813A5ADD66}.Release|x86.Build.0 = Release|Any CPU
-		{E607C681-B8B2-4056-A6FD-70C44D393AA5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E607C681-B8B2-4056-A6FD-70C44D393AA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E607C681-B8B2-4056-A6FD-70C44D393AA5}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{E607C681-B8B2-4056-A6FD-70C44D393AA5}.Debug|x86.Build.0 = Debug|Any CPU
-		{E607C681-B8B2-4056-A6FD-70C44D393AA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E607C681-B8B2-4056-A6FD-70C44D393AA5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E607C681-B8B2-4056-A6FD-70C44D393AA5}.Release|x86.ActiveCfg = Release|Any CPU
-		{E607C681-B8B2-4056-A6FD-70C44D393AA5}.Release|x86.Build.0 = Release|Any CPU
 		{ACD6658C-8C8B-4D46-90EB-3B20D96EADD0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{ACD6658C-8C8B-4D46-90EB-3B20D96EADD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ACD6658C-8C8B-4D46-90EB-3B20D96EADD0}.Debug|x86.ActiveCfg = Debug|Any CPU
@@ -233,6 +231,38 @@ Global
 		{A85C8236-70BE-4F9C-A6D4-EB3A7590867E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A85C8236-70BE-4F9C-A6D4-EB3A7590867E}.Release|x86.ActiveCfg = Release|Any CPU
 		{A85C8236-70BE-4F9C-A6D4-EB3A7590867E}.Release|x86.Build.0 = Release|Any CPU
+		{7DF3BB23-AD30-4B83-A1BC-343258AB12C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7DF3BB23-AD30-4B83-A1BC-343258AB12C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7DF3BB23-AD30-4B83-A1BC-343258AB12C5}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{7DF3BB23-AD30-4B83-A1BC-343258AB12C5}.Debug|x86.Build.0 = Debug|Any CPU
+		{7DF3BB23-AD30-4B83-A1BC-343258AB12C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7DF3BB23-AD30-4B83-A1BC-343258AB12C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7DF3BB23-AD30-4B83-A1BC-343258AB12C5}.Release|x86.ActiveCfg = Release|Any CPU
+		{7DF3BB23-AD30-4B83-A1BC-343258AB12C5}.Release|x86.Build.0 = Release|Any CPU
+		{2A6F20D7-1DC8-411B-B6DF-4A63C7EF4D50}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A6F20D7-1DC8-411B-B6DF-4A63C7EF4D50}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A6F20D7-1DC8-411B-B6DF-4A63C7EF4D50}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{2A6F20D7-1DC8-411B-B6DF-4A63C7EF4D50}.Debug|x86.Build.0 = Debug|Any CPU
+		{2A6F20D7-1DC8-411B-B6DF-4A63C7EF4D50}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A6F20D7-1DC8-411B-B6DF-4A63C7EF4D50}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2A6F20D7-1DC8-411B-B6DF-4A63C7EF4D50}.Release|x86.ActiveCfg = Release|Any CPU
+		{2A6F20D7-1DC8-411B-B6DF-4A63C7EF4D50}.Release|x86.Build.0 = Release|Any CPU
+		{ECF1B449-0884-43AB-B5A2-9B7B691C39E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ECF1B449-0884-43AB-B5A2-9B7B691C39E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ECF1B449-0884-43AB-B5A2-9B7B691C39E8}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{ECF1B449-0884-43AB-B5A2-9B7B691C39E8}.Debug|x86.Build.0 = Debug|Any CPU
+		{ECF1B449-0884-43AB-B5A2-9B7B691C39E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ECF1B449-0884-43AB-B5A2-9B7B691C39E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ECF1B449-0884-43AB-B5A2-9B7B691C39E8}.Release|x86.ActiveCfg = Release|Any CPU
+		{ECF1B449-0884-43AB-B5A2-9B7B691C39E8}.Release|x86.Build.0 = Release|Any CPU
+		{54A819F7-2828-4089-B66A-C3A7533DA068}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54A819F7-2828-4089-B66A-C3A7533DA068}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54A819F7-2828-4089-B66A-C3A7533DA068}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{54A819F7-2828-4089-B66A-C3A7533DA068}.Debug|x86.Build.0 = Debug|Any CPU
+		{54A819F7-2828-4089-B66A-C3A7533DA068}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54A819F7-2828-4089-B66A-C3A7533DA068}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54A819F7-2828-4089-B66A-C3A7533DA068}.Release|x86.ActiveCfg = Release|Any CPU
+		{54A819F7-2828-4089-B66A-C3A7533DA068}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -244,7 +274,6 @@ Global
 		{928FC57A-82EF-4796-9C5E-295B8218E29E} = {01FF51AC-E96A-4BF0-94D2-81F5998A4E8D}
 		{74FCB31D-D4BC-46DD-843A-BF4219372EEB} = {01FF51AC-E96A-4BF0-94D2-81F5998A4E8D}
 		{9DF6C8C0-50EF-45D5-950F-4B813A5ADD66} = {01FF51AC-E96A-4BF0-94D2-81F5998A4E8D}
-		{E607C681-B8B2-4056-A6FD-70C44D393AA5} = {EEED9791-173F-40A0-8151-90EC66B36EFE}
 		{ACD6658C-8C8B-4D46-90EB-3B20D96EADD0} = {EEED9791-173F-40A0-8151-90EC66B36EFE}
 		{7E007164-6DB6-497A-969B-BBD9786E5695} = {1C8BDF9D-11DC-44DE-AB01-2F24C584F927}
 		{50CD3C1A-D414-45C5-BAF4-B6E78DEF3F77} = {C87B0216-1152-4FBD-853F-E37CB268E496}
@@ -263,5 +292,9 @@ Global
 		{B56DB17C-B2E6-47EE-B519-9CC0B883768F} = {BCF79C25-967F-4A7D-88F8-B516CFDB7FB0}
 		{7996004A-9819-4DE5-A32C-D0D09F989A66} = {BCF79C25-967F-4A7D-88F8-B516CFDB7FB0}
 		{A85C8236-70BE-4F9C-A6D4-EB3A7590867E} = {B9CF5169-BAC8-404F-8162-33840401650F}
+		{7DF3BB23-AD30-4B83-A1BC-343258AB12C5} = {EEED9791-173F-40A0-8151-90EC66B36EFE}
+		{2A6F20D7-1DC8-411B-B6DF-4A63C7EF4D50} = {EEED9791-173F-40A0-8151-90EC66B36EFE}
+		{ECF1B449-0884-43AB-B5A2-9B7B691C39E8} = {01FF51AC-E96A-4BF0-94D2-81F5998A4E8D}
+		{54A819F7-2828-4089-B66A-C3A7533DA068} = {EEED9791-173F-40A0-8151-90EC66B36EFE}
 	EndGlobalSection
 EndGlobal

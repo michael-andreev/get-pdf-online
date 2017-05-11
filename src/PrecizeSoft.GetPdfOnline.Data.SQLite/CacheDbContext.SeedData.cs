@@ -10,52 +10,40 @@ namespace PrecizeSoft.GetPdfOnline.Data.SQLite
     {
         public void Seed()
         {
-            this.SeedForSession(null);
+            this.SeedForSession(Guid.NewGuid());
         }
 
-        public void SeedForSession(string sessionId)
+        public void SeedForSession(Guid sessionId)
         {
-            if (this.ResultFiles.Count() > 0) return;
+            if (this.BinaryFiles.Count() > 0) return;
 
-            this.ResultFiles.Add(new ResultFile
+            this.ConvertJobs.Add(new ConvertJob
             {
-                ResultFileId = Guid.NewGuid(),
-                FileName = "Text document 1.pdf",
-                FileSize = 48622,
+                ConvertJobId = sessionId,
                 SessionId = sessionId,
-                CreateDateUtc = DateTime.Now.ToUniversalTime(),
-                ExpireDateUtc = DateTime.Now.ToUniversalTime(),
-                Content = new ResultFileContent
+                ExpireDateUtc = DateTime.UtcNow,
+                Rating = null,
+                InputFile = new BinaryFile
                 {
-                    FileBytes = new byte[3] { 0, 1, 2 }
-                }
-            });
-
-            this.ResultFiles.Add(new ResultFile
-            {
-                ResultFileId = Guid.NewGuid(),
-                FileName = "Spreadsheet 1.pdf",
-                FileSize = 232365,
-                SessionId = sessionId,
-                CreateDateUtc = DateTime.Now.ToUniversalTime(),
-                ExpireDateUtc = DateTime.Now.ToUniversalTime(),
-                Content = new ResultFileContent
+                    FileId = Guid.NewGuid(),
+                    FileName = "Text document 1.doc",
+                    FileSize = 48622,
+                    CreateDateUtc = DateTime.Now.ToUniversalTime(),
+                    Content = new BinaryFileContent
+                    {
+                        FileBytes = new byte[3] { 0, 1, 2 }
+                    }
+                },
+                OutputFile = new BinaryFile
                 {
-                    FileBytes = new byte[3] { 0, 1, 2 }
-                }
-            });
-
-            this.ResultFiles.Add(new ResultFile
-            {
-                ResultFileId = Guid.NewGuid(),
-                FileName = "Photography.pdf",
-                FileSize = 3867042,
-                SessionId = sessionId,
-                CreateDateUtc = DateTime.Now.ToUniversalTime(),
-                ExpireDateUtc = DateTime.Now.ToUniversalTime(),
-                Content = new ResultFileContent
-                {
-                    FileBytes = new byte[3] { 0, 1, 2 }
+                    FileId = Guid.NewGuid(),
+                    FileName = "Text document 1.pdf",
+                    FileSize = 482462,
+                    CreateDateUtc = DateTime.Now.ToUniversalTime(),
+                    Content = new BinaryFileContent
+                    {
+                        FileBytes = new byte[3] { 0, 1, 2 }
+                    }
                 }
             });
 

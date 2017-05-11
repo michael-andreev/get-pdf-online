@@ -1,4 +1,5 @@
 ﻿using PrecizeSoft.GetPdfOnline.Data;
+using PrecizeSoft.GetPdfOnline.Domain.Converters;
 using PrecizeSoft.GetPdfOnline.Domain.Models;
 using PrecizeSoft.GetPdfOnline.Model;
 using System;
@@ -20,14 +21,7 @@ namespace PrecizeSoft.GetPdfOnline.Domain.Handlers
 
         public ConvertedFile Execute(Guid fileId)
         {
-            ResultFile resultFile = cacheRepository.GetResultFile(fileId, true);
-
-            return new ConvertedFile
-            {
-                ConvertedFileId = resultFile.ResultFileId,
-                FileBytes = resultFile.Content.FileBytes,
-                FileName = resultFile.FileName
-            };
+            return cacheRepository.GetFile(fileId, true).ToConvertedFile();
         }
     }
 }

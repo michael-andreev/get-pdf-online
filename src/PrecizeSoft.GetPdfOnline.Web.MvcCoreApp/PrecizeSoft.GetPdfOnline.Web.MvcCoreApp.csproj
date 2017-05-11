@@ -5,6 +5,14 @@
     <RuntimeIdentifier>win7-x86</RuntimeIdentifier>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+
   <ItemGroup>
     <Content Include="Client\site.ts" />
     <Content Include="usersettings.txt">
@@ -17,15 +25,15 @@
   <ItemGroup>
     <PackageReference Include="BuildBundlerMinifier" Version="2.4.337" />
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore" Version="1.1.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Hosting" Version="1.1.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Hosting.WindowsServices" Version="1.1.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="1.1.2" />
-    <PackageReference Include="Microsoft.AspNetCore.Session" Version="1.1.1" />
-    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="1.1.1" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="1.1.1" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="1.1.1" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink" Version="1.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore" Version="1.1.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Hosting" Version="1.1.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Hosting.WindowsServices" Version="1.1.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="1.1.3" />
+    <PackageReference Include="Microsoft.AspNetCore.Session" Version="1.1.2" />
+    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="1.1.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="1.1.2" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="1.1.2" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink" Version="1.1.2" />
     <PackageReference Include="System.Data.Common" Version="4.3.0" />
     <PackageReference Include="System.ServiceModel.Primitives" Version="4.3.0" />
   </ItemGroup>

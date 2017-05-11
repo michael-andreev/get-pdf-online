@@ -13,19 +13,17 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.Configuration;
-using PrecizeSoft.GetPdfOnline.Api.Implementation.Converter.V1;
 using PrecizeSoft.GetPdfOnline.Api.WinService.Configuration;
 using PrecizeSoft.GetPdfOnline.Data;
 using PrecizeSoft.GetPdfOnline.Data.SQLite;
 using PrecizeSoft.GetPdfOnline.Data.SQLite.Repositories;
+using PrecizeSoft.GetPdfOnline.Api.Soap.Host;
 
 namespace PrecizeSoft.GetPdfOnline.Api.WinService
 {
     partial class WindowsService : ServiceBase
     {
-        private RootPageHost rootPageHost = null;
-        private ServiceHost converterV1ServiceHost = null;
-        private ServiceHost conversionStatisticsV1ServiceHost = null;
+        protected SoapApiHost soapApiHost = null;
 
         public WindowsService()
         {
@@ -54,31 +52,16 @@ namespace PrecizeSoft.GetPdfOnline.Api.WinService
         protected void CreateAndOpenHosts(int port, bool useLibreOfficeCustomPath, string libreOfficeCustomPath,
             string connectionString)
         {
-            this.rootPageHost = new RootPageHost();
-            this.rootPageHost.Open(port);
-
-            converterV1ServiceHost = new ConverterV1ServiceHost(port, useLibreOfficeCustomPath, libreOfficeCustomPath, connectionString);
-            converterV1ServiceHost.Open();
-
-            conversionStatisticsV1ServiceHost = new ConversionStatisticsV1ServiceHost(port, connectionString);
-            conversionStatisticsV1ServiceHost.Open();
+            this.soapApiHost = new SoapApiHost();
+            this.soapApiHost.Configure(true, port, "/soap", useLibreOfficeCustomPath, libreOfficeCustomPath, connectionString);
+            this.soapApiHost.Open();
         }
 
         protected void CloseHosts()
         {
-            if ((this.rootPageHost != null) && (this.rootPageHost.IsOpened))
+            if ((this.soapApiHost != null) && (this.soapApiHost.IsOpened))
             {
-                this.rootPageHost.Close();
-            }
-
-            if ((this.converterV1ServiceHost != null) && (this.converterV1ServiceHost.State != CommunicationState.Closed))
-            {
-                this.converterV1ServiceHost.Close();
-            }
-
-            if ((this.conversionStatisticsV1ServiceHost != null) && (this.conversionStatisticsV1ServiceHost.State != CommunicationState.Closed))
-            {
-                this.conversionStatisticsV1ServiceHost.Close();
+                this.soapApiHost.Close();
             }
         }
 

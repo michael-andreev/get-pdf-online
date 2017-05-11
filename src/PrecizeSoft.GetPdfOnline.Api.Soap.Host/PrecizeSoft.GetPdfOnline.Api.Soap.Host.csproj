@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net462</TargetFramework>
+    <RuntimeIdentifier>win7-x86</RuntimeIdentifier>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PrecizeSoft.GetPdfOnline.Api.Soap.Implementation\PrecizeSoft.GetPdfOnline.Api.Soap.Implementation.csproj" />
+    <ProjectReference Include="..\PrecizeSoft.GetPdfOnline.Data\PrecizeSoft.GetPdfOnline.Data.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="System.ServiceModel" />
+  </ItemGroup>
+
+</Project>

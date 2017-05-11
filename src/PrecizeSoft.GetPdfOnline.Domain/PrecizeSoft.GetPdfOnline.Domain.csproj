@@ -2,6 +2,15 @@
 
   <PropertyGroup>
     <TargetFramework>net462</TargetFramework>
+    <RuntimeIdentifier>win7-x86</RuntimeIdentifier>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
 
   <ItemGroup>
@@ -13,6 +22,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\precizesoft-io\src\PrecizeSoft.IO.ImageMagick\PrecizeSoft.IO.ImageMagick.csproj" />
+    <ProjectReference Include="..\..\..\precizesoft-io\src\PrecizeSoft.IO.LibreOffice\PrecizeSoft.IO.LibreOffice.csproj" />
     <ProjectReference Include="..\..\..\precizesoft-io\src\PrecizeSoft.IO.WcfClients\PrecizeSoft.IO.WcfClients.csproj" />
     <ProjectReference Include="..\..\..\precizesoft-io\src\PrecizeSoft.IO\PrecizeSoft.IO.csproj" />
     <ProjectReference Include="..\PrecizeSoft.GetPdfOnline.Data\PrecizeSoft.GetPdfOnline.Data.csproj" />

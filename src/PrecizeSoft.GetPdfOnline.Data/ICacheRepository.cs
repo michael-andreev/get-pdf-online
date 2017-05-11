@@ -7,12 +7,18 @@ namespace PrecizeSoft.GetPdfOnline.Data
 {
     public interface ICacheRepository
     {
-        void CreateResultFile(ResultFile resultFile);
+        void CreateFile(BinaryFile file);
 
-        ResultFile GetResultFile(Guid resultFileId, bool includeContent = false);
+        BinaryFile GetFile(Guid fileId, bool includeContent = false);
 
-        IEnumerable<ResultFile> GetResultFilesBySessionId(string sessionId);
+        IEnumerable<BinaryFile> GetFiles(IEnumerable<Guid> fileIds);
 
-        void DeleteResultFile(Guid resultFileId);
+        void CreateJob(ConvertJob job);
+
+        void UpdateJob(Guid jobId, byte? rating);
+
+        ConvertJob GetJob(Guid jobId);
+
+        IEnumerable<ConvertJob> GetJobsBySession(Guid sessionId, bool includeFiles = false);
     }
 }

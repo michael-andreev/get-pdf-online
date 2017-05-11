@@ -18,19 +18,20 @@ namespace PrecizeSoft.GetPdfOnline.Domain.Handlers
             this.cacheRepository = cacheRepository;
         }
 
-        public IEnumerable<ConvertedFileInfo> Execute(string sessionId = null)
+        public IEnumerable<ConvertedFileInfo> Execute(Guid sessionId)
         {
             return
-                from P in this.cacheRepository.GetResultFilesBySessionId(sessionId)
-                orderby P.CreateDateUtc descending
+                from P in this.cacheRepository.GetJobsBySession(sessionId, true)
+                orderby P.OutputFile.CreateDateUtc descending
                 select new ConvertedFileInfo
                 {
-                    ConvertedFileId = P.ResultFileId,
-                    FileNameWithoutExtension = Path.GetFileNameWithoutExtension(P.FileName),
-                    FileSizeKb = Math.Round((double)P.FileSize / 1024, 2),
-                    CreateDateUtc = P.CreateDateUtc,
+                    FileId = P.OutputFileId,
+                    SessionId = P.SessionId,
+                    FileName = P.OutputFile.FileName,
+                    FileSize = P.OutputFile.FileSize,
+                    CreateDateUtc = P.OutputFile.CreateDateUtc,
                     ExpireDateUtc = P.ExpireDateUtc,
-                    Rating = 0
+                    Rating = P.Rating
                 };
         }
     }

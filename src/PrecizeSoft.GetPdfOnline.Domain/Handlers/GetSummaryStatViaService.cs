@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 using PrecizeSoft.GetPdfOnline.Data;
 using PrecizeSoft.GetPdfOnline.Domain.Configuration;
 using PrecizeSoft.GetPdfOnline.Domain.Models;
-using PrecizeSoft.IO.Services.Clients.ConversionStatistics.V1;
-using PrecizeSoft.IO.Services.MessageContracts.ConversionStatistics.V1;
+using PrecizeSoft.IO.Wcf.Clients.ConversionStatistics.V1;
+using PrecizeSoft.IO.Wcf.MessageContracts.ConversionStatistics.V1;
+using PrecizeSoft.IO.Contracts.ConversionStatistics;
 
 namespace PrecizeSoft.GetPdfOnline.Domain.Handlers
 {
@@ -21,7 +22,7 @@ namespace PrecizeSoft.GetPdfOnline.Domain.Handlers
             this.serviceOptions = serviceOptions;
         }
 
-        public SummaryStat Execute()
+        public ISummaryStat Execute()
         {
             ServiceClient client = new ServiceClient(new EndpointAddress(this.serviceOptions.Address));
 

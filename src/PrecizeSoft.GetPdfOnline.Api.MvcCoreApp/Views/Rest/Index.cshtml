@@ -1,0 +1,13 @@
+﻿@using Microsoft.AspNetCore.Localization
+@using Microsoft.AspNetCore.Mvc.Localization
+
+@inject IViewLocalizer Localizer
+
+@{
+    ViewData["Title"] = Localizer["Rest API"];
+}
+<h2>@Localizer["Rest API"]</h2>
+Swagger definition: <a href="~/rest/v1/swagger.json" target="_blank">swagger.json</a>
+<iframe id="swaggerFrame" src="/swagger" frameborder="0" style="width:100%;" scrolling="no"></iframe>
+<script type="text/javascript" src="~/lib/iframe-resizer/js/iframeResizer.min.js"></script> 
+<script>iFrameResize({ log: false }, '#swaggerFrame')</script>

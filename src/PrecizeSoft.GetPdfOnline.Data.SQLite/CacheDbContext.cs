@@ -26,9 +26,11 @@ namespace PrecizeSoft.GetPdfOnline.Data.SQLite
 
         }
 
-        public DbSet<ResultFile> ResultFiles { get; set; }
+        public DbSet<BinaryFile> BinaryFiles { get; set; }
 
-        public DbSet<ResultFileContent> ResultFilesContent { get; set; }
+        public DbSet<BinaryFileContent> BinaryFilesContent { get; set; }
+
+        public DbSet<ConvertJob> ConvertJobs { get; set; }
 
         void IUnitOfWork.SaveChanges()
         {
@@ -39,44 +41,71 @@ namespace PrecizeSoft.GetPdfOnline.Data.SQLite
         {
             //base.OnModelCreating(modelBuilder);
 
-            this.SetupResultFiles(modelBuilder);
-            this.SetupResultFilesContent(modelBuilder);
+            this.SetupBinaryFiles(modelBuilder);
+            this.SetupBinaryFilesContent(modelBuilder);
+            this.SetupConvertJobs(modelBuilder);
         }
 
-        private void SetupResultFiles(ModelBuilder modelBuilder)
+        private void SetupBinaryFiles(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<ResultFile>().ToTable("tbResultFiles");
+            modelBuilder.Entity<BinaryFile>().ToTable("tbFiles");
 
-            modelBuilder.Entity<ResultFile>().HasKey(p => new { p.ResultFileId });
-            modelBuilder.Entity<ResultFile>().Property(p => p.ResultFileId).ValueGeneratedNever();
-            modelBuilder.Entity<ResultFile>().HasIndex(p => new { p.ResultFileId }).IsUnique();
+            modelBuilder.Entity<BinaryFile>().HasKey(p => new { p.FileId });
+            modelBuilder.Entity<BinaryFile>().Property(p => p.FileId).ValueGeneratedNever();
+            modelBuilder.Entity<BinaryFile>().HasIndex(p => new { p.FileId }).IsUnique();
 
-            modelBuilder.Entity<ResultFile>().Property(p => p.CreateDateUtc).IsRequired().ForSqliteHasColumnType("REAL");
-            modelBuilder.Entity<ResultFile>().HasIndex(p => new { p.CreateDateUtc });
+            modelBuilder.Entity<BinaryFile>().Property(p => p.CreateDateUtc).IsRequired().ForSqliteHasColumnType("REAL");
+            modelBuilder.Entity<BinaryFile>().HasIndex(p => new { p.CreateDateUtc });
 
-            modelBuilder.Entity<ResultFile>().Property(p => p.ExpireDateUtc).IsRequired().ForSqliteHasColumnType("REAL");
-            modelBuilder.Entity<ResultFile>().HasIndex(p => new { p.ExpireDateUtc });
+            modelBuilder.Entity<BinaryFile>().Property(p => p.FileName).IsRequired();
 
-            modelBuilder.Entity<ResultFile>().Property(p => p.SessionId);
-            modelBuilder.Entity<ResultFile>().HasIndex(p => new { p.SessionId });
-
-            modelBuilder.Entity<ResultFile>().Property(p => p.FileName).IsRequired();
+            modelBuilder.Entity<BinaryFile>().Property(p => p.FileSize).IsRequired();
         }
 
-        private void SetupResultFilesContent(ModelBuilder modelBuilder)
+        private void SetupBinaryFilesContent(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<ResultFileContent>().ToTable("tbResultFilesContent");
+            modelBuilder.Entity<BinaryFileContent>().ToTable("tbFilesContent");
 
-            modelBuilder.Entity<ResultFileContent>().HasKey(p => new { p.ResultFileContentId });
-            modelBuilder.Entity<ResultFileContent>().Property(p => p.ResultFileContentId).ValueGeneratedNever();
-            modelBuilder.Entity<ResultFileContent>().HasIndex(p => new { p.ResultFileContentId }).IsUnique();
-            modelBuilder.Entity<ResultFileContent>().HasOne(p => p.ResultFile).WithOne(p => p.Content)
-                .HasForeignKey<ResultFileContent>(p => p.ResultFileContentId)
-                .HasPrincipalKey<ResultFile>(p => p.ResultFileId)
+            modelBuilder.Entity<BinaryFileContent>().HasKey(p => new { p.FileContentId });
+            modelBuilder.Entity<BinaryFileContent>().Property(p => p.FileContentId).ValueGeneratedNever();
+            modelBuilder.Entity<BinaryFileContent>().HasIndex(p => new { p.FileContentId }).IsUnique();
+            modelBuilder.Entity<BinaryFileContent>().HasOne(p => p.File).WithOne(p => p.Content)
+                .HasForeignKey<BinaryFileContent>(p => p.FileContentId)
+                .HasPrincipalKey<BinaryFile>(p => p.FileId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            modelBuilder.Entity<ResultFileContent>().Property(p => p.FileBytes).IsRequired();
+            modelBuilder.Entity<BinaryFileContent>().Property(p => p.FileBytes).IsRequired();
         }
 
+        private void SetupConvertJobs(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<ConvertJob>().ToTable("tbConvertJobs");
+
+            modelBuilder.Entity<ConvertJob>().HasKey(p => new { p.ConvertJobId });
+            modelBuilder.Entity<ConvertJob>().Property(p => p.ConvertJobId).ValueGeneratedNever();
+            modelBuilder.Entity<ConvertJob>().HasIndex(p => new { p.ConvertJobId }).IsUnique();
+
+            modelBuilder.Entity<ConvertJob>().Property(p => p.ExpireDateUtc).IsRequired().ForSqliteHasColumnType("REAL");
+            modelBuilder.Entity<ConvertJob>().HasIndex(p => new { p.ExpireDateUtc });
+
+            modelBuilder.Entity<ConvertJob>().Property(p => p.SessionId);
+            modelBuilder.Entity<ConvertJob>().HasIndex(p => new { p.SessionId });
+
+            modelBuilder.Entity<ConvertJob>().Property(p => p.Rating);
+
+            modelBuilder.Entity<ConvertJob>().Property(p => p.InputFileId).IsRequired();
+            modelBuilder.Entity<ConvertJob>().HasIndex(p => new { p.InputFileId }).IsUnique();
+            modelBuilder.Entity<ConvertJob>().HasOne(p => p.InputFile).WithOne(p => p.ConvertJobOnInput)
+                .HasForeignKey<ConvertJob>(p => p.InputFileId)
+                .HasPrincipalKey<BinaryFile>(p => p.FileId)
+                .OnDelete(DeleteBehavior.Restrict).IsRequired();
+
+            modelBuilder.Entity<ConvertJob>().Property(p => p.OutputFileId).IsRequired();
+            modelBuilder.Entity<ConvertJob>().HasIndex(p => new { p.OutputFileId }).IsUnique();
+            modelBuilder.Entity<ConvertJob>().HasOne(p => p.OutputFile).WithOne(p => p.ConvertJobOnOutput)
+                .HasForeignKey<ConvertJob>(p => p.OutputFileId)
+                .HasPrincipalKey<BinaryFile>(p => p.FileId)
+                .OnDelete(DeleteBehavior.Restrict).IsRequired();
+        }
     }
 }

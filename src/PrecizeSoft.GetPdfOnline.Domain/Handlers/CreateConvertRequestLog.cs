@@ -28,7 +28,7 @@ namespace PrecizeSoft.GetPdfOnline.Domain.Handlers
                 FileExtension = requestLog.FileExtension,
                 FileSize = requestLog.FileSize,
                 FileType = this.convertLogRepository.GetFileTypeByExtension(requestLog.FileExtension),
-                CustomAttributes = string.Join(";", requestLog.CustomAttributes.Select(p => $"{p.Key}=\"{p.Value}\""))
+                CustomAttributes = requestLog.CustomAttributes == null ? null : string.Join(";", requestLog.CustomAttributes.Select(p => $"{p.Key}=\"{p.Value}\""))
             };
 
             this.convertLogRepository.CreateConvertRequest(data);

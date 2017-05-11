@@ -8,14 +8,14 @@
   },
   "ServiceClients": {
     "ConverterV1Service": {
-      "Address": "http://localhost:9436/Converter/V1/Service.svc",
+      "Address": "http://localhost:9436/Soap/Converter/V1/Service.svc",
 	  "ConvertRequest": {
 		"AddClientHttpHeadersToCustomAttributes": "true",
 		"ClientHttpHeaders": [ "User-Agent", "Accept-Language", "X-Original-For", "X-Forwarded-For" ]
 	  }
     },
     "ConversionStatisticsV1Service": {
-      "Address": "http://localhost:9436/ConversionStatistics/V1/Service.svc"
+      "Address": "http://localhost:9436/Soap/ConversionStatistics/V1/Service.svc"
     }
   },
   "View": {

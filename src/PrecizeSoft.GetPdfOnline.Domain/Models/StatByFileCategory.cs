@@ -1,11 +1,12 @@
-﻿using System;
+﻿using PrecizeSoft.IO.Contracts.ConversionStatistics;
+using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.Text;
 
 namespace PrecizeSoft.GetPdfOnline.Domain.Models
 {
-    public class StatByFileCategory
+    public class StatByFileCategory: IStatByFileCategory
     {
         public string FileCategoryCode { get; set; }
 

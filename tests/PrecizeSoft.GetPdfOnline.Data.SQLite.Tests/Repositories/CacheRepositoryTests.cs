@@ -31,22 +31,21 @@ namespace PrecizeSoft.GetPdfOnline.Data.SQLite.Tests.Repositories
             byte[] fileBytes = new byte[1];
             fileBytes[0] = 1;
 
-            ResultFile resultFile = new ResultFile
+            BinaryFile resultFile = new BinaryFile
             {
-                ResultFileId = resultFileId,
+                FileId = resultFileId,
                 CreateDateUtc = DateTime.Now,
-                ExpireDateUtc = DateTime.Now,
                 FileName = "test.pdf",
-                SessionId = "SessionId",
-                Content = new ResultFileContent
+                FileSize = fileBytes.Length,
+                Content = new BinaryFileContent
                 {
                     FileBytes = fileBytes
                 }
             };
 
-            repository.CreateResultFile(resultFile);
+            repository.CreateFile(resultFile);
 
-            Assert.NotNull(repository.GetResultFile(resultFileId));
+            Assert.NotNull(repository.GetFile(resultFileId));
         }
     }
 }

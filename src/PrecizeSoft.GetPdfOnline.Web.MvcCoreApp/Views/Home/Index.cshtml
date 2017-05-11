@@ -46,7 +46,7 @@
                         <li class="list-group-item">
                             <span class="pdf-icon"></span>
                             <div class="pdf-info">
-                                <a asp-area="" asp-controller="Home" asp-action="GetPdf" asp-route-id="@f.ConvertedFileId">@f.FileNameWithoutExtension</a>
+                                <a asp-area="" asp-controller="Home" asp-action="GetPdf" asp-route-id="@f.FileId">@f.FileNameWithoutExtension</a>
                                 <small class="text-muted">@f.FileSizeKb @Localizer["Kb"]</small>
                             </div>
                         </li>
@@ -65,7 +65,7 @@
             <li class="list-group-item">
                 <span class="pdf-icon"></span>
                 <div class="pdf-info">
-                    <a asp-area="" asp-controller="Home" asp-action="GetPdf" asp-route-id="@f.ConvertedFileId">@f.FileNameWithoutExtension</a>
+                    <a asp-area="" asp-controller="Home" asp-action="GetPdf" asp-route-id="@f.FileId">@f.FileNameWithoutExtension</a>
                     <small class="text-muted">@f.FileSizeKb @Localizer["Kb"]</small>
                 </div>
             </li>

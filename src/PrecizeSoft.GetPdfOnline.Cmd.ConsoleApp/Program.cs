@@ -13,7 +13,8 @@ namespace PrecizeSoft.GetPdfOnline.Cmd.ConsoleApp
     {
         static void Main(string[] args)
         {
-            CreateResultFileTest();
+
+            //CreateResultFileTest();
 
             /*var converter = new ConverterFactory().CreateWcfConverterV1(new EndpointAddress("http://misha-ws:9436/Converter/V1/Service.svc"));
             converter.Convert(@"d:\LO-PDF\test.txt", @"d:\LO-PDF\resume.pdf");*/
@@ -36,7 +37,7 @@ namespace PrecizeSoft.GetPdfOnline.Cmd.ConsoleApp
             (new Task(() => { converter.Convert(@"d:\LO-PDF\resume8.docx", @"d:\LO-PDF\resume8.pdf"); })).Start();
             (new Task(() => { converter.Convert(@"d:\LO-PDF\resume9.docx", @"d:\LO-PDF\resume9.pdf"); })).Start();
             (new Task(() => { converter.Convert(@"d:\LO-PDF\resume10.docx", @"d:\LO-PDF\resume10.pdf"); })).Start();*/
-            Console.WriteLine("Hello World!");
+            Console.WriteLine(TimeSpan.FromHours(1).ToString());
             Console.ReadKey();
         }
 
@@ -58,20 +59,18 @@ namespace PrecizeSoft.GetPdfOnline.Cmd.ConsoleApp
             byte[] fileBytes = new byte[1];
             fileBytes[0] = 1;
 
-            ResultFile resultFile = new ResultFile
+            BinaryFile resultFile = new BinaryFile
             {
-                ResultFileId = resultFileId,
+                FileId = resultFileId,
                 CreateDateUtc = DateTime.Now,
-                ExpireDateUtc = DateTime.Now,
                 FileName = "test.pdf",
-                SessionId = "SessionId",
-                Content = new ResultFileContent
+                Content = new BinaryFileContent
                 {
                     FileBytes = fileBytes
                 }
             };
 
-            repository.CreateResultFile(resultFile);
+            repository.CreateFile(resultFile);
         }
 
         /*static public void ConvertBytesTest(string sourceFileName, string destinationFileName)

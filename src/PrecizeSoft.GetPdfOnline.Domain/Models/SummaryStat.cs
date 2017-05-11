@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PrecizeSoft.IO.Contracts.ConversionStatistics;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace PrecizeSoft.GetPdfOnline.Domain.Models
 {
-    public class SummaryStat
+    public class SummaryStat: ISummaryStat
     {
         public DateTime? FirstRequestDateUtc { get; set; }
 

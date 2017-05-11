@@ -10,9 +10,9 @@ using PrecizeSoft.GetPdfOnline.Domain.Models;
 using PrecizeSoft.IO.Converters;
 using PrecizeSoft.GetPdfOnline.Data;
 using PrecizeSoft.GetPdfOnline.Model;
-using PrecizeSoft.IO.Services.Clients.Converter.V1;
-using PrecizeSoft.IO.Services.MessageContracts.Converter.V1;
-using PrecizeSoft.IO.Services.DataContracts.Converter.V1;
+using PrecizeSoft.IO.Wcf.Clients.Converter.V1;
+using PrecizeSoft.IO.Wcf.MessageContracts.Converter.V1;
+using PrecizeSoft.IO.Wcf.DataContracts.Converter.V1;
 
 namespace PrecizeSoft.GetPdfOnline.Domain.Handlers
 {
@@ -29,12 +29,12 @@ namespace PrecizeSoft.GetPdfOnline.Domain.Handlers
             this.cacheRepository = cacheRepository;
         }
 
-        public bool Execute(Stream fileStream, string fileName, IDictionary customAttributes, string sessionId = null)
+        public bool Execute(Stream fileStream, string fileName, IDictionary customAttributes, Guid? sessionId = null)
         {
             byte[] inputFileBytes;
 
-                inputFileBytes = new byte[fileStream.Length];
-                fileStream.Read(inputFileBytes, 0, (int)fileStream.Length);
+            inputFileBytes = new byte[fileStream.Length];
+            fileStream.Read(inputFileBytes, 0, (int)fileStream.Length);
 
             string extension = Path.GetExtension(fileName);
 
@@ -82,25 +82,40 @@ namespace PrecizeSoft.GetPdfOnline.Domain.Handlers
                 this.validationDictionary.AddError("ApiService", "An unexpected error occurred. Please try again. If the problem persists, please contact the developer.");
             }
 
-            ResultFile resultFile = null;
+            ConvertJob job = null;
 
             if (result != null)
             {
-                resultFile = new ResultFile
+                job = new ConvertJob
                 {
-                    ResultFileId = result.RequestId,
-                    CreateDateUtc = DateTime.Now.ToUniversalTime(),
-                    ExpireDateUtc = DateTime.Now.ToUniversalTime() + TimeSpan.FromHours(1),
-                    FileName = Path.GetFileNameWithoutExtension(fileName) + ".pdf",
-                    FileSize = result.FileBytes.Length,
+                    ConvertJobId = result.RequestId,
                     SessionId = sessionId,
-                    Content = new ResultFileContent
+                    ExpireDateUtc = DateTime.Now.ToUniversalTime() + TimeSpan.FromHours(1),
+                    InputFile = new BinaryFile
                     {
-                        FileBytes = result.FileBytes
+                        FileId = Guid.NewGuid(),
+                        CreateDateUtc = DateTime.UtcNow,
+                        FileName = fileName,
+                        FileSize = inputFileBytes.Length,
+                        Content = new BinaryFileContent
+                        {
+                            FileBytes = inputFileBytes
+                        }
+                    },
+                    OutputFile = new BinaryFile
+                    {
+                        FileId = Guid.NewGuid(),
+                        CreateDateUtc = DateTime.UtcNow,
+                        FileName = Path.GetFileNameWithoutExtension(fileName) + ".pdf",
+                        FileSize = result.FileBytes.Length,
+                        Content = new BinaryFileContent
+                        {
+                            FileBytes = result.FileBytes
+                        }
                     }
                 };
 
-                cacheRepository.CreateResultFile(resultFile);
+                cacheRepository.CreateJob(job);
             }
 
             return (result != null);

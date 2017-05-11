@@ -1,0 +1,23 @@
+﻿@using Microsoft.AspNetCore.Localization
+@using Microsoft.AspNetCore.Mvc.Localization
+
+@inject IViewLocalizer Localizer
+
+@{
+    ViewData["Title"] = Localizer["Soap API"];
+}
+
+<h2>Soap API</h2>
+<h3>Available services:</h3>
+<ul>
+    <li>
+        <a href="/Soap/Converter/V1/Service.svc" target="_blank">Converter V1 Service</a>
+        (<a href="/Soap/Converter/V1/Service.svc?wsdl" target="_blank">wsdl</a>,
+        <a href="/Soap/Converter/V1/Service.svc?singleWsdl" target="_blank">singleWsdl</a>)
+    </li>
+    <li>
+        <a href="/Soap/Statistics/V1/Service.svc" target="_blank">Statistics V1 Service</a>
+        (<a href="/Soap/Statistics/V1/Service.svc?wsdl" target="_blank">wsdl</a>,
+        <a href="/Soap/Statistics/V1/Service.svc?singleWsdl" target="_blank">singleWsdl</a>)
+    </li>
+</ul>

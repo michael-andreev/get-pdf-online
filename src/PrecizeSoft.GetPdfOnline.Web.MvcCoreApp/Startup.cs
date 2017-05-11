@@ -46,12 +46,6 @@ namespace PrecizeSoft.GetPdfOnline.Web.MvcCoreApp
             cacheConnection = new SqliteConnection("Data Source=:memory:");
             cacheConnection.Open();
 
-            using (CacheDbContext ctx = new CacheDbContext(new DbContextOptionsBuilder<CacheDbContext>()
-                    .UseSqlite(cacheConnection).Options))
-            { 
-                ctx.Database.EnsureCreated();
-            }
-
             services.AddDbContext<CacheDbContext>(options =>
                 options.UseSqlite(cacheConnection));
 
@@ -116,7 +110,7 @@ namespace PrecizeSoft.GetPdfOnline.Web.MvcCoreApp
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, CacheDbContext cacheDbContext)
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
@@ -158,6 +152,8 @@ namespace PrecizeSoft.GetPdfOnline.Web.MvcCoreApp
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            cacheDbContext.Database.EnsureCreated();
         }
     }
 }

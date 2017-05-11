@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using PrecizeSoft.GetPdfOnline.Data;
 using PrecizeSoft.GetPdfOnline.Domain.Models;
+using PrecizeSoft.IO.Contracts.ConversionStatistics;
 
 namespace PrecizeSoft.GetPdfOnline.Domain.Handlers
 {
@@ -17,11 +18,11 @@ namespace PrecizeSoft.GetPdfOnline.Domain.Handlers
             this.convertLogRepository = convertLogRepository;
         }
 
-        public SummaryStat Execute()
+        public ISummaryStat Execute()
         {
             var data = this.convertLogRepository.GetConvertStatTotal();
 
-            SummaryStat result = new SummaryStat
+            ISummaryStat result = new SummaryStat
             {
                 FirstRequestDateUtc = data.FirstRequestDateUtc,
                 LastRequestDateUtc = data.LastRequestDateUtc,
