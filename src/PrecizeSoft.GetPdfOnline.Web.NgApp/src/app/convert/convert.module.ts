@@ -10,6 +10,10 @@ import { ConvertRoutingModule } from './convert-routing.module';
     declarations: [
         ConvertComponent
     ],
-    providers: [/* TODO: Providers go here */]
+    exports: [
+    ],
+    providers: [/* TODO: Providers go here */]// ,
+    // id: 'ConvertModule',
 })
 export class ConvertModule { }
+

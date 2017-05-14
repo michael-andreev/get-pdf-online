@@ -12,3 +12,5 @@ const convertRoutes: Routes = [
   exports: [RouterModule]
 })
 export class ConvertRoutingModule { }
+
+// export const routedComponents = [ConvertComponent];

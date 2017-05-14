@@ -16,10 +16,6 @@ const developersRoutes: Routes = [
     component: DevelopersComponent,
     children: [
       {
-        path: '',
-        redirectTo: 'overview'
-      },
-      {
         path: 'overview',
         component: DevelopersOverviewComponent
       },
@@ -42,6 +38,10 @@ const developersRoutes: Routes = [
       {
         path: 'source-code',
         component: DevelopersSourceCodeComponent
+      },
+      {
+        path: '**',
+        redirectTo: 'overview'
       }
     ]
   }

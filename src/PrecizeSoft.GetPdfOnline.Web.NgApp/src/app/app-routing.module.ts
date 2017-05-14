@@ -1,24 +1,45 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { ConvertModule } from './convert/convert.module';
+// import { ConvertComponent } from './convert/convert.component';
+// import { DownloadComponent } from './download/download.component';
+// import { StatisticsComponent } from './statistics/statistics.component';
+// import { AboutComponent } from './about/about.component';
+
+/*import { ConvertModule } from './convert/convert.module';
 import { DownloadModule } from './download/download.module';
 import { StatisticsModule } from './statistics/statistics.module';
 import { DevelopersModule } from './developers/developers.module';
-import { AboutModule } from './about/about.module';
+import { AboutModule } from './about/about.module';*/
 
 const routes: Routes = [
-  { path: '', loadChildren: 'app/convert/convert.module#ConvertModule' },
-  { path: 'download', loadChildren: 'app/download/download.module#DownloadModule' },
-  { path: 'statistics', loadChildren: 'app/statistics/statistics.module#StatisticsModule' },
-  { path: 'developers', loadChildren: 'app/developers/developers.module#DevelopersModule' },
-  { path: 'about', loadChildren: 'app/about/about.module#AboutModule' }
+  // { path: '', component: ConvertComponent },
+  // { path: 'download', component: DownloadComponent },
+  // { path: 'statistics', component: StatisticsComponent },
+  // { path: 'developers', loadChildren: 'app/developers/developers.module#DevelopersModule' },
+  // { path: 'about', component: AboutComponent }
+
+  /*// { path: '', component: ConvertComponent },
+  { path: '', loadChildren: './convert/convert.module#ConvertModule' },
+  { path: 'download', loadChildren: './download/download.module#DownloadModule' },
+  { path: 'statistics', loadChildren: './statistics/statistics.module#StatisticsModule' },
+  // { path: 'developers/overview', loadChildren: './developers/developers.module#DevelopersModule' },
+  { path: 'developers', loadChildren: './developers/developers.module#DevelopersModule' },
+  { path: 'about', loadChildren: './about/about.module#AboutModule' }*/
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  declarations: [
+  ],
+  imports: [
+    RouterModule.forRoot(routes) /*,
+    ConvertModule,
+    DownloadModule,
+    StatisticsModule,
+    DevelopersModule,
+    AboutModule*/],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
 
-//export const routedComponents = [ConvertComponent];
+// export const routedComponents = [ConvertComponent];
