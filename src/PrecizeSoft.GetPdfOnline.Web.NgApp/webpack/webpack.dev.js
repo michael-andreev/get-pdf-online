@@ -8,6 +8,15 @@ const helpers = require('./helpers');
 module.exports = webpackMerge(commonConfig, {
   devtool: 'cheap-module-eval-source-map',
 
+  entry: {
+    'polyfills': './src/polyfills.ts',
+    'vendor': './src/vendor.ts',
+    'app': './src/main.ts',
+    'styles': [
+      './src/styles.css'
+    ]
+  },
+
   output: {
     path: helpers.root('dist'),
     publicPath: 'http://localhost:9435/',
@@ -20,6 +29,7 @@ module.exports = webpackMerge(commonConfig, {
     
     new AotPlugin({
       mainPath: "main.ts",
+      entryModule: helpers.root('src', 'app', 'app.module#AppModule'),
       hostReplacementPaths: {
         'environments\\environment.ts': 'environments\\environment.ts'
       },

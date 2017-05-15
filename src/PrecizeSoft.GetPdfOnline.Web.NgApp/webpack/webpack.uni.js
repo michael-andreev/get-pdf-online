@@ -5,6 +5,7 @@ const CompressionPlugin = require('compression-webpack-plugin');
 const { AotPlugin } = require('@ngtools/webpack');
 const commonConfig = require('./webpack.common.js');
 const helpers = require('./helpers');
+const nodeExternals = require('webpack-node-externals');
 
 const ENV = process.env.NODE_ENV = process.env.ENV = 'production';
 
@@ -12,25 +13,36 @@ module.exports = webpackMerge(commonConfig, {
   devtool: 'source-map',
 
   entry: {
-    'polyfills': './src/polyfills.ts',
-    'vendor': './src/vendor.ts',
-    'app': './src/main.ts',
+    // 'polyfills': './src/polyfills.ts',
+    // 'vendor': './src/vendor.ts',
+    'app': ['./src/uni/app.server.module.ts', './src/uni/server-aot.ts'],
     'styles': [
       './src/styles.css'
     ]
   },
-
+  target: 'node',
+  externals: [nodeExternals()],
+  node: {
+    global: true,
+    crypto: true,
+    __dirname: true,
+    __filename: true,
+    process: true,
+    Buffer: true,
+    fs: "empty"
+  },    
   output: {
     path: helpers.root('dist'),
     publicPath: '/',
-    filename: '[name].[hash].js',
-    chunkFilename: '[id].[hash].chunk.js'
+    // libraryTarget: 'commonjs',
+    filename: '[name].js',
+    chunkFilename: '[id].chunk.js'
   },
 
   plugins: [
     new webpack.NoEmitOnErrorsPlugin(),
 
-    new webpack.optimize.UglifyJsPlugin({
+    /*new webpack.optimize.UglifyJsPlugin({
       // https://github.com/angular/angular/issues/10618
       // mangle: {
       //   keep_fnames: true
@@ -39,16 +51,8 @@ module.exports = webpackMerge(commonConfig, {
         comments: false
       },
       sourceMap: false
-    }),
+    }),*/
 
-    new CompressionPlugin({
-        asset: "[path].gz[query]",
-        algorithm: "gzip",
-        test: /\.(js|html|css)$/,
-        threshold: 10240,
-        minRatio: 0.8
-    }),
-    
     new ExtractTextPlugin('[name].[hash].css'),
 
     new webpack.DefinePlugin({
@@ -64,13 +68,14 @@ module.exports = webpackMerge(commonConfig, {
     }),*/
 
     new AotPlugin({
-      mainPath: 'main.ts',
-      entryModule: helpers.root('src', 'app', 'app.module#AppModule'),
+      // mainPath: 'uni/server-aot.ts',
+      // entryModule: helpers.root('src', 'app', 'app.module#AppModule'),
+      entryModule: helpers.root('src', 'uni', 'app.server.module#AppServerModule'),
       hostReplacementPaths: {
         'environments\\environment.ts': 'environments\\environment.prod.ts'
       },
       // "exclude": [],
-      tsConfigPath: 'src\\tsconfig.app.json' // ,
+      tsConfigPath: 'src\\tsconfig.uni.json' // ,
       // "skipCodeGeneration": true
     })
   ]
