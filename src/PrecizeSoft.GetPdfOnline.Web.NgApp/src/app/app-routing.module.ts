@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+// import helpers from '../../webpack/helpers';
 
 // import { ConvertComponent } from './convert/convert.component';
 // import { DownloadComponent } from './download/download.component';
@@ -19,25 +20,27 @@ const routes: Routes = [
   // { path: 'developers', loadChildren: 'app/developers/developers.module#DevelopersModule' },
   // { path: 'about', component: AboutComponent }
 
-  /*// { path: '', component: ConvertComponent },
+  // { path: '', component: ConvertComponent },
   { path: '', loadChildren: './convert/convert.module#ConvertModule' },
   { path: 'download', loadChildren: './download/download.module#DownloadModule' },
   { path: 'statistics', loadChildren: './statistics/statistics.module#StatisticsModule' },
   // { path: 'developers/overview', loadChildren: './developers/developers.module#DevelopersModule' },
   { path: 'developers', loadChildren: './developers/developers.module#DevelopersModule' },
-  { path: 'about', loadChildren: './about/about.module#AboutModule' }*/
+  { path: 'about', loadChildren: './about/about.module#AboutModule' }
+
+  /*{ path: '', loadChildren: () => ConvertModule },
+  { path: 'download', loadChildren: () => DownloadModule },
+  { path: 'statistics', loadChildren: () => StatisticsModule },
+  // { path: 'developers/overview', loadChildren: './developers/developers.module#DevelopersModule' },
+  { path: 'developers', loadChildren: () => DevelopersModule },
+  { path: 'about', loadChildren: () => AboutModule }*/
 ];
 
 @NgModule({
   declarations: [
   ],
   imports: [
-    RouterModule.forRoot(routes) /*,
-    ConvertModule,
-    DownloadModule,
-    StatisticsModule,
-    DevelopersModule,
-    AboutModule*/],
+  RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

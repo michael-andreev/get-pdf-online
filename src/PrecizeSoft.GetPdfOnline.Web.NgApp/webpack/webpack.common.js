@@ -6,35 +6,37 @@ const { AotPlugin } = require('@ngtools/webpack');
 const helpers = require('./helpers');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-//const entryPoints = ["inline","polyfills","sw-register","scripts","styles","vendor","main"];
+// const entryPoints = ["inline","polyfills","sw-register","scripts","styles","vendor","main"];
 
 module.exports = {
-  // devtool: 'source-map',
 
   entry: {
     'polyfills': './src/polyfills.ts',
     'vendor': './src/vendor.ts',
-    // 'convert/convert.module': './src/app/convert/convert.module.ts',
+    'app': './src/main.ts',
     'styles': [
       './src/styles.css'
     ]
   },
 
   resolve: {
-    extensions: ['.ts', '.js']
+    extensions: [
+      '.ts',
+      '.js'
+    ],
+    /*modules: [
+      './node_modules',
+      helpers.root('src', 'app')
+    ]*/
   },
+  /*"resolveLoader": {
+    "modules": [
+      "./node_modules"
+    ]
+  },*/
 
   module: {
     rules: [
-      /*{
-        test: /\.ts$/,
-        loaders: [
-          {
-            loader: 'awesome-typescript-loader',
-            options: { configFileName: helpers.root('src', 'tsconfig.app.json') }
-          } , 'angular2-template-loader'
-        ]
-      },*/
       {
         test: /\.ts$/,
         loader: '@ngtools/webpack'
@@ -53,7 +55,7 @@ module.exports = {
         loader: ExtractTextPlugin.extract(
           {
             fallback: 'style-loader',
-            use: 'css-loader?sourceMap'
+            use: 'css-loader?sourceMap&minimize'
           })
       },
       {
@@ -87,10 +89,39 @@ module.exports = {
         'ignore': '**/.gitkeep'
       }
     }),
+
     new webpack.ProvidePlugin({
       jQuery: 'jquery',
       $: 'jquery',
       jquery: 'jquery'
+    }),
+
+    new HtmlWebpackPlugin({
+      template: 'src/index.html'/*,
+      "hash": false,
+      "inject": true,
+      "compile": true,
+      "favicon": false,
+      "minify": false,
+      "cache": true,
+      "showErrors": true,
+      "chunks": "all",
+      "excludeChunks": [],
+      "title": "Webpack App",
+      "xhtml": true,
+      "chunksSortMode": function sort(left, right) {
+        let leftIndex = entryPoints.indexOf(left.names[0]);
+        let rightindex = entryPoints.indexOf(right.names[0]);
+        if (leftIndex > rightindex) {
+            return 1;
+        }
+        else if (leftIndex < rightindex) {
+            return -1;
+        }
+        else {
+            return 0;
+        }
+      }*/
     }),
 
     /*new HtmlWebpackPlugin({
@@ -135,6 +166,12 @@ module.exports = {
 
     new webpack.optimize.CommonsChunkPlugin({
       name: ['app', 'vendor', 'polyfills']
-    })
+    })/*,
+
+        new webpack.optimize.CommonsChunkPlugin({
+      "name": "inline",
+      "minChunks": null
+    }),*/
+
   ]
 };
