@@ -12,7 +12,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "i18n": "ng-xi18n",
-    "lite": "lite-server --baseDir=dist\\build-aot",
+    "lite": "lite-server --baseDir=dist",
     "build:aot:old": "ngc -p src\\tsconfig.app.aot.json && rollup -c rollup-config.js",
     "start:old": "ng serve",
     "build:old": "ng build",

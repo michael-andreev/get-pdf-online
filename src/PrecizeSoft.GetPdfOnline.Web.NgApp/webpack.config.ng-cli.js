@@ -72,7 +72,7 @@ module.exports = {
   },
   "entry": {
     "main": [
-      "./src\\main-jit.ts"
+      "./src\\main.ts"
     ],
     "polyfills": [
       "./src\\polyfills.ts"
@@ -381,7 +381,7 @@ module.exports = {
     }),
     new ProgressPlugin(),
     new HtmlWebpackPlugin({
-      "template": "./src\\index-jit.html",
+      "template": "./src\\index.html",
       "filename": "./index.html",
       "hash": false,
       "inject": true,
@@ -421,7 +421,7 @@ module.exports = {
       ]
     }),
     new AotPlugin({
-      "mainPath": "main-jit.ts",
+      "mainPath": "main.ts",
       "hostReplacementPaths": {
         "environments\\environment.ts": "environments\\environment.ts"
       },
