@@ -59,11 +59,11 @@ module.exports = {
       }
     }),
 
-    /*new webpack.ProvidePlugin({
+    new webpack.ProvidePlugin({
       jQuery: 'jquery',
       $: 'jquery',
       jquery: 'jquery'
-    }),*/
+    }),
 
     new HtmlWebpackPlugin({
       template: 'src/index.html',
@@ -77,10 +77,10 @@ module.exports = {
         collapseWhitespace: true, //Collapse white space that contributes to text nodes in a document tree
         collapseInlineTagWhitespace: true, //Don't leave any spaces between display:inline; elements when collapsing. Must be used in conjunction with collapseWhitespace=true
       }
-    })/*,
+    }),
 
     new webpack.optimize.CommonsChunkPlugin({
       name: ['app', 'vendor', 'polyfills']
-    })*/
+    })
   ]
 };
