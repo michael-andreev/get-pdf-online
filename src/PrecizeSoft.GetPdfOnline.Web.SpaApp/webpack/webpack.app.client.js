@@ -8,17 +8,24 @@ module.exports = (env) => {
 
     // Configuration for client-side bundle suitable for running in browsers
     return merge(commonConfig(env), {
-        entry: { 'main-client': helpers.root('ClientApp', 'boot-client.ts') },
+        entry: {
+            'main-client': helpers.root('ClientApp', 'boot-client.ts'),
+            'polyfills': helpers.root('ClientApp', 'polyfills.ts'),
+            'vendor': helpers.root('ClientApp', 'vendor.ts')
+        },
         output: { path: helpers.root('wwwroot', 'dist') },
         plugins: [
             new webpack.ContextReplacementPlugin(
                 /angular(\\|\/)core(\\|\/)@angular/,
                 helpers.root('ClientApp')
             ), // Workaround for https://github.com/angular/angular/issues/11580
-            new webpack.DllReferencePlugin({
+            /*new webpack.DllReferencePlugin({
                 context: helpers.root(),
                 manifest: require(helpers.root('wwwroot', 'dist', 'vendor-manifest.json'))  
-            })
+            })*/
+            new webpack.optimize.CommonsChunkPlugin({
+                name: ['app', 'vendor', 'polyfills']
+            }),
         ].concat(isDevBuild ? [
             // Plugins that apply in development builds only
             new webpack.SourceMapDevToolPlugin({

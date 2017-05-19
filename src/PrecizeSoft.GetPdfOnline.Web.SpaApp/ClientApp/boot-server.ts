@@ -5,7 +5,7 @@ import 'zone.js/dist/zone-node';
 import './polyfills';
 
 import 'reflect-metadata';
-import 'zone.js';
+//import 'zone.js';
 
 // import './vendor';
 
