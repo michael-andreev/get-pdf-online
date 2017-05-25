@@ -11,10 +11,3 @@ import '@angular/router';
 
 // Other vendors for example jQuery, Lodash or Bootstrap
 // You can import js, ts, css, sass, ...
-
-import 'bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/css/bootstrap-theme.min.css';
-// import 'bootstrap/dist/js/bootstrap.min.js';
-
-import 'jquery';

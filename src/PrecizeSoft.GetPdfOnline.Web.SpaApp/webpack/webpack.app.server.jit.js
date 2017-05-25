@@ -8,6 +8,9 @@ module.exports = (env) => {
     const isDevBuild = !(env && env.prod);
 
     return merge(serverConfig(env), {
+        entry: {
+            'main-server': helpers.root('ClientApp', 'boot-server.ts')
+        },
         module: {
             rules: [
                 {

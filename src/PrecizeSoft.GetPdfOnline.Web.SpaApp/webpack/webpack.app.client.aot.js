@@ -20,10 +20,11 @@ module.exports = (env) => {
         plugins: [
             new AotPlugin({
                 mainPath: helpers.root('ClientApp', 'boot-client.ts'),
-                entryModule: helpers.root('ClientApp', 'app', 'app.module#AppModule'),
-                /*hostReplacementPaths: {
-                    'environments\\environment.ts': 'environments\\environment.ts'
-                },*/
+                entryModule: helpers.root('ClientApp', 'app', 'browser-app.module#BrowserAppModule'),
+                hostReplacementPaths: {
+                    'ClientApp\\environments\\environment.ts':
+                        isDevBuild ? 'ClientApp\\environments\\environment.ts' : 'ClientApp\\environments\\environment.prod.ts'
+                },
                 tsConfigPath: helpers.root('tsconfig.json'),
                 skipCodeGeneration: true
             })

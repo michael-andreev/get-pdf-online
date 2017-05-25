@@ -1,0 +1,13 @@
+﻿.swagger-ui-wrap {
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+    max-width: 100% !important;
+}
+
+#header {
+    display: none;
+}
+
+.info {
+    display: none;
+}

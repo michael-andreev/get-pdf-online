@@ -8,6 +8,9 @@ module.exports = (env) => {
     const isDevBuild = !(env && env.prod);
 
     return merge(serverConfig(env), {
+        entry: {
+            'main-server': helpers.root('ClientApp', 'boot-server-aot.ts')
+        },
         module: {
             rules: [
                 {
@@ -19,13 +22,13 @@ module.exports = (env) => {
         },
         plugins: [
             new AotPlugin({
-                mainPath: helpers.root('ClientApp', 'boot-client.ts'),
-                entryModule: helpers.root('ClientApp', 'app', 'browser-app.module#AppModule'),
+                // mainPath: helpers.root('ClientApp', 'boot-server-aot.ts'),
+                entryModule: helpers.root('ClientApp', 'app', 'server-app.module#ServerAppModule'),
                 /*hostReplacementPaths: {
                     'environments\\environment.ts': 'environments\\environment.ts'
                 },*/
-                tsConfigPath: helpers.root('tsconfig.json'),
-                skipCodeGeneration: true
+                tsConfigPath: helpers.root('ClientApp', 'tsconfig.server.aot.json'),
+                skipCodeGeneration: false
             })
         ]
     })

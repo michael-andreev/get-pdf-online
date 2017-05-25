@@ -59,7 +59,7 @@ namespace PrecizeSoft.GetPdfOnline.Web.SpaApp.Controllers
             ViewData["Meta"] = prerenderResult.Globals["meta"];
             ViewData["Links"] = prerenderResult.Globals["links"];
             ViewData["TransferData"] = prerenderResult.Globals["transferData"]; // our transfer data set to window.TRANSFER_CACHE = {};
-
+            
             // Let's render that Home/Index view
             return View();
         }

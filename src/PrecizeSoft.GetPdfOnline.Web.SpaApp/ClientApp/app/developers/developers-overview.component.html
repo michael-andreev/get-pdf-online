@@ -1,0 +1,38 @@
+<h3>Overview</h3>
+<p>
+    You can easily integrate with one of two our APIs from any platform:
+</p>
+<p>
+    <a asp-area="" asp-controller="Rest" asp-action="Index">Rest API</a> - uses JSON message format and provides truly simple method of integration.
+</p>
+<p>
+    <a asp-area="" asp-controller="Soap" asp-action="Index">Soap API</a> - uses XML message format and contains a standards-based Web services that mostly used in enterpise systems.
+</p>
+<p>
+    You can work with our API online or you can install our free Offline Application, which contains the same API services, and use it locally.
+</p>
+<h3>Your first integration</h3>
+<p>
+    Create a file "convert.html" on your PC with the content listed below, open it and convert anything to PDF.
+    Congratulations! You've just successfully integrated with our <a asp-area="" asp-controller="Rest" asp-action="Index">Rest API</a>.
+</p>
+<pre>
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;meta charset="utf-8" /&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;h1&gt;Convert to PDF&lt;/h1&gt;
+        &lt;form method="post" enctype="multipart/form-data" action="http://getpdf.online/api/converter/v1/jobs" target="info"&gt;
+            &lt;input type="file" name="file"/&gt;
+            &lt;input type="submit"/&gt;
+        &lt;/form&gt;
+        &lt;h2&gt;Convert information:&lt;/h2&gt;
+        &lt;iframe name="info" style="width:100%;"&gt;&lt;/iframe&gt;
+        &lt;h2&gt;Download PDF:&lt;/h2&gt;
+        Copy "fileId" value without quotes from the block "outputFile" in the "Convert information" area here
+        &lt;input type="text" onkeyup="document.getElementById('link').href='http://getpdf.online/api/converter/v1/files/'+this.value;"/&gt;
+        and click &lt;a id="link" href="#"&gt;Download&lt;/a&gt;.
+    &lt;/body&gt;
+&lt;/html&gt;
+</pre>

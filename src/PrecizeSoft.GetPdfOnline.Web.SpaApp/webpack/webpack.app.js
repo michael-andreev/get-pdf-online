@@ -7,12 +7,18 @@ module.exports = (env) => {
     const isDevBuild = !(env && env.prod);
 
     return {
+        /*devServer: {
+            historyApiFallback: true,
+            stats: 'minimal'
+        },*/
         stats: { modules: false },
         context: helpers.root(),
-        resolve: { extensions: ['.js', '.ts'] },
+        resolve: { extensions: ['.ts', '.js'] },
         output: {
-            filename: '[name].js',
+            filename: isDevBuild ? '[name].js' : '[name].js',
+            chunkFilename: isDevBuild ? '[id].chunk.js' : '[id].[hash].chunk.js',
             publicPath: '/dist/' // Webpack dev middleware, if enabled, handles requests for this URL prefix
+            //publicPath: '/'
         },
         module: {
             rules: [
@@ -22,7 +28,7 @@ module.exports = (env) => {
                 },
                 {
                     test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)$/,
-                    loader: 'file-loader?name=assets/[name].[ext]'
+                    loader: 'file-loader?name=assets/[name].[hash].[ext]'
                 },
                 {
                     test: /\.css$/,
@@ -43,6 +49,11 @@ module.exports = (env) => {
         plugins: [
             new ExtractTextPlugin('[name].css'),
             new webpack.ProvidePlugin({ $: 'jquery', jQuery: 'jquery' }) // Maps these identifiers to the jQuery package (because Bootstrap expects it to be a global variable)
-        ]
+        ].concat(isDevBuild ? [
+            // Plugins that apply in development builds only
+        ] : [
+                // Plugins that apply in production builds only
+                // new webpack.optimize.UglifyJsPlugin()
+            ])
     };
 }

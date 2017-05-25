@@ -8,6 +8,7 @@
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <PlatformTarget>x86</PlatformTarget>
+    <DocumentationFile>bin\Debug\net462\win7-x86\PrecizeSoft.GetPdfOnline.Web.SpaApp.xml</DocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -34,6 +35,11 @@
     <Content Remove="ClientApp\**" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ClientApp\tsconfig.server.aot.json">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\..\..\precizesoft-io\src\PrecizeSoft.IO.WebApi\PrecizeSoft.IO.WebApi.csproj" />
     <ProjectReference Include="..\..\..\precizesoft-io\src\PrecizeSoft.IO\PrecizeSoft.IO.csproj" />
     <ProjectReference Include="..\PrecizeSoft.GetPdfOnline.Api.Soap.Host\PrecizeSoft.GetPdfOnline.Api.Soap.Host.csproj" />
@@ -48,8 +54,7 @@
   <Target Name="RunWebpack" AfterTargets="ComputeFilesToPublish">
     <!-- As part of publishing, ensure the JS resources are freshly built in production mode -->
     <Exec Command="npm install" />
-    <Exec Command="node node_modules/webpack/bin/webpack.js --config webpack.config.vendor.js --env.prod" />
-    <Exec Command="node node_modules/webpack/bin/webpack.js --env.prod" />
+    <Exec Command="npm run build:prod" />
 
     <!-- Include the newly-built files in the publish output -->
     <ItemGroup>

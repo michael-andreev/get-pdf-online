@@ -1,18 +1,17 @@
-import './polyfills';
-import 'zone.js/dist/zone';  // Included with Angular CLI.
+import './browser.polyfills';
+// import './browser.vendor';
+// import 'zone.js/dist/zone';  // Included with Angular CLI.
 
-// import './vendor';
-
-// import 'angular2-universal-polyfills/browser';
 import { enableProdMode } from '@angular/core';
 
-//import { platformUniversalDynamic } from 'angular2-universal';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
 import { BrowserAppModule } from './app/browser-app.module';
-// import { AppModule } from './app/app.module';
 
-import 'bootstrap';
+// import 'bootstrap';
+
+import { environment } from './environments/environment';
+
 const rootElemTagName = 'app'; // Update this if you change your root component selector
 
 // Enable either Hot Module Reloading or production mode
@@ -26,8 +25,10 @@ if (module['hot']) {
         // platform.destroy();
         modulePromise.then(appModule => appModule.destroy());
     });
-} else {
-    enableProdMode();
+}
+
+if (environment.production) {
+  enableProdMode();
 }
 
 const modulePromise = platformBrowserDynamic().bootstrapModule(BrowserAppModule);
