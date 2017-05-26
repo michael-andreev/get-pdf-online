@@ -5,7 +5,7 @@ import { enableProdMode } from '@angular/core';
 import { INITIAL_CONFIG } from '@angular/platform-server';
 import { createServerRenderer, RenderResult } from 'aspnet-prerendering';
 // Grab the (Node) server-specific NgModule
-import { ServerAppModuleNgFactory } from './ngfactory/app/server-app.module.ngfactory';
+import { ServerAppModule } from './app/server-app.module';
 // ***** The ASPNETCore Angular Engine *****
 import { ngAspnetCoreEngine, IEngineOptions, createTransferScript } from '@nguniversal/aspnetcore-engine';
 
@@ -24,7 +24,7 @@ export default createServerRenderer(params => {
     // Platform-server provider configuration
     const setupOptions: IEngineOptions = {
         appSelector: '<app></app>',
-        ngModule: ServerAppModuleNgFactory,
+        ngModule: ServerAppModule,
         request: params,
         providers: [
             /* Other providers you want to pass into the App would go here

@@ -67,7 +67,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrecizeSoft.IO.WebApi", "..
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrecizeSoft.GetPdfOnline.Api.Soap.Implementation", "src\PrecizeSoft.GetPdfOnline.Api.Soap.Implementation\PrecizeSoft.GetPdfOnline.Api.Soap.Implementation.csproj", "{54A819F7-2828-4089-B66A-C3A7533DA068}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrecizeSoft.GetPdfOnline.Web.SpaApp", "src\PrecizeSoft.GetPdfOnline.Web.SpaApp\PrecizeSoft.GetPdfOnline.Web.SpaApp.csproj", "{A14E0B13-1F31-456D-85ED-3DD2920AB918}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrecizeSoft.GetPdfOnline.Web.SpaApp", "src\PrecizeSoft.GetPdfOnline.Web.SpaApp\PrecizeSoft.GetPdfOnline.Web.SpaApp.csproj", "{50F9CA9F-1F52-47C4-97A5-DD054EFA45EB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -265,14 +265,14 @@ Global
 		{54A819F7-2828-4089-B66A-C3A7533DA068}.Release|Any CPU.Build.0 = Release|Any CPU
 		{54A819F7-2828-4089-B66A-C3A7533DA068}.Release|x86.ActiveCfg = Release|Any CPU
 		{54A819F7-2828-4089-B66A-C3A7533DA068}.Release|x86.Build.0 = Release|Any CPU
-		{A14E0B13-1F31-456D-85ED-3DD2920AB918}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A14E0B13-1F31-456D-85ED-3DD2920AB918}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A14E0B13-1F31-456D-85ED-3DD2920AB918}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{A14E0B13-1F31-456D-85ED-3DD2920AB918}.Debug|x86.Build.0 = Debug|Any CPU
-		{A14E0B13-1F31-456D-85ED-3DD2920AB918}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A14E0B13-1F31-456D-85ED-3DD2920AB918}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A14E0B13-1F31-456D-85ED-3DD2920AB918}.Release|x86.ActiveCfg = Release|Any CPU
-		{A14E0B13-1F31-456D-85ED-3DD2920AB918}.Release|x86.Build.0 = Release|Any CPU
+		{50F9CA9F-1F52-47C4-97A5-DD054EFA45EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{50F9CA9F-1F52-47C4-97A5-DD054EFA45EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{50F9CA9F-1F52-47C4-97A5-DD054EFA45EB}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{50F9CA9F-1F52-47C4-97A5-DD054EFA45EB}.Debug|x86.Build.0 = Debug|Any CPU
+		{50F9CA9F-1F52-47C4-97A5-DD054EFA45EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{50F9CA9F-1F52-47C4-97A5-DD054EFA45EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{50F9CA9F-1F52-47C4-97A5-DD054EFA45EB}.Release|x86.ActiveCfg = Release|Any CPU
+		{50F9CA9F-1F52-47C4-97A5-DD054EFA45EB}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -306,6 +306,6 @@ Global
 		{2A6F20D7-1DC8-411B-B6DF-4A63C7EF4D50} = {EEED9791-173F-40A0-8151-90EC66B36EFE}
 		{ECF1B449-0884-43AB-B5A2-9B7B691C39E8} = {01FF51AC-E96A-4BF0-94D2-81F5998A4E8D}
 		{54A819F7-2828-4089-B66A-C3A7533DA068} = {EEED9791-173F-40A0-8151-90EC66B36EFE}
-		{A14E0B13-1F31-456D-85ED-3DD2920AB918} = {C87B0216-1152-4FBD-853F-E37CB268E496}
+		{50F9CA9F-1F52-47C4-97A5-DD054EFA45EB} = {C87B0216-1152-4FBD-853F-E37CB268E496}
 	EndGlobalSection
 EndGlobal

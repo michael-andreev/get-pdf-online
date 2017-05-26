@@ -4,10 +4,8 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
-using PrecizeSoft.GetPdfOnline.Web.SpaApp.Configuration;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Net.Http.Server;
-using Microsoft.AspNetCore.Hosting.WindowsServices;
+using PrecizeSoft.GetPdfOnline.Web.SpaApp.Configuration;
 
 namespace PrecizeSoft.GetPdfOnline.Web.SpaApp
 {
@@ -28,7 +26,17 @@ namespace PrecizeSoft.GetPdfOnline.Web.SpaApp
 
             UserSettingsOptions options = configuration.Get<UserSettingsOptions>();
 
-            IWebHostBuilder hostBuilder = new WebHostBuilder()
+            var host = new WebHostBuilder()
+                //.UseUrls($"http://*:{options.Host.TcpPort}")
+                .UseKestrel()
+                .UseContentRoot(Directory.GetCurrentDirectory())
+                .UseIISIntegration()
+                .UseStartup<Startup>()
+                .Build();
+
+            host.Run();
+
+            /*IWebHostBuilder hostBuilder = new WebHostBuilder()
                 //.UseKestrel()
                 .UseContentRoot(options.BasePath)
                 .UseStartup<Startup>()
@@ -36,8 +44,8 @@ namespace PrecizeSoft.GetPdfOnline.Web.SpaApp
                 {
                     opt.ListenerSettings.Authentication.Schemes = AuthenticationSchemes.None;
                     opt.ListenerSettings.Authentication.AllowAnonymous = true;
-                });
-                // .UseApplicationInsights();
+                })
+                .UseApplicationInsights();
 
             IWebHost host;
 
@@ -57,7 +65,7 @@ namespace PrecizeSoft.GetPdfOnline.Web.SpaApp
                     .Build();
 
                 host.Run();
-            }
+            }*/
         }
     }
 }

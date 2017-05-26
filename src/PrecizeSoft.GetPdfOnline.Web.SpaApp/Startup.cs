@@ -5,23 +5,23 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.Webpack;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Microsoft.Data.Sqlite;
 using PrecizeSoft.GetPdfOnline.Api.Soap.Host;
+using Microsoft.Data.Sqlite;
 using PrecizeSoft.GetPdfOnline.Data.SQLite;
 using PrecizeSoft.GetPdfOnline.Web.SpaApp.Configuration;
-using PrecizeSoft.GetPdfOnline.Data.SQLite.Repositories;
-using PrecizeSoft.GetPdfOnline.Domain.Services;
 using PrecizeSoft.GetPdfOnline.Data;
 using PrecizeSoft.IO.Contracts.Converters;
+using PrecizeSoft.GetPdfOnline.Domain.Services;
+using PrecizeSoft.GetPdfOnline.Data.SQLite.Repositories;
 using PrecizeSoft.GetPdfOnline.Domain.Configuration;
 using Swashbuckle.AspNetCore.Swagger;
 using Microsoft.Extensions.PlatformAbstractions;
 using System.IO;
 using PrecizeSoft.GetPdfOnline.Web.SpaApp.Swagger;
-using Microsoft.EntityFrameworkCore;
 
 namespace PrecizeSoft.GetPdfOnline.Web.SpaApp
 {
@@ -75,17 +75,8 @@ namespace PrecizeSoft.GetPdfOnline.Web.SpaApp
                 return new JobService(p.GetRequiredService<ICacheRepository>());
             });
 
-            /*services.AddCors(options =>
-            {
-                options.AddPolicy("AllowSpecificOrigin",
-                    builder => builder.AllowAnyOrigin()
-                    .AllowAnyHeader()
-                    .AllowAnyMethod());
-            });*/
-
             // Add framework services.
             services.AddMvc();
-            services.AddNodeServices();
 
             services.Configure<UserSettingsOptions>(Configuration);
             services.Configure<TitleOptions>(Configuration.GetSection("View:Title"));
@@ -171,7 +162,7 @@ namespace PrecizeSoft.GetPdfOnline.Web.SpaApp
             life.ApplicationStarted.Register(() =>
             {
                 var options = this.Configuration.Get<UserSettingsOptions>();
-                this.CreateAndOpenHosts(options.Host.TcpPort, options.LibreOffice.UseCustomUnoPath, options.LibreOffice.CustomUnoPath, options.Data.ConnectionString);
+                this.CreateAndOpenHosts(/*44735*/options.Host.TcpPort, options.LibreOffice.UseCustomUnoPath, options.LibreOffice.CustomUnoPath, options.Data.ConnectionString);
             });
         }
     }

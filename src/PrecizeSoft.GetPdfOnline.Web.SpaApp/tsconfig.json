@@ -2,19 +2,13 @@
   "compilerOptions": {
     "moduleResolution": "node",
     "target": "es5",
-    "module": "es2015",
-    "sourceMap": false,
+    "sourceMap": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "skipDefaultLibCheck": true,
-    "lib": [ "es2016", "dom" ],
+    "lib": [ "es6", "dom" ],
     "types": [ "node" ]
   },
-  "include": [
-    "ClientApp"
-  ],
-  "exclude": [
-    "ClientApp/boot-server-aot.ts"
-  ],
+  "exclude": [ "bin", "node_modules" ],
   "atom": { "rewriteTsconfig": false }
 }

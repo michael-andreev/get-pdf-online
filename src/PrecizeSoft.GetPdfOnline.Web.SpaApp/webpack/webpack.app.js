@@ -2,58 +2,32 @@
 const { CommonsChunkPlugin } = require('webpack').optimize;
 const helpers = require('./helpers');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+// const CheckerPlugin = require('awesome-typescript-loader').CheckerPlugin;
 
 module.exports = (env) => {
     const isDevBuild = !(env && env.prod);
 
     return {
-        /*devServer: {
-            historyApiFallback: true,
-            stats: 'minimal'
-        },*/
         stats: { modules: false },
         context: helpers.root(),
-        resolve: { extensions: ['.ts', '.js'] },
+        resolve: { extensions: ['.js', '.ts'] },
         output: {
-            filename: isDevBuild ? '[name].js' : '[name].js',
-            chunkFilename: isDevBuild ? '[id].chunk.js' : '[id].[hash].chunk.js',
+            filename: '[name].js',
             publicPath: '/dist/' // Webpack dev middleware, if enabled, handles requests for this URL prefix
-            //publicPath: '/'
         },
         module: {
             rules: [
                 {
-                    test: /\.html$/,
-                    use: 'html-loader?minimize=false'
+                    test: /\.ts$/,
+                    include: helpers.root('ClientApp'),
+                    loader: '@ngtools/webpack'
                 },
-                {
-                    test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)$/,
-                    loader: 'file-loader?name=assets/[name].[hash].[ext]'
-                },
-                {
-                    test: /\.css$/,
-                    exclude: helpers.root('ClientApp', 'app'),
-                    loader: ExtractTextPlugin.extract(
-                        {
-                            fallback: 'style-loader',
-                            use: 'css-loader?sourceMap&minimize'
-                        })
-                },
-                {
-                    test: /\.css$/,
-                    include: helpers.root('ClientApp', 'app'),
-                    loader: 'raw-loader'
-                }
+                // { test: /\.ts$/, include: /ClientApp/, use: ['awesome-typescript-loader?silent=true', 'angular2-template-loader'] },
+                { test: /\.html$/, use: 'html-loader?minimize=false' },
+                { test: /\.css$/, use: ['to-string-loader', isDevBuild ? 'css-loader' : 'css-loader?minimize'] },
+                { test: /\.(png|jpg|jpeg|gif|svg)$/, use: 'url-loader?limit=25000' }
             ]
-        },
-        plugins: [
-            new ExtractTextPlugin('[name].css'),
-            new webpack.ProvidePlugin({ $: 'jquery', jQuery: 'jquery' }) // Maps these identifiers to the jQuery package (because Bootstrap expects it to be a global variable)
-        ].concat(isDevBuild ? [
-            // Plugins that apply in development builds only
-        ] : [
-                // Plugins that apply in production builds only
-                // new webpack.optimize.UglifyJsPlugin()
-            ])
+        }// ,
+        // plugins: [new CheckerPlugin()]
     };
 }

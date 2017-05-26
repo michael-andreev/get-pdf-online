@@ -1,58 +1,36 @@
-import './server.polyfills';
-// import './server.vendor';
-
-import { enableProdMode } from '@angular/core';
-import { INITIAL_CONFIG } from '@angular/platform-server';
+import 'reflect-metadata';
+import 'zone.js';
+import 'rxjs/add/operator/first';
+import { enableProdMode, ApplicationRef, NgZone, ValueProvider } from '@angular/core';
+import { platformDynamicServer, PlatformState, INITIAL_CONFIG } from '@angular/platform-server';
 import { createServerRenderer, RenderResult } from 'aspnet-prerendering';
-// Grab the (Node) server-specific NgModule
-import { ServerAppModule } from './app/server-app.module';
-// ***** The ASPNETCore Angular Engine *****
-import { ngAspnetCoreEngine, IEngineOptions, createTransferScript } from '@nguniversal/aspnetcore-engine';
+import { AppModule } from './app/app.module.server';
 
-enableProdMode(); // for faster server rendered builds
+enableProdMode();
 
 export default createServerRenderer(params => {
+    const providers = [
+        { provide: INITIAL_CONFIG, useValue: { document: '<app></app>', url: params.url } },
+        { provide: 'ORIGIN_URL', useValue: params.origin }
+    ];
 
-    /*
-     * How can we access data we passed from .NET ?
-     * you'd access it directly from 'params.data' under the name you passed it
-     * ie: params.data.WHATEVER_YOU_PASSED
-     * -------
-     * We'll show in the next section WHERE you pass this Data in on the .NET side
-     */
+    return platformDynamicServer(providers).bootstrapModule(AppModule).then(moduleRef => {
+        const appRef = moduleRef.injector.get(ApplicationRef);
+        const state = moduleRef.injector.get(PlatformState);
+        const zone = moduleRef.injector.get(NgZone);
 
-    // Platform-server provider configuration
-    const setupOptions: IEngineOptions = {
-        appSelector: '<app></app>',
-        ngModule: ServerAppModule,
-        request: params,
-        providers: [
-            /* Other providers you want to pass into the App would go here
-            *    { provide: CookieService, useClass: ServerCookieService }
-    
-            * ie: Just an example of Dependency injecting a Class for providing Cookies (that you passed down from the server)
-              (Where on the browser you'd have a different class handling cookies normally)
-            */
-        ]
-    };
-
-    // ***** Pass in those Providers & your Server NgModule, and that's it!
-    return ngAspnetCoreEngine(setupOptions).then(response => {
-
-        // Want to transfer data from Server -> Client?
-
-        // Add transferData to the response.globals Object, and call createTransferScript({}) passing in the Object key/values of data
-        // createTransferScript() will JSON Stringify it and return it as a <script> window.TRANSFER_CACHE={}</script>
-        // That your browser can pluck and grab the data from
-        /*response.globals.transferData = createTransferScript({
-            someData: 'Transfer this to the client on the window.TRANSFER_CACHE {} object',
-            fromDotnet: params.data.thisCameFromDotNET // example of data coming from dotnet, in HomeController
-        });*/
-
-        return ({
-            html: response.html,
-            globals: response.globals
+        return new Promise<RenderResult>((resolve, reject) => {
+            zone.onError.subscribe(errorInfo => reject(errorInfo));
+            appRef.isStable.first(isStable => isStable).subscribe(() => {
+                // Because 'onStable' fires before 'onError', we have to delay slightly before
+                // completing the request in case there's an error to report
+                setImmediate(() => {
+                    resolve({
+                        html: state.renderToString()
+                    });
+                    moduleRef.destroy();
+                });
+            });
         });
-
     });
 });
