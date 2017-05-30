@@ -1,5 +1,6 @@
 ﻿const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const CompressionPlugin = require('compression-webpack-plugin');
 const helpers = require('./helpers');
 
 module.exports = (env) => {
@@ -29,6 +30,7 @@ module.exports = (env) => {
             // new webpack.IgnorePlugin(/^vertx$/) // Workaround for https://github.com/stefanpenner/es6-promise/issues/100
         ].concat(isDevBuild ? [] : [
             // Plugins that apply in production builds only
+            new webpack.NoEmitOnErrorsPlugin(),
             new webpack.optimize.UglifyJsPlugin({
                 // https://github.com/angular/angular/issues/10618
                 // mangle: {
@@ -38,6 +40,13 @@ module.exports = (env) => {
                     comments: false
                 }//,
                 //sourceMap: false
+            }),
+            new CompressionPlugin({
+                asset: "[path].gz[query]",
+                algorithm: "gzip",
+                test: /\.(js|html|css)$/,
+                threshold: 10240,
+                minRatio: 0.8
             })
         ])
     };

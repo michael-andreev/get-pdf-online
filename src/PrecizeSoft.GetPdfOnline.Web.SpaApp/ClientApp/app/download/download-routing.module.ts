@@ -4,7 +4,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { DownloadComponent } from './download.component';
 
 const downloadRoutes: Routes = [
-  { path: '', component: DownloadComponent }
+  // { path: '', component: DownloadComponent }
+  { path: 'download', component: DownloadComponent }
 ];
 
 @NgModule({

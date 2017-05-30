@@ -9,6 +9,12 @@ module.exports = (env) => {
     const extractCSS = new ExtractTextPlugin('vendor.css');
 
     return merge(commonConfig(env), {
+        entry: {
+            vendor: [
+                helpers.root('ClientApp', 'client.polyfills.ts'),
+                helpers.root('ClientApp', 'client.vendor.ts')
+            ]
+        },
         output: { path: helpers.root('wwwroot', 'dist') },
         module: {
             rules: [
@@ -25,9 +31,11 @@ module.exports = (env) => {
             new webpack.DllPlugin({
                 path: helpers.root('wwwroot', 'dist', '[name]-manifest.json'),
                 name: '[name]_[hash]'
-            })
-        ].concat(isDevBuild ? [] : [
-            new webpack.optimize.UglifyJsPlugin()
-        ])
+            }),
+            new webpack.ContextReplacementPlugin(
+                /angular(\\|\/)core(\\|\/)@angular/,
+                helpers.root('ClientApp')
+            ) // Workaround for https://github.com/angular/angular/issues/14898
+        ]
     });
 }

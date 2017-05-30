@@ -11,7 +11,7 @@ using PrecizeSoft.IO.Contracts.ConversionStatistics;
 namespace PrecizeSoft.GetPdfOnline.Web.SpaApp.Controllers
 {
     //[Route("[controller]")]
-    [Route("rest/statistics/v1")]
+    [Route("api/statistics/v1")]
     public class StatisticsV1Controller : ConversionStatisticsV1ControllerBase
     {
         private readonly IConvertLogRepository convertLogRepository;

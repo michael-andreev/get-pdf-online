@@ -4,7 +4,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { StatisticsComponent } from './statistics.component';
 
 const statisticsRoutes: Routes = [
-  { path: '', component: StatisticsComponent }
+  // { path: '', component: StatisticsComponent }
+  { path: 'statistics', component: StatisticsComponent }
 ];
 
 @NgModule({

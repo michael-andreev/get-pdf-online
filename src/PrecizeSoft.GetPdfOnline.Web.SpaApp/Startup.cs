@@ -74,6 +74,10 @@ namespace PrecizeSoft.GetPdfOnline.Web.SpaApp
             {
                 return new JobService(p.GetRequiredService<ICacheRepository>());
             });
+            services.AddTransient<ILogService, LoggerService>(p =>
+            {
+                return new LoggerService(p.GetRequiredService<IConvertLogRepository>());
+            });
 
             // Add framework services.
             services.AddMvc();
@@ -149,13 +153,13 @@ namespace PrecizeSoft.GetPdfOnline.Web.SpaApp
             // Enable middleware to serve generated Swagger as a JSON endpoint.
             app.UseSwagger(c =>
             {
-                c.RouteTemplate = "rest/{documentName}/swagger.json";
+                c.RouteTemplate = "api/{documentName}/swagger.json";
             });
 
             // Enable middleware to serve swagger-ui (HTML, JS, CSS etc.), specifying the Swagger JSON endpoint.
             /*app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/rest/v1/swagger.json", "GetPDF.online REST API v1");
+                c.SwaggerEndpoint("/api/v1/swagger.json", "GetPDF.online REST API v1");
                 c.RoutePrefix = "swagger";
             });*/
 

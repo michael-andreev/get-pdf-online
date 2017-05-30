@@ -1,8 +1,8 @@
 ﻿const webpack = require('webpack');
 const { CommonsChunkPlugin } = require('webpack').optimize;
-const helpers = require('./helpers');
+const CompressionPlugin = require('compression-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-// const CheckerPlugin = require('awesome-typescript-loader').CheckerPlugin;
+const helpers = require('./helpers');
 
 module.exports = (env) => {
     const isDevBuild = !(env && env.prod);
@@ -22,12 +22,49 @@ module.exports = (env) => {
                     include: helpers.root('ClientApp'),
                     loader: '@ngtools/webpack'
                 },
-                // { test: /\.ts$/, include: /ClientApp/, use: ['awesome-typescript-loader?silent=true', 'angular2-template-loader'] },
                 { test: /\.html$/, use: 'html-loader?minimize=false' },
-                { test: /\.css$/, use: ['to-string-loader', isDevBuild ? 'css-loader' : 'css-loader?minimize'] },
-                { test: /\.(png|jpg|jpeg|gif|svg)$/, use: 'url-loader?limit=25000' }
+                {
+                    test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)$/,
+                    loader: 'file-loader?name=assets/[name].[hash].[ext]'
+                },
+                {
+                    test: /\.css$/,
+                    exclude: helpers.root('ClientApp', 'app'),
+                    loader: ExtractTextPlugin.extract(
+                        {
+                            fallback: 'style-loader',
+                            use: 'css-loader?sourceMap&minimize'
+                        })
+                },
+                {
+                    test: /\.css$/,
+                    include: helpers.root('ClientApp', 'app'),
+                    loader: 'raw-loader'
+                }
             ]
-        }// ,
-        // plugins: [new CheckerPlugin()]
+        },
+        plugins: [
+            new ExtractTextPlugin('[name].css')
+        ].concat(isDevBuild ? [] : [
+            // Plugins that apply in production builds only
+            new webpack.NoEmitOnErrorsPlugin(),
+            new webpack.optimize.UglifyJsPlugin({
+                // https://github.com/angular/angular/issues/10618
+                // mangle: {
+                //   keep_fnames: true
+                // },
+                output: {
+                    comments: false
+                }//,
+                //sourceMap: false
+            }),
+            new CompressionPlugin({
+                asset: "[path].gz[query]",
+                algorithm: "gzip",
+                test: /\.(js|html|css)$/,
+                threshold: 10240,
+                minRatio: 0.8
+            })
+        ])
     };
 }

@@ -8,7 +8,8 @@
                     <div>
                         <label class="btn btn-lg btn-danger" for="InputFile" i18n>Select file</label>
                         <input type="file" class="hidden-file-input" id="InputFile" name="InputFile"
-                         data-val-required="Please select a file to convert"/>
+                         data-val-required="Please select a file to convert"
+                         (change)="convert($event)"/>
                     </div>
                 </form>
         </div>
@@ -43,21 +44,15 @@
     </div>-->
 </div>
 
-<!--@if (Model.ConvertedFiles.Count() > 0)
-{
-    <ul class="list-group">
-        @foreach (var f in Model.ConvertedFiles)
-        {
-            <li class="list-group-item">
-                <span class="pdf-icon"></span>
-                <div class="pdf-info">
-                    <a asp-area="" asp-controller="Home" asp-action="GetPdf" asp-route-id="@f.ConvertedFileId">@f.FileNameWithoutExtension</a>
-                    <small class="text-muted">@f.FileSizeKb @Localizer["Kb"]</small>
-                </div>
-            </li>
-        }
-    </ul>
-}-->
+<ul class="list-group">
+    <li class="list-group-item" *ngFor="let convertJob of convertJobs">
+        <span class="pdf-icon"></span>
+        <div class="pdf-info">
+            <a href="{{convertJob.outputFile.fileId}}">{{convertJob.outputFile.fileName | slice:0:-4}}</a>
+            <small class="text-muted">{{convertJob.outputFile.fileSize / 1024 | number:'1.0-2'}} <ng-container i18n>Kb</ng-container></small>
+        </div>
+    </li>
+</ul>
 
 <div class="row">
     <div class="col-md-3">
@@ -93,7 +88,7 @@
                 <h4 class="modal-title" i18n>List of supported file formats:</h4>
             </div>
             <div class="modal-body">
-                <p><!--@Model.SupportedFormatsString--></p>
+                <p>{{supportedFormatsString}}</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal" i18n>Close</button>

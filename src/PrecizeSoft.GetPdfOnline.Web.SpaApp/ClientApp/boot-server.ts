@@ -1,6 +1,9 @@
-import 'reflect-metadata';
-import 'zone.js';
-import 'rxjs/add/operator/first';
+// import 'reflect-metadata';
+// import 'zone.js';
+// import 'rxjs/add/operator/first';
+import './server.polyfills';
+import './server.vendor';
+
 import { enableProdMode, ApplicationRef, NgZone, ValueProvider } from '@angular/core';
 import { platformDynamicServer, PlatformState, INITIAL_CONFIG } from '@angular/platform-server';
 import { createServerRenderer, RenderResult } from 'aspnet-prerendering';

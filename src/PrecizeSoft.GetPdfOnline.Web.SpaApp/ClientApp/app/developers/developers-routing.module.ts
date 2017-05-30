@@ -11,40 +11,49 @@ import { DevelopersNetLibrariesComponent } from './developers-net-libraries.comp
 import { DevelopersSourceCodeComponent } from './developers-source-code.component';
 
 const developersRoutes: Routes = [
-  {
-    path: '',
-    component: DevelopersComponent,
-    children: [
-      {
-        path: 'overview',
-        component: DevelopersOverviewComponent
-      },
-      {
-        path: 'rest-api',
-        component: DevelopersRestApiComponent
-      },
-      {
-        path: 'soap-api',
-        component: DevelopersSoapApiComponent
-      },
-      {
-        path: 'use-offline',
-        component: DevelopersUseOfflineComponent
-      },
-      {
-        path: 'net-libraries',
-        component: DevelopersNetLibrariesComponent
-      },
-      {
-        path: 'source-code',
-        component: DevelopersSourceCodeComponent
-      },
-      {
-        path: '**',
-        redirectTo: 'overview'
-      }
-    ]
-  }
+    {
+        path: 'api',
+        redirectTo: 'developers/rest-api'
+    },
+    {
+        path: 'soap',
+        redirectTo: 'developers/soap-api'
+    },
+    {
+        // path: '',
+        path: 'developers',
+        component: DevelopersComponent,
+        children: [
+            {
+                path: 'overview',
+                component: DevelopersOverviewComponent
+            },
+            {
+                path: 'rest-api',
+                component: DevelopersRestApiComponent
+            },
+            {
+                path: 'soap-api',
+                component: DevelopersSoapApiComponent
+            },
+            {
+                path: 'use-offline',
+                component: DevelopersUseOfflineComponent
+            },
+            {
+                path: 'net-libraries',
+                component: DevelopersNetLibrariesComponent
+            },
+            {
+                path: 'source-code',
+                component: DevelopersSourceCodeComponent
+            },
+            {
+                path: '**',
+                redirectTo: 'overview'
+            }
+        ]
+    }
 ];
 
 @NgModule({

@@ -10,7 +10,12 @@ module.exports = (env) => {
 
     // Configuration for client-side bundle suitable for running in browsers
     return merge(commonConfig(env), {
-        entry: { 'main-client': helpers.root('ClientApp', 'boot-client.ts') },
+        entry: {
+            'main-client': helpers.root('ClientApp', 'boot-client.ts'),
+            'styles': [
+                helpers.root('ClientApp', 'styles.css')
+            ]
+        },
         output: { path: helpers.root('wwwroot', 'dist') },
         /*module: {
             rules: [
@@ -22,10 +27,10 @@ module.exports = (env) => {
             ]
         },*/
         plugins: [
-            /*new webpack.DllReferencePlugin({
+            new webpack.DllReferencePlugin({
                 context: helpers.root(),
                 manifest: require(helpers.root('wwwroot', 'dist', 'vendor-manifest.json'))
-            }),*/
+            }),
             new AotPlugin({
                 mainPath: helpers.root('ClientApp', 'boot-client.ts'),
                 entryModule: helpers.root('ClientApp', 'app', 'app.module.client#AppModule'),
@@ -39,9 +44,6 @@ module.exports = (env) => {
                 filename: '[file].map', // Remove this line if you prefer inline source maps
                 moduleFilenameTemplate: helpers.root('wwwroot', 'dist', '[resourcePath]') // Point sourcemap entries to the original file locations on disk
             })
-        ] : [
-                // Plugins that apply in production builds only
-                new webpack.optimize.UglifyJsPlugin()
-            ])
+        ] : [])
     });
 };

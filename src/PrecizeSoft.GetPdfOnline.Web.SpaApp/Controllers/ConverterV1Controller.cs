@@ -20,14 +20,15 @@ using Microsoft.AspNetCore.Cors;
 namespace PrecizeSoft.GetPdfOnline.Web.SpaApp.Controllers
 {
     //[Route("[controller]")]
-    [Route("rest/converter/v1")]
+    [Route("api/converter/v1")]
     //[Consumes("application/json", "application/json-patch+json", "multipart/form-data", "application/octet-stream")]
     //[EnableCors("AllowSpecificOrigin")]
     public class ConverterV1Controller : ConverterV1ControllerBase
     {
         public ConverterV1Controller(IOptionsSnapshot<LibreOfficeOptions> optionsAccessor, IJobService jobService,
-            IFileService fileService, IOptionsSnapshot<StoreOptions> storeOptionsAccessor) :
-            base(new ConverterService(optionsAccessor.Value), jobService, fileService, storeOptionsAccessor.Value)
+            IFileService fileService, IOptionsSnapshot<StoreOptions> storeOptionsAccessor, ILogService logService) :
+            base(new ConverterService(optionsAccessor.Value), jobService, fileService, storeOptionsAccessor.Value,
+                logService)
         {
 
         }
