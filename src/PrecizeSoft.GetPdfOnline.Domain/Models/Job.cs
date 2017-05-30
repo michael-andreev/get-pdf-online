@@ -15,7 +15,9 @@ namespace PrecizeSoft.GetPdfOnline.Domain.Models
 
         public Guid InputFileId { get; set; }
 
-        public Guid OutputFileId { get; set; }
+        public Guid? OutputFileId { get; set; }
+
+        public ConvertErrorType? ErrorType { get; set; }
 
         public DateTime? ExpireDateUtc { get; set; }
 

@@ -1,5 +1,6 @@
 ﻿using PrecizeSoft.GetPdfOnline.Domain.Models;
 using PrecizeSoft.GetPdfOnline.Model;
+using PrecizeSoft.IO.Contracts.Converters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +20,7 @@ namespace PrecizeSoft.GetPdfOnline.Domain.Converters
                 ExpireDateUtc = job.ExpireDateUtc,
                 InputFileId = job.InputFileId,
                 OutputFileId = job.OutputFileId,
+                ErrorType = (ConvertErrorType?)job.ErrorTypeId,
                 Rating = job.Rating
             };
         }

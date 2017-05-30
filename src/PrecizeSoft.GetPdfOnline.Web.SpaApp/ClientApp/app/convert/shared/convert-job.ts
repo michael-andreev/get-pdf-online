@@ -6,5 +6,6 @@ export class ConvertJob {
     expireDateUtc: Date;
     inputFile: StorageFileInfo;
     outputFile: StorageFileInfo;
+    errorType: number;
     rating: number;
 }

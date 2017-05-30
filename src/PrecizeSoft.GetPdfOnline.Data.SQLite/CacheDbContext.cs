@@ -100,12 +100,15 @@ namespace PrecizeSoft.GetPdfOnline.Data.SQLite
                 .HasPrincipalKey<BinaryFile>(p => p.FileId)
                 .OnDelete(DeleteBehavior.Restrict).IsRequired();
 
-            modelBuilder.Entity<ConvertJob>().Property(p => p.OutputFileId).IsRequired();
+            modelBuilder.Entity<ConvertJob>().Property(p => p.OutputFileId);
             modelBuilder.Entity<ConvertJob>().HasIndex(p => new { p.OutputFileId }).IsUnique();
             modelBuilder.Entity<ConvertJob>().HasOne(p => p.OutputFile).WithOne(p => p.ConvertJobOnOutput)
                 .HasForeignKey<ConvertJob>(p => p.OutputFileId)
                 .HasPrincipalKey<BinaryFile>(p => p.FileId)
-                .OnDelete(DeleteBehavior.Restrict).IsRequired();
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<ConvertJob>().Property(p => p.ErrorTypeId);
+            modelBuilder.Entity<ConvertJob>().HasIndex(p => new { p.ErrorTypeId });
         }
     }
 }

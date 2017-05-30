@@ -46,11 +46,16 @@
 
 <ul class="list-group">
     <li class="list-group-item" *ngFor="let convertJob of convertJobs">
-        <span class="pdf-icon"></span>
-        <div class="pdf-info">
-            <a href="{{convertJob.outputFile.fileId}}">{{convertJob.outputFile.fileName | slice:0:-4}}</a>
-            <small class="text-muted">{{convertJob.outputFile.fileSize / 1024 | number:'1.0-2'}} <ng-container i18n>Kb</ng-container></small>
-        </div>
+        <ng-container *ngIf="convertJob.outputFile; else convertErrorBlock">
+            <span class="pdf-icon"></span>
+            <div class="pdf-info" *ngIf="convertJob.outputFile">
+                <a href="{{convertJob.outputFile.fileId}}">{{convertJob.outputFile.fileName | slice:0:-4}}</a>
+                <small class="text-muted">{{convertJob.outputFile.fileSize / 1024 | number:'1.0-2'}} <ng-container i18n>Kb</ng-container></small>
+            </div>
+        </ng-container>
+        <ng-template #convertErrorBlock>
+            error {{convertJob.errorType}}
+        </ng-template>
     </li>
 </ul>
 

@@ -14,11 +14,13 @@ namespace PrecizeSoft.GetPdfOnline.Model
 
         public Guid InputFileId { get; set; }
 
-        public Guid OutputFileId { get; set; }
+        public Guid? OutputFileId { get; set; }
 
         public BinaryFile InputFile { get; set; }
 
         public BinaryFile OutputFile { get; set; }
+
+        public int? ErrorTypeId { get; set; }
 
         public byte? Rating { get; set; }
     }

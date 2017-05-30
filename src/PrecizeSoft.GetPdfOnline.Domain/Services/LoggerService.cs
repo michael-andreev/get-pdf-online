@@ -2,6 +2,7 @@
 using PrecizeSoft.GetPdfOnline.Domain.Handlers;
 using PrecizeSoft.GetPdfOnline.Domain.Models;
 using PrecizeSoft.IO.Contracts.Converters;
+using PrecizeSoft.GetPdfOnline.Domain.Converters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,37 +37,12 @@ namespace PrecizeSoft.GetPdfOnline.Domain.Services
 
         public void LogResponse(ResponseLog response)
         {
-            ResultTypeEnum resultType;
-
-            switch (response.ErrorType)
-            {
-                case null:
-                    resultType = ResultTypeEnum.Positive;
-                    break;
-                case ConvertErrorType.FileBytesEmpty:
-                    resultType = ResultTypeEnum.FileBytesEmpty;
-                    break;
-                case ConvertErrorType.FileExtensionEmpty:
-                    resultType = ResultTypeEnum.FileExtensionEmpty;
-                    break;
-                case ConvertErrorType.FormatNotSupported:
-                    resultType = ResultTypeEnum.FormatNotSupported;
-                    break;
-                case ConvertErrorType.InvalidFileExtension:
-                    resultType = ResultTypeEnum.InvalidFileExtension;
-                    break;
-                case ConvertErrorType.Other:
-                default:
-                    resultType = ResultTypeEnum.OtherError;
-                    break;
-            }
-
             ConvertResponseLog data = new ConvertResponseLog
             {
                 RequestId = response.RequestId,
                 ResponseDateUtc = response.ResponseDateUtc,
                 ResultFileSize = response.ResultFileSize,
-                ResultType = resultType
+                ResultType = response.ErrorType.ToResultType()
             };
 
             new CreateConvertResponseLog(this.convertLogRepository).Execute(data);

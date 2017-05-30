@@ -155,7 +155,7 @@ namespace PrecizeSoft.GetPdfOnline.Data.SQLite
             modelBuilder.Entity<ConvertResponse>().Property(p => p.ResponseDateUtc).IsRequired().ForSqliteHasColumnType("REAL");
             modelBuilder.Entity<ConvertResponse>().HasIndex(p => new { p.ResponseDateUtc });
 
-            modelBuilder.Entity<ConvertResponse>().Property(p => p.ResultTypeId).IsRequired();
+            modelBuilder.Entity<ConvertResponse>().Property(p => p.ResultTypeId);
             modelBuilder.Entity<ConvertResponse>().HasIndex(p => new { p.ResultTypeId });
             modelBuilder.Entity<ConvertResponse>().HasOne(p => p.ResultType).WithMany(p => p.ConvertResponses)
                 .HasForeignKey(p => p.ResultTypeId).HasPrincipalKey(p => p.ConvertResultTypeId)

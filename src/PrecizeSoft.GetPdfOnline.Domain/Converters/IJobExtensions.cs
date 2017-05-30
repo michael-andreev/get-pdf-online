@@ -20,6 +20,7 @@ namespace PrecizeSoft.GetPdfOnline.Domain.Converters
                 ExpireDateUtc = job.ExpireDateUtc,
                 InputFileId = job.InputFileId,
                 OutputFileId = job.OutputFileId,
+                ErrorTypeId = job.ErrorType?.ToInt(),
                 Rating = job.Rating
             };
         }

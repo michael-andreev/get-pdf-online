@@ -23,9 +23,10 @@ namespace PrecizeSoft.GetPdfOnline.Domain.Handlers
             return
                 from P in this.cacheRepository.GetJobsBySession(sessionId, true)
                 orderby P.OutputFile.CreateDateUtc descending
+                where P.OutputFile != null
                 select new ConvertedFileInfo
                 {
-                    FileId = P.OutputFileId,
+                    FileId = P.OutputFileId.Value,
                     SessionId = P.SessionId,
                     FileName = P.OutputFile.FileName,
                     FileSize = P.OutputFile.FileSize,

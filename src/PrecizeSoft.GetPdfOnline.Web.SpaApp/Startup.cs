@@ -55,7 +55,8 @@ namespace PrecizeSoft.GetPdfOnline.Web.SpaApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            cacheConnection = new SqliteConnection("Data Source=:memory:");
+            // cacheConnection = new SqliteConnection("Data Source=:memory:");
+            cacheConnection = new SqliteConnection("Data Source=cache.db");
             cacheConnection.Open();
 
             services.AddDbContext<CacheDbContext>(options =>

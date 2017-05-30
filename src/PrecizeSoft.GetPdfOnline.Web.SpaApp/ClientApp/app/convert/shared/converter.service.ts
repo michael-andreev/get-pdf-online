@@ -54,7 +54,7 @@ export class ConverterService {
   }
 
   private compareConvertJobs(a: ConvertJob, b: ConvertJob) {
-      return new Date(b.outputFile.createDateUtc).getTime() - new Date(a.outputFile.createDateUtc).getTime();
+      return new Date(b.inputFile.createDateUtc).getTime() - new Date(a.inputFile.createDateUtc).getTime();
   }
 
   /*getStatByFileCategories(): Promise<StatByFileCategory[]> {
