@@ -25,17 +25,17 @@
     <Feature Id="ProductFeature" Title="GetPDF.online Converter" Level="1" ConfigurableDirectory="APPLICATIONFOLDER" Display="expand" Absent="disallow" AllowAdvertise="no" InstallDefault="local">
       <ComponentGroupRef Id="ProductComponents" />
       <ComponentGroupRef Id="ProductMenuComponents" />
-      <Feature Id="ServiceFeature" Title="Converter Service" Level="1" AllowAdvertise="no" InstallDefault="local">
+      <!--<Feature Id="ServiceFeature" Title="Converter Service" Level="1" AllowAdvertise="no" InstallDefault="local">
         <ComponentGroupRef Id="ServiceComponents" />
+      </Feature>-->
+      <!--<Feature Id="WinApplicationFeature" Title="Desktop Application" Level="1" AllowAdvertise="no" InstallDefault="local">
+        <ComponentGroupRef Id="WinApplicationComponents" />
+      </Feature>-->
+      <Feature Id="WebApplicationFeature" Title="Web Application" Level="1" AllowAdvertise="no" InstallDefault="local">
+        <ComponentGroupRef Id="WebApplicationComponents" />
         <Feature Id="LibreOfficePortableFeature" Title="LibreOffice Portable 5.3.0" Level="1" ConfigurableDirectory="LIBRE_OFFICE_PORTABLE_DIR" AllowAdvertise="no" InstallDefault="local">
           <ComponentGroupRef Id="LibreOfficePortableComponents" />
         </Feature>
-      </Feature>
-      <Feature Id="WinApplicationFeature" Title="Desktop Application" Level="1" AllowAdvertise="no" InstallDefault="local">
-        <ComponentGroupRef Id="WinApplicationComponents" />
-      </Feature>
-      <Feature Id="WebApplicationFeature" Title="Web Application" Level="1" AllowAdvertise="no" InstallDefault="local">
-        <ComponentGroupRef Id="WebApplicationComponents" />
       </Feature>
     </Feature>
 
@@ -45,16 +45,14 @@
     <Directory Id="TARGETDIR" Name="SourceDir">
       <Directory Id="ProgramFilesFolder">
         <Directory Id="APPLICATIONFOLDER" Name="GetPDF.online">
-          <Directory Id="SERVICE_DIR" Name="Service">
+          <!--<Directory Id="SERVICE_DIR" Name="Service">
+          </Directory>-->
+          <!--<Directory Id="WIN_APPLICATION_DIR" Name="DesktopApp">
+          </Directory>-->
+          <Directory Id="WEB_APPLICATION_DIR" Name="WebApp">
             <Directory Id="LIBRE_OFFICE_PORTABLE_DIR" Name="LO">
 
             </Directory>
-          </Directory>
-          <Directory Id="WIN_APPLICATION_DIR" Name="DesktopApp">
-
-          </Directory>
-          <Directory Id="WEB_APPLICATION_DIR" Name="WebApp">
-            
           </Directory>
         </Directory>
       </Directory>
@@ -66,13 +64,13 @@
 
   <Fragment>
     <Icon Id="PdfIcon.ico" SourceFile="Images\PdfIcon.ico"/>
-    <Icon Id="ServiceIcon.ico" SourceFile="Images\ServiceIcon.ico"/>
+    <!--<Icon Id="ServiceIcon.ico" SourceFile="Images\ServiceIcon.ico"/>-->
     <Icon Id="SettingsIcon.ico" SourceFile="Images\SettingsIcon.ico"/>
     <Icon Id="ReadmeIcon.ico" SourceFile="Images\InfoIcon.ico"/>
 
   </Fragment>
   
-  <Fragment>
+  <!--<Fragment>
     <DirectoryRef Id="SERVICE_DIR">
       <Component Id="cmpD0FC73DC886BB5294C22AA81ACA10C12" Guid="{46C94B6F-C81F-4662-A457-5DFAEECF356B}">
         <File Id="fil06755741E7363ECB8A1306B87AD71541" KeyPath="yes" Source="$(var.SERVICE_SOURCE)\GetPdfOnlineService.exe" />
@@ -87,9 +85,9 @@
         </File>
       </Component>
     </DirectoryRef>
-  </Fragment>
+  </Fragment>-->
 
-  <Fragment>
+  <!--<Fragment>
     <DirectoryRef Id="WIN_APPLICATION_DIR">
       <Component Id="cmpBE5776B9F5E86B6E1364A8194DEC93A1" Guid="{2DE0EDCE-5E26-46B2-A282-50255BBAFFD6}">
         <File Id="fil245AE2FC6593DF036CF1738BFC5A4BBE" KeyPath="yes" Source="$(var.WIN_APPLICATION_SOURCE)\PrecizeSoft.GetPdfOnline.Win.WpfApp.exe">
@@ -98,14 +96,16 @@
         </File>
       </Component>
     </DirectoryRef>
-  </Fragment>
+  </Fragment>-->
 
   <Fragment>
     <DirectoryRef Id="WEB_APPLICATION_DIR">
       <Component Id="cmpD2CC10B5FEFED30C61D234201854FF0A" Guid="{B22278CC-EEE4-4A6D-A5B1-CE7AB7CD16DE}">
-        <File Id="fil825D9587FAF32F448E7E9B2DC376DCA3" KeyPath="yes" Source="$(var.WEB_APPLICATION_SOURCE)\PrecizeSoft.GetPdfOnline.Web.MvcCoreApp.exe" />
+        <File Id="fil825D9587FAF32F448E7E9B2DC376DCA3" KeyPath="yes" Source="$(var.WEB_APPLICATION_SOURCE)\PrecizeSoft.GetPdfOnline.Web.SpaApp.exe" />
         <ServiceInstall Id="WebApplicationServiceInstaller" Type="ownProcess" Vital="yes" Name="GetPdfOnlineWebApplication" DisplayName="GetPDF.online Web Application"
-                        Description="Web application for converting files to PDF" Start="auto" ErrorControl="normal" Arguments="--run-as-service" />
+                        Description="Web application for converting files to PDF" Start="auto" ErrorControl="normal" Arguments="--run-as-service">
+          <ServiceConfig DelayedAutoStart="yes" OnInstall="yes" OnReinstall ="yes" />
+        </ServiceInstall>
         <ServiceControl Id="WebApplicationServiceControl" Start="install" Stop="both" Remove="uninstall" Name="GetPdfOnlineWebApplication" Wait="yes" />
       </Component>
       <Component Id="cmp96427A6EC0B1BCCC75C6937861095C19" Guid="{7BC18F00-5EDC-4292-8C87-E8F57317431F}">
@@ -113,6 +113,9 @@
           <Shortcut Id="WebApplicationConfigurationShortcut" Name="Configure Web App" Description="Edit Web Application configuration file"
                     Directory="ApplicationMenuFolder" Advertise="yes" WorkingDirectory="WEB_APPLICATION_DIR" Icon="SettingsIcon.ico" IconIndex="0" />
         </File>
+      </Component>
+      <Component Id="NodeJsExecutable" Guid="{99974779-FD8F-4356-9FC1-3C7AA7417F21}">
+        <File Id="NodeJsExecutable" KeyPath="yes" Source="$(var.NODEJS_SOURCE)\node.exe" />
       </Component>
     </DirectoryRef>
   </Fragment>
@@ -125,36 +128,37 @@
                     Directory="ApplicationMenuFolder" Advertise="yes" WorkingDirectory="APPLICATIONFOLDER" Icon="PdfIcon.ico" IconIndex="0" />
         </File>
       </Component>
-      <Component Id="ServiceLauncher" Guid="{310C729C-6C70-4F53-843B-2B3CC17FA416}">
+      <!--<Component Id="ServiceLauncher" Guid="{310C729C-6C70-4F53-843B-2B3CC17FA416}">
         <File Id="ServiceUrl" KeyPath="yes" Source="GetPDF.online API Service.url">
           <Shortcut Id="ServiceShortcut" Name="GetPDF.online API Service" Description="API Service for converting files to PDF"
                     Directory="ApplicationMenuFolder" Advertise="yes" WorkingDirectory="APPLICATIONFOLDER" Icon="ServiceIcon.ico" IconIndex="0" />
         </File>
-      </Component>
+      </Component>-->
     </DirectoryRef>
   </Fragment>
 
-  <Fragment>
+  <!--<Fragment>
     <ComponentGroup Id="ServiceComponents" Directory="SERVICE_DIR">
       <ComponentGroupRef Id="ServiceComponentGroup" />
       <ComponentRef Id="cmpD0FC73DC886BB5294C22AA81ACA10C12" />
       <ComponentRef Id="cmpB47BB2D86AD592EBE0976C3B973CC5B1" />
       <ComponentRef Id="ServiceLauncher"/>
     </ComponentGroup>
-  </Fragment>
+  </Fragment>-->
 
-  <Fragment>
+  <!--<Fragment>
     <ComponentGroup Id="WinApplicationComponents" Directory="WIN_APPLICATION_DIR">
       <ComponentGroupRef Id="WinApplicationComponentGroup"/>
       <ComponentRef Id="cmpBE5776B9F5E86B6E1364A8194DEC93A1" />
     </ComponentGroup>
-  </Fragment>
+  </Fragment>-->
 
   <Fragment>
     <ComponentGroup Id="WebApplicationComponents" Directory="WEB_APPLICATION_DIR">
       <ComponentGroupRef Id="WebApplicationComponentGroup"/>
       <ComponentRef Id="cmpD2CC10B5FEFED30C61D234201854FF0A" />
       <ComponentRef Id="cmp96427A6EC0B1BCCC75C6937861095C19" />
+      <ComponentRef Id="NodeJsExecutable" />
       <ComponentRef Id="WebApplicationLauncher"/>
     </ComponentGroup>
   </Fragment>

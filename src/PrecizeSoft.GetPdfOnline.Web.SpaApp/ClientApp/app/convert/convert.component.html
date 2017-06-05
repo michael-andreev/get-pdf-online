@@ -2,62 +2,63 @@
     <div class="col-md-12">
         <div class="jumbotron">
                 <h1 i18n>Convert to PDF</h1>
-                <p i18n>Convert your files to PDF online and free! Just drop file here or click the button</p>
+                <p i18n>Convert your files to PDF online and free! Just drop files here or click the button</p>
                 <form id="UploadForm" method="post" enctype="multipart/form-data" action="/">
-                    <div class="validation-summary-valid" data-valmsg-summary="true"><!--place for errors--></div>
                     <div>
-                        <label class="btn btn-lg btn-danger" for="InputFile" i18n>Select file</label>
+                        <label class="btn btn-lg btn-danger" for="InputFile" i18n>Select files</label>
                         <input type="file" class="hidden-file-input" id="InputFile" name="InputFile"
-                         data-val-required="Please select a file to convert"
-                         (change)="convert($event)"/>
+                         (change)="convert($event)" multiple="multiple"/>
                     </div>
                 </form>
         </div>
     </div>
-    <!--<div class="col-md-3" style="display:none;">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">@Localizer["Converted files"]</h3>
-            </div>
-            @if (Model.ConvertedFiles.Count() == 0)
-            {
-                    <div class="panel-body">
-                        <p class="text-muted">@Localizer["Your PDF files will appear here,<br/>once you convert them."]</p>
-                    </div>
-            }
-            else
-            {
-                <ul class="list-group">
-                    @foreach (var f in Model.ConvertedFiles)
-                    {
-                        <li class="list-group-item">
-                            <span class="pdf-icon"></span>
-                            <div class="pdf-info">
-                                <a asp-area="" asp-controller="Home" asp-action="GetPdf" asp-route-id="@f.ConvertedFileId">@f.FileNameWithoutExtension</a>
-                                <small class="text-muted">@f.FileSizeKb @Localizer["Kb"]</small>
-                            </div>
-                        </li>
-                    }
-                </ul>
-            }
-        </div>
-    </div>-->
 </div>
 
-<ul class="list-group">
-    <li class="list-group-item" *ngFor="let convertJob of convertJobs">
-        <ng-container *ngIf="convertJob.outputFile; else convertErrorBlock">
-            <span class="pdf-icon"></span>
-            <div class="pdf-info" *ngIf="convertJob.outputFile">
-                <a href="{{convertJob.outputFile.fileId}}">{{convertJob.outputFile.fileName | slice:0:-4}}</a>
-                <small class="text-muted">{{convertJob.outputFile.fileSize / 1024 | number:'1.0-2'}} <ng-container i18n>Kb</ng-container></small>
+<div class="progress" *ngIf="processingFilesCount > 0">
+  <div class="progress-bar progress-bar-striped progress-bar-danger active" role="progressbar" style="width:100%" i18n>
+    Please wait...
+  </div>
+</div>
+
+<div class="alert alert-danger" *ngFor="let error of errors">
+    <button class="close" aria-label="close" title="close" (click)="deleteError(error); $event.stopPropagation()">×</button>
+    <strong i18n>Error!</strong> {{error.message}}
+</div>
+
+<div class="panel panel-default" *ngIf="convertJobs && convertJobs.length > 0">
+    <div class="panel-heading">
+        <div class="pull-right" style="margin-top:-2px;">
+            <div class="btn-group btn-group-xs">
+                <a href="api/converter/v1/files/getBySession?sessionId={{sessionId}}&random={{randomValue}}" class="btn btn-default" i18n>
+                    Download all
+                </a>
+                <button type="button" class="btn btn-default" (click)="deleteAll();" i18n>
+                    Delete all
+                </button>
             </div>
-        </ng-container>
-        <ng-template #convertErrorBlock>
-            error {{convertJob.errorType}}
-        </ng-template>
-    </li>
-</ul>
+        </div>
+        <h3 class="panel-title" i18n>Converted files</h3>
+    </div>
+    <ul class="list-group">
+        <li class="list-group-item" *ngFor="let convertJob of convertJobs">
+            <ng-container *ngIf="convertJob.outputFile; else convertErrorBlock">
+                <span class="pdf-icon"></span>
+                <div class="pdf-info">
+                    <a href="api/converter/v1/files/{{convertJob.outputFile.fileId}}">{{convertJob.outputFile.fileName | slice:0:-4}}</a>
+                    <small class="text-muted">{{convertJob.outputFile.fileSize / 1024 | number:'1.0-2'}} <ng-container i18n>Kb</ng-container></small>
+                </div>
+            </ng-container>
+            <ng-template #convertErrorBlock>
+                <span class="error-icon"></span>
+                <div class="pdf-info">
+                    <div>{{convertJob.inputFile.fileName}}</div>
+                    <small class="text-muted"><ng-container i18n>Error:</ng-container> {{convertJob.errorType | errorDescription}}</small>
+                </div>
+            </ng-template>
+        </li>
+    </ul>
+</div>
+
 
 <div class="row">
     <div class="col-md-3">

@@ -4,7 +4,7 @@
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
 #Wix Temp Files
-src/PrecizeSoft.GetPdfOnline.Installer/Temp/LO/
+src/PrecizeSoft.GetPdfOnline.Installer/Temp/
 
 # User-specific files
 *.suo

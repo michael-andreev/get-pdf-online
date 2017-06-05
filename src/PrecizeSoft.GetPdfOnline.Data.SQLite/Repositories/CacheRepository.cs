@@ -23,8 +23,28 @@ namespace PrecizeSoft.GetPdfOnline.Data.SQLite.Repositories
             this.context.SaveChanges();
         }
 
-        public void CreateJob(ConvertJob job)
+        private static object CreateSessionLocker = new object();
+
+        public void CreateJob(ConvertJob job, bool createSessionIfNotExists)
         {
+            if (createSessionIfNotExists && (job.SessionId.HasValue)
+                && (!this.context.ConvertSessions.Where(p => p.SessionId == job.SessionId).Any()))
+            {
+                lock (CreateSessionLocker)
+                {
+                    if (!this.context.ConvertSessions.Where(p => p.SessionId == job.SessionId).Any())
+                    {
+                        this.context.ConvertSessions.Add(new ConvertSession
+                        {
+                            SessionId = job.SessionId.Value,
+                            CreateDateUtc = DateTime.UtcNow
+                        });
+
+                        this.context.SaveChanges();
+                    }
+                }
+            }
+
             this.context.ConvertJobs.Add(job);
             this.context.SaveChanges();
         }
@@ -63,6 +83,15 @@ namespace PrecizeSoft.GetPdfOnline.Data.SQLite.Repositories
             return q.Where(p => p.SessionId == sessionId).ToList();
         }
 
+        public void DeleteFiles(IEnumerable<Guid> fileIds)
+        {
+            IEnumerable<BinaryFile> filesToDelete = this.context.BinaryFiles.Where(p => fileIds.Contains(p.FileId)).ToList();
+
+            this.context.BinaryFiles.RemoveRange(filesToDelete);
+
+            this.context.SaveChanges();
+        }
+
         public void UpdateJob(Guid jobId, byte? rating)
         {
             ConvertJob job = this.context.ConvertJobs.Where(p => p.ConvertJobId == jobId).Single();
@@ -81,6 +110,20 @@ namespace PrecizeSoft.GetPdfOnline.Data.SQLite.Repositories
             job.Rating = rating;*/
 
             this.context.SaveChanges();
+        }
+
+        public void DeleteSession(Guid sessionId)
+        {
+            ConvertSession session = this.context.ConvertSessions.Where(p => p.SessionId == sessionId).Single();
+
+            this.context.ConvertSessions.Remove(session);
+
+            this.context.SaveChanges();
+        }
+
+        public bool SessionExists(Guid sessionId)
+        {
+            return this.context.ConvertSessions.Where(p => p.SessionId == sessionId).Any();
         }
     }
 }

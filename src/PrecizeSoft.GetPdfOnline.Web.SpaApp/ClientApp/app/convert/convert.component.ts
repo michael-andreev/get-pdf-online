@@ -1,7 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, PLATFORM_ID, Inject } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { LocalStorageService } from 'angular-2-local-storage';
+import { UUID } from 'angular2-uuid';
 
 import { ConverterService } from './shared/converter.service';
 import { ConvertJob } from './shared/convert-job';
+import { ConvertError } from './shared/convert-error';
 
 @Component({
     selector: 'convert-view',
@@ -11,15 +15,38 @@ import { ConvertJob } from './shared/convert-job';
 
 export class ConvertComponent implements OnInit {
 
-    private sessionId: string = '9516e8e5-ec8e-4c12-8b40-0809ec0bafe3';
+    private sessionId: string;
+
+    private randomValue: string = UUID.UUID();
 
     supportedFormatsString: string;
 
     convertJobs: ConvertJob[];
 
-    constructor(private converterService: ConverterService) { }
+    processingFilesCount = 0;
+
+    errors: ConvertError[] = [];
+
+    constructor(@Inject(PLATFORM_ID) private platformId: Object, private localStorageService: LocalStorageService, private converterService: ConverterService) { }
 
     ngOnInit() {
+        if (this.localStorageService.get('sessionId') === null) {
+            this.localStorageService.set('sessionId', UUID.UUID());
+        }
+        
+        if (isPlatformBrowser(this.platformId)) {
+            this.sessionId = this.localStorageService.get('sessionId').toString();
+        }
+
+        /*if (isPlatformBrowser(this.platformId)) {
+            alert(this.sessionId);
+        }*/
+        // hack
+        /*if (this.sessionId === null)
+        {
+            this.sessionId = UUID.UUID();
+        }*/
+
         this.converterService.getSupportedFormatsString()
         .then(response => this.supportedFormatsString = response);
 
@@ -29,17 +56,43 @@ export class ConvertComponent implements OnInit {
     convert(event): void {
         let fileList: FileList = event.target.files;
         if(fileList.length > 0) {
-            let file: File = fileList[0];
-            this.converterService.convert(file, this.sessionId)
-            .then(() => this.reloadJobs());
+            for (var i = 0; i < fileList.length; i++) {
+                var file = fileList[i];
+                
+                this.processingFilesCount++;
+                this.converterService.convert(file, this.sessionId)
+                .then(() => this.reloadJobs()
+                            .then(r => {
+                                this.processingFilesCount--;
+                                this.randomValue = UUID.UUID();
+                            })
+                            .catch(e => {
+                                this.errors.push({
+                                    message: `Can't load converted file. Please check your connection and try to refresh the page. If the problem persists, please contact the developer.`
+                                });
+                                this.processingFilesCount--;
+                            }))
+                .catch(fileName => {
+                    this.errors.push({
+                        message: `Can't load file "${fileName}". Please check your connection and try again. If the problem persists, please contact the developer.`
+                    });
+                    this.processingFilesCount--;
+                });
+            }
         }
     }
 
-    reloadJobs() {
-        this.converterService.getJobsBySession(this.sessionId)
+    reloadJobs(): Promise<ConvertJob[]> {
+        return this.converterService.getJobsBySession(this.sessionId)
         .then(r => this.convertJobs = r);
-        /*.then(r => r.forEach((v) => {
-            v.outputFile.fileName = v.outputFile.getFileNameWithoutExtension();
-        }));*/
+    }
+
+    deleteError(error: ConvertError) {
+        this.errors.splice(this.errors.indexOf(error), 1);
+    }
+
+    deleteAll() {
+        this.converterService.deleteSession(this.sessionId)
+        .then(() => this.reloadJobs());
     }
 }

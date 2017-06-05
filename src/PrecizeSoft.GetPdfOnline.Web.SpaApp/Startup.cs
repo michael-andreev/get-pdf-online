@@ -55,12 +55,13 @@ namespace PrecizeSoft.GetPdfOnline.Web.SpaApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // cacheConnection = new SqliteConnection("Data Source=:memory:");
-            cacheConnection = new SqliteConnection("Data Source=cache.db");
+            cacheConnection = new SqliteConnection("Data Source=:memory:");
+            // cacheConnection = new SqliteConnection("Data Source=cache.db");
             cacheConnection.Open();
 
             services.AddDbContext<CacheDbContext>(options =>
-                options.UseSqlite(cacheConnection));
+                options.UseSqlite("Data Source=cache.db"));
+                //options.UseSqlite(cacheConnection));
 
             services.AddDbContext<GetPdfOnlineDbContext>(options =>
                 options.UseSqlite(this.Configuration.Get<UserSettingsOptions>().Data.ConnectionString));
@@ -80,6 +81,14 @@ namespace PrecizeSoft.GetPdfOnline.Web.SpaApp
                 return new LoggerService(p.GetRequiredService<IConvertLogRepository>());
             });
 
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowSpecificOrigin",
+                    builder => builder.AllowAnyOrigin()
+                    .AllowAnyHeader()
+                    .AllowAnyMethod());
+            });
+            
             // Add framework services.
             services.AddMvc();
 
@@ -132,7 +141,7 @@ namespace PrecizeSoft.GetPdfOnline.Web.SpaApp
                 app.UseExceptionHandler("/Home/Error");
             }
 
-            //app.UseCors("AllowSpecificOrigin");
+            app.UseCors("AllowSpecificOrigin");
 
             app.UseDefaultFiles();
             app.UseStaticFiles();

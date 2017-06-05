@@ -13,6 +13,7 @@ body {
     border-color: #ccc;
     border-style: dashed;
     border-width: 2px;
+    margin-bottom: 20px;
 }
 
 .pdf-icon {
@@ -32,6 +33,14 @@ body {
     display: block;
 }
 
+.error-icon {
+    background-image:url(assets/images/error-icon-48.png);
+    height: 48px;
+    width: 48px;
+    display:inline-block;
+    vertical-align: middle;
+}
+
 .hidden-file-input {
     width: 0.1px;
     height: 0.1px;
@@ -39,6 +48,10 @@ body {
     overflow: hidden;
     position: absolute;
     z-index: -1;
+}
+
+pre {
+    font-size: 14px;
 }
 
 pre[class*="language-"]:before, pre[class*="language-"]:after {

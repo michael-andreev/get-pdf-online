@@ -115,7 +115,7 @@ namespace PrecizeSoft.GetPdfOnline.Domain.Handlers
                     }
                 };
 
-                cacheRepository.CreateJob(job);
+                cacheRepository.CreateJob(job, true);
             }
 
             return (result != null);

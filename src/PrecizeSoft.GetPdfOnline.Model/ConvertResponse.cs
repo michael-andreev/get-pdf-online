@@ -8,7 +8,7 @@ namespace PrecizeSoft.GetPdfOnline.Model
     {
         public Guid ConvertResponseId { get; set; }
 
-        public DateTime ResponseDateUtc { get; set; }
+        public DateTimeOffset ResponseDateUtc { get; set; }
 
         public int ResultTypeId { get; set; }
 

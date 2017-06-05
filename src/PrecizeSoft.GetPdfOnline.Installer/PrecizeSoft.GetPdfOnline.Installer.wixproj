@@ -21,9 +21,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="LibreOfficePortable.wxs" />
-    <Compile Include="PrecizeSoft.GetPdfOnline.Api.WinService.wxs" />
-    <Compile Include="PrecizeSoft.GetPdfOnline.Web.MvcCoreApp.wxs" />
-    <Compile Include="PrecizeSoft.GetPdfOnline.Win.WpfApp.wxs" />
+    <Compile Include="PrecizeSoft.GetPdfOnline.Web.SpaApp.wxs" />
     <Compile Include="Product.wxs" />
   </ItemGroup>
   <ItemGroup>
@@ -94,15 +92,15 @@
   <Target Name="BeforeBuild">
     <PropertyGroup>
       <DefineConstants>
-        SERVICE_SOURCE=..\PrecizeSoft.GetPdfOnline.Api.WinService\bin\$(Configuration)\net462;
+        <!--SERVICE_SOURCE=..\PrecizeSoft.GetPdfOnline.Api.WinService\bin\$(Configuration)\net462;-->
         LIBRE_OFFICE_PORTABLE_SOURCE=Temp\LO;
-        WEB_APPLICATION_SOURCE=..\PrecizeSoft.GetPdfOnline.Web.MvcCoreApp\bin\$(Configuration)\PublishOutput;
-        WIN_APPLICATION_SOURCE=..\PrecizeSoft.GetPdfOnline.Win.WpfApp\bin\$(Configuration);
-      </DefineConstants>
+        NODEJS_SOURCE=Temp\nodejs;
+        WEB_APPLICATION_SOURCE=..\PrecizeSoft.GetPdfOnline.Web.SpaApp\bin\$(Configuration)\PublishOutput;
+        <!--WIN_APPLICATION_SOURCE=..\PrecizeSoft.GetPdfOnline.Win.WpfApp\bin\$(Configuration);--></DefineConstants>
     </PropertyGroup>
-    <HeatDirectory OutputFile="PrecizeSoft.GetPdfOnline.Api.WinService.wxs" Directory="..\PrecizeSoft.GetPdfOnline.Api.WinService\bin\$(Configuration)\net462" KeepEmptyDirectories="true" DirectoryRefId="SERVICE_DIR" ComponentGroupName="ServiceComponentGroup" SuppressCom="true" SuppressFragments="true" SuppressRegistry="true" SuppressRootDirectory="true" SuppressUniqueIds="false" GenerateGuidsNow="true" ToolPath="$(WixToolPath)" PreprocessorVariable="var.SERVICE_SOURCE" Transforms="Xslt\RemoveExe.xsl;Xslt\RemoveUserSettings.xsl;Xslt\RemoveDb.xsl" />
+    <!--<HeatDirectory OutputFile="PrecizeSoft.GetPdfOnline.Api.WinService.wxs" Directory="..\PrecizeSoft.GetPdfOnline.Api.WinService\bin\$(Configuration)\net462" KeepEmptyDirectories="true" DirectoryRefId="SERVICE_DIR" ComponentGroupName="ServiceComponentGroup" SuppressCom="true" SuppressFragments="true" SuppressRegistry="true" SuppressRootDirectory="true" SuppressUniqueIds="false" GenerateGuidsNow="true" ToolPath="$(WixToolPath)" PreprocessorVariable="var.SERVICE_SOURCE" Transforms="Xslt\RemoveExe.xsl;Xslt\RemoveUserSettings.xsl;Xslt\RemoveDb.xsl" />-->
     <HeatDirectory OutputFile="LibreOfficePortable.wxs" Directory="Temp\LO" KeepEmptyDirectories="true" DirectoryRefId="LIBRE_OFFICE_PORTABLE_DIR" ComponentGroupName="LibreOfficePortableComponentGroup" SuppressCom="true" SuppressFragments="true" SuppressRegistry="true" SuppressRootDirectory="true" SuppressUniqueIds="false" GenerateGuidsNow="true" ToolPath="$(WixToolPath)" PreprocessorVariable="var.LIBRE_OFFICE_PORTABLE_SOURCE" />
-    <HeatDirectory OutputFile="PrecizeSoft.GetPdfOnline.Web.MvcCoreApp.wxs" Directory="..\PrecizeSoft.GetPdfOnline.Web.MvcCoreApp\bin\$(Configuration)\PublishOutput" KeepEmptyDirectories="true" DirectoryRefId="WEB_APPLICATION_DIR" ComponentGroupName="WebApplicationComponentGroup" SuppressCom="true" SuppressFragments="true" SuppressRegistry="true" SuppressRootDirectory="true" SuppressUniqueIds="false" GenerateGuidsNow="true" ToolPath="$(WixToolPath)" PreprocessorVariable="var.WEB_APPLICATION_SOURCE" Transforms="Xslt\RemoveExe.xsl;Xslt\RemoveUserSettings.xsl" />
-    <HeatDirectory OutputFile="PrecizeSoft.GetPdfOnline.Win.WpfApp.wxs" Directory="..\PrecizeSoft.GetPdfOnline.Win.WpfApp\bin\$(Configuration)" KeepEmptyDirectories="true" DirectoryRefId="WIN_APPLICATION_DIR" ComponentGroupName="WinApplicationComponentGroup" SuppressCom="true" SuppressFragments="true" SuppressRegistry="true" SuppressRootDirectory="true" SuppressUniqueIds="false" GenerateGuidsNow="true" ToolPath="$(WixToolPath)" PreprocessorVariable="var.WIN_APPLICATION_SOURCE" Transforms="Xslt\RemoveExe.xsl" />
+    <HeatDirectory OutputFile="PrecizeSoft.GetPdfOnline.Web.SpaApp.wxs" Directory="..\PrecizeSoft.GetPdfOnline.Web.SpaApp\bin\$(Configuration)\PublishOutput" KeepEmptyDirectories="true" DirectoryRefId="WEB_APPLICATION_DIR" ComponentGroupName="WebApplicationComponentGroup" SuppressCom="true" SuppressFragments="true" SuppressRegistry="true" SuppressRootDirectory="true" SuppressUniqueIds="false" GenerateGuidsNow="true" ToolPath="$(WixToolPath)" PreprocessorVariable="var.WEB_APPLICATION_SOURCE" Transforms="Xslt\RemoveExe.xsl;Xslt\RemoveUserSettings.xsl" />
+    <!--<HeatDirectory OutputFile="PrecizeSoft.GetPdfOnline.Win.WpfApp.wxs" Directory="..\PrecizeSoft.GetPdfOnline.Win.WpfApp\bin\$(Configuration)" KeepEmptyDirectories="true" DirectoryRefId="WIN_APPLICATION_DIR" ComponentGroupName="WinApplicationComponentGroup" SuppressCom="true" SuppressFragments="true" SuppressRegistry="true" SuppressRootDirectory="true" SuppressUniqueIds="false" GenerateGuidsNow="true" ToolPath="$(WixToolPath)" PreprocessorVariable="var.WIN_APPLICATION_SOURCE" Transforms="Xslt\RemoveExe.xsl" />-->
   </Target>
 </Project>

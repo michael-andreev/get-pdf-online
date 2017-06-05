@@ -15,6 +15,7 @@ export class ConverterService {
   private getSupportedFormatsUrl = '/api/converter/v1/formats';
   private convertUrl = '/api/converter/v1/jobs';
   private getJobsBySessionUrl = '/api/converter/v1/jobs/getBySession?sessionId=';
+  private deleteSessionUrl = '/api/converter/v1/sessions/';
 
   constructor(private http: Http, @Inject('ORIGIN_URL') private originUrl: string) { }
 
@@ -30,31 +31,42 @@ export class ConverterService {
       .then(response => response.sort().join(', '));
   }
 
-  convert(file: File, sessionId: string): Promise<void> {
+  convert(file: File, sessionId: string): Promise<ConvertJob> {
       let formData : FormData = new FormData();
       formData.append('file', file, file.name);
       formData.append('sessionId', sessionId);
 
-      let headers = new Headers();
-      headers.append('Accept', 'application/json');
-      let options = new RequestOptions({ headers: headers });
+      // let headers = new Headers();
+      // headers.append('Accept', 'application/json');
+      // let options = new RequestOptions({ headers: headers });
 
-      return this.http.post(this.convertUrl, formData, options)
+      return this.http.post(this.originUrl + this.convertUrl, formData/*, options*/)
       .toPromise()
-      .then(() => null)
-      .catch(this.handleError);
+      .then(response => response.json() as ConvertJob)
+      .catch(e => {
+          // return Promise.reject(e);
+          return Promise.reject(file.name);
+      });
+      // .catch(this.handleError);
   }
 
   getJobsBySession(sessionId: string): Promise<ConvertJob[]> {
       return this.http.get(this.originUrl + this.getJobsBySessionUrl + sessionId)
           .toPromise()
           .then(response => response.json() as ConvertJob[])
-          .then(r => r.sort(this.compareConvertJobs))
-          .catch(this.handleError);
+          .then(r => r.sort(this.compareConvertJobs));
+          // .catch(this.handleError);
   }
 
   private compareConvertJobs(a: ConvertJob, b: ConvertJob) {
       return new Date(b.inputFile.createDateUtc).getTime() - new Date(a.inputFile.createDateUtc).getTime();
+  }
+
+  deleteSession(sessionId: string): Promise<void> {
+      return this.http.delete(this.originUrl + this.deleteSessionUrl + sessionId)
+          .toPromise()
+          .then(response => null)
+          .catch(this.handleError);
   }
 
   /*getStatByFileCategories(): Promise<StatByFileCategory[]> {

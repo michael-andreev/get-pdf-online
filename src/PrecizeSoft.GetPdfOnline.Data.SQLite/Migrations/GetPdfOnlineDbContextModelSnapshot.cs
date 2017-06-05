@@ -13,7 +13,7 @@ namespace PrecizeSoft.GetPdfOnline.Data.SQLite.Migrations
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
             modelBuilder
-                .HasAnnotation("ProductVersion", "1.1.1");
+                .HasAnnotation("ProductVersion", "1.1.2");
 
             modelBuilder.Entity("PrecizeSoft.GetPdfOnline.Model.ConvertLog", b =>
                 {
@@ -33,9 +33,9 @@ namespace PrecizeSoft.GetPdfOnline.Data.SQLite.Migrations
 
                     b.Property<int>("FileTypeId");
 
-                    b.Property<DateTime>("RequestDateUtc");
+                    b.Property<DateTimeOffset>("RequestDateUtc");
 
-                    b.Property<DateTime?>("ResponseDateUtc");
+                    b.Property<DateTimeOffset?>("ResponseDateUtc");
 
                     b.Property<int?>("ResultFileSize");
 
@@ -62,7 +62,7 @@ namespace PrecizeSoft.GetPdfOnline.Data.SQLite.Migrations
 
                     b.Property<int>("FileTypeId");
 
-                    b.Property<DateTime>("RequestDateUtc")
+                    b.Property<DateTimeOffset>("RequestDateUtc")
                         .HasAnnotation("Sqlite:ColumnType", "REAL");
 
                     b.Property<string>("SenderIp")
@@ -88,7 +88,7 @@ namespace PrecizeSoft.GetPdfOnline.Data.SQLite.Migrations
                 {
                     b.Property<Guid>("ConvertResponseId");
 
-                    b.Property<DateTime>("ResponseDateUtc")
+                    b.Property<DateTimeOffset>("ResponseDateUtc")
                         .HasAnnotation("Sqlite:ColumnType", "REAL");
 
                     b.Property<int?>("ResultFileSize");
@@ -150,9 +150,9 @@ namespace PrecizeSoft.GetPdfOnline.Data.SQLite.Migrations
 
             modelBuilder.Entity("PrecizeSoft.GetPdfOnline.Model.ConvertStatByHour", b =>
                 {
-                    b.Property<DateTime>("BeginRequestDateUtc");
+                    b.Property<DateTimeOffset>("BeginRequestDateUtc");
 
-                    b.Property<DateTime>("EndRequestDateUtc");
+                    b.Property<DateTimeOffset>("EndRequestDateUtc");
 
                     b.Property<long>("FileSizeSum");
 
@@ -187,9 +187,9 @@ namespace PrecizeSoft.GetPdfOnline.Data.SQLite.Migrations
 
                     b.Property<long>("FileSizeSum");
 
-                    b.Property<DateTime?>("FirstRequestDateUtc");
+                    b.Property<DateTimeOffset?>("FirstRequestDateUtc");
 
-                    b.Property<DateTime?>("LastRequestDateUtc");
+                    b.Property<DateTimeOffset?>("LastRequestDateUtc");
 
                     b.Property<int>("NegativeResultCount");
 

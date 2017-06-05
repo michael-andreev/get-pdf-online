@@ -43,5 +43,16 @@ namespace PrecizeSoft.GetPdfOnline.Web.SpaApp.Controllers
         {
             return base.GetFile(id);
         }
+
+        /// <summary>
+        /// Download all converted files from session in Zip arcive
+        /// </summary>
+        /// <param name="sessionId">Session ID (GUID)</param>
+        /// <returns>Files in Zip archive</returns>
+        [SwaggerFileResponse(System.Net.HttpStatusCode.OK, Description = "Success")]
+        public override IActionResult GetFilesBySession([FromQuery] Guid sessionId)
+        {
+            return base.GetFilesBySession(sessionId);
+        }
     }
 }

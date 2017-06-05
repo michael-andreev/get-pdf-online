@@ -32,6 +32,8 @@ namespace PrecizeSoft.GetPdfOnline.Data.SQLite
 
         public DbSet<ConvertJob> ConvertJobs { get; set; }
 
+        public DbSet<ConvertSession> ConvertSessions { get; set; }
+
         void IUnitOfWork.SaveChanges()
         {
             base.SaveChanges();
@@ -43,6 +45,7 @@ namespace PrecizeSoft.GetPdfOnline.Data.SQLite
 
             this.SetupBinaryFiles(modelBuilder);
             this.SetupBinaryFilesContent(modelBuilder);
+            this.SetupConvertSessions(modelBuilder);
             this.SetupConvertJobs(modelBuilder);
         }
 
@@ -72,9 +75,21 @@ namespace PrecizeSoft.GetPdfOnline.Data.SQLite
             modelBuilder.Entity<BinaryFileContent>().HasOne(p => p.File).WithOne(p => p.Content)
                 .HasForeignKey<BinaryFileContent>(p => p.FileContentId)
                 .HasPrincipalKey<BinaryFile>(p => p.FileId)
-                .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<BinaryFileContent>().Property(p => p.FileBytes).IsRequired();
+        }
+
+        private void SetupConvertSessions(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<ConvertSession>().ToTable("tbSessions");
+
+            modelBuilder.Entity<ConvertSession>().HasKey(p => new { p.SessionId });
+            modelBuilder.Entity<ConvertSession>().Property(p => p.SessionId).ValueGeneratedNever();
+            modelBuilder.Entity<ConvertSession>().HasIndex(p => new { p.SessionId }).IsUnique();
+
+            modelBuilder.Entity<ConvertSession>().Property(p => p.CreateDateUtc).IsRequired().ForSqliteHasColumnType("REAL");
+            modelBuilder.Entity<ConvertSession>().HasIndex(p => new { p.CreateDateUtc });
         }
 
         private void SetupConvertJobs(ModelBuilder modelBuilder)
@@ -90,6 +105,12 @@ namespace PrecizeSoft.GetPdfOnline.Data.SQLite
 
             modelBuilder.Entity<ConvertJob>().Property(p => p.SessionId);
             modelBuilder.Entity<ConvertJob>().HasIndex(p => new { p.SessionId });
+            modelBuilder.Entity<ConvertJob>()
+                .HasOne(p => p.Session)
+                .WithMany(p => p.Jobs)
+                .HasForeignKey(p => p.SessionId)
+                .HasPrincipalKey(p => p.SessionId)
+                .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<ConvertJob>().Property(p => p.Rating);
 

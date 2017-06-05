@@ -6,7 +6,7 @@ namespace PrecizeSoft.GetPdfOnline.Model
     {
         public Guid ConvertRequestId { get; set; }
 
-        public DateTime RequestDateUtc { get; set; }
+        public DateTimeOffset RequestDateUtc { get; set; }
 
         public string SenderIp { get; set; }
 

@@ -17,7 +17,7 @@ namespace PrecizeSoft.GetPdfOnline.Domain.Converters
                 FileId = file.FileId,
                 FileName = file.FileName,
                 FileSize = file.FileSize,
-                CreateDateUtc = file.CreateDateUtc,
+                CreateDateUtc = file.CreateDateUtc.UtcDateTime,
                 Bytes = file.Content.FileBytes
             };
         }
@@ -29,7 +29,7 @@ namespace PrecizeSoft.GetPdfOnline.Domain.Converters
                 FileId = file.FileId,
                 FileName = file.FileName,
                 FileSize = file.FileSize,
-                CreateDateUtc = file.CreateDateUtc
+                CreateDateUtc = file.CreateDateUtc.UtcDateTime
             };
         }
     }

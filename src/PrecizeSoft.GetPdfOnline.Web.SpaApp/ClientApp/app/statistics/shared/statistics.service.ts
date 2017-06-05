@@ -5,11 +5,11 @@ import 'rxjs/add/operator/toPromise';
 
 import * as moment from 'moment';
 
-import { Statistics } from './statistics';
+// import { Statistics } from './statistics';
 import { SummaryStat } from './summary-stat';
 import { StatByFileCategory } from './stat-by-file-category';
 import { StatByHour } from './stat-by-hour';
-import { STATISTICS } from './mock-statistics';
+// import { STATISTICS } from './mock-statistics';
 
 @Injectable()
 export class StatisticsService {
@@ -21,10 +21,10 @@ export class StatisticsService {
 
   constructor(private http: Http, @Inject('ORIGIN_URL') private originUrl: string) { }
 
-  getStatistics(): Promise<Statistics> {
+  /*getStatistics(): Promise<Statistics> {
       return Promise.resolve(STATISTICS);
       // return Promise.resolve(new Statistics() { summary = this.getSummaryStatistics() });
-  }
+  }*/
 
   getSummaryStat(): Promise<SummaryStat> {
       return this.http.get(this.originUrl + this.summaryStatUrl)

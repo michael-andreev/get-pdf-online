@@ -13,10 +13,12 @@ import { DevelopersSourceCodeComponent } from './developers-source-code.componen
 const developersRoutes: Routes = [
     {
         path: 'api',
+        pathMatch: 'full',
         redirectTo: 'developers/rest-api'
     },
     {
         path: 'soap',
+        pathMatch: 'full',
         redirectTo: 'developers/soap-api'
     },
     {

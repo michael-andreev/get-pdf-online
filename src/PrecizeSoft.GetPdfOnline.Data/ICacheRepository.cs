@@ -13,12 +13,18 @@ namespace PrecizeSoft.GetPdfOnline.Data
 
         IEnumerable<BinaryFile> GetFiles(IEnumerable<Guid> fileIds);
 
-        void CreateJob(ConvertJob job);
+        void DeleteFiles(IEnumerable<Guid> fileIds);
+            
+        void CreateJob(ConvertJob job, bool createSessionIfNotExists);
 
         void UpdateJob(Guid jobId, byte? rating);
 
         ConvertJob GetJob(Guid jobId);
 
         IEnumerable<ConvertJob> GetJobsBySession(Guid sessionId, bool includeFiles = false);
+
+        bool SessionExists(Guid sessionId);
+
+        void DeleteSession(Guid sessionId);
     }
 }

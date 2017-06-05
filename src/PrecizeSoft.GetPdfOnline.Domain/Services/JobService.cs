@@ -20,7 +20,7 @@ namespace PrecizeSoft.GetPdfOnline.Domain.Services
 
         public void AddJob(IJob job)
         {
-            this.cacheRepository.CreateJob(job.ToConvertJob());
+            this.cacheRepository.CreateJob(job.ToConvertJob(), true);
         }
 
         public void EditJob(Guid jobId, byte? rating)
@@ -36,6 +36,16 @@ namespace PrecizeSoft.GetPdfOnline.Domain.Services
         public IEnumerable<IJob> GetJobsBySession(Guid sessionId)
         {
             return this.cacheRepository.GetJobsBySession(sessionId).Select(p => p.ToJob()).ToList();
+        }
+
+        public void DeleteSession(Guid sessionId)
+        {
+            this.cacheRepository.DeleteSession(sessionId);
+        }
+
+        public bool SessionExists(Guid sessionId)
+        {
+            return this.cacheRepository.SessionExists(sessionId);
         }
     }
 }

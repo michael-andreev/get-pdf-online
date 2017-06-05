@@ -40,6 +40,9 @@ namespace PrecizeSoft.GetPdfOnline.Data.SQLite.Repositories
 
         public IEnumerable<ConvertStatByHour> GetConvertStatByHoursForDay(DateTimeOffset dateWithTimeZone)
         {
+            //Delete time
+            dateWithTimeZone = new DateTimeOffset(dateWithTimeZone.Date, dateWithTimeZone.Offset);
+
             if (dateWithTimeZone.Offset.Minutes % 15 != 0)
             {
                 //Wrong time zone

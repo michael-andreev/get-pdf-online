@@ -6,9 +6,9 @@ namespace PrecizeSoft.GetPdfOnline.Model
 {
     public class ConvertStatByHour
     {
-        public DateTime BeginRequestDateUtc { get; set; }
+        public DateTimeOffset BeginRequestDateUtc { get; set; }
 
-        public DateTime EndRequestDateUtc { get; set; }
+        public DateTimeOffset EndRequestDateUtc { get; set; }
 
         public int UtcMinutesOffset { get; set; }
 

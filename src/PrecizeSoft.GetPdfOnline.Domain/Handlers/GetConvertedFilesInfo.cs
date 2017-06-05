@@ -30,8 +30,8 @@ namespace PrecizeSoft.GetPdfOnline.Domain.Handlers
                     SessionId = P.SessionId,
                     FileName = P.OutputFile.FileName,
                     FileSize = P.OutputFile.FileSize,
-                    CreateDateUtc = P.OutputFile.CreateDateUtc,
-                    ExpireDateUtc = P.ExpireDateUtc,
+                    CreateDateUtc = P.OutputFile.CreateDateUtc.UtcDateTime,
+                    ExpireDateUtc = P.ExpireDateUtc?.UtcDateTime,
                     Rating = P.Rating
                 };
         }

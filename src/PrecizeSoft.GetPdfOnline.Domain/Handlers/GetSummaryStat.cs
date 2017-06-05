@@ -24,8 +24,8 @@ namespace PrecizeSoft.GetPdfOnline.Domain.Handlers
 
             ISummaryStat result = new SummaryStat
             {
-                FirstRequestDateUtc = data.FirstRequestDateUtc,
-                LastRequestDateUtc = data.LastRequestDateUtc,
+                FirstRequestDateUtc = data.FirstRequestDateUtc?.UtcDateTime,
+                LastRequestDateUtc = data.LastRequestDateUtc?.UtcDateTime,
                 DurationInSecondsAvg = data.DurationInSecondsAvg,
                 DurationInSecondsMin = data.DurationInSecondsMin,
                 DurationInSecondsMax = data.DurationInSecondsMax,

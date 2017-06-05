@@ -15,10 +15,17 @@ import '@angular/forms';
 // Other vendors for example jQuery, Lodash or Bootstrap
 // You can import js, ts, css, sass, ...
 
+import {CodeHighlighterModule} from 'primeng/components/codehighlighter/codehighlighter';
+import {CalendarModule} from 'primeng/components/calendar/calendar';
+import {ChartModule} from 'primeng/components/chart/chart';
+// import 'primeng/primeng';
+
 /* Import prism core */
 import 'prismjs/prism';
 /* Import the language you need to highlight */
-import 'prismjs/components/prism-markup';
+// import 'prismjs/components/prism-markup';
 
 // import 'angular-prism';
-import { PrismComponent } from 'angular-prism';
+// import { PrismComponent } from 'angular-prism';
+
+import { UUID } from 'angular2-uuid';

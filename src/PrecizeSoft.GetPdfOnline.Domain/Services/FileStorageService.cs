@@ -37,6 +37,11 @@ namespace PrecizeSoft.GetPdfOnline.Domain.Services
             this.cacheRepository.CreateFile(resultFile);
         }
 
+        public void DeleteFiles(IEnumerable<Guid> fileIds)
+        {
+            this.cacheRepository.DeleteFiles(fileIds);
+        }
+
         public IFile GetFile(Guid fileId)
         {
             return this.cacheRepository.GetFile(fileId, true)?.ToConvertedFile();

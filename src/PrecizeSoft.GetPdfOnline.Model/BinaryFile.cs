@@ -12,7 +12,7 @@ namespace PrecizeSoft.GetPdfOnline.Model
 
         public int FileSize { get; set; }
 
-        public DateTime CreateDateUtc { get; set; }
+        public DateTimeOffset CreateDateUtc { get; set; }
 
         public BinaryFileContent Content { get; set; }
 

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 
-import {PrismComponent} from 'angular-prism';
+// import {PrismComponent} from 'angular-prism';
+import {CodeHighlighterModule} from 'primeng/components/codehighlighter/codehighlighter';
 
 import { DevelopersComponent } from './developers.component';
 import { DevelopersRoutingModule } from './developers-routing.module';
@@ -14,10 +15,11 @@ import { DevelopersSourceCodeComponent } from './developers-source-code.componen
 
 @NgModule({
     imports: [
-        DevelopersRoutingModule
+        DevelopersRoutingModule,
+        CodeHighlighterModule
     ],
     declarations: [
-        PrismComponent,
+        // PrismComponent,
         DevelopersComponent,
         DevelopersOverviewComponent,
         DevelopersRestApiComponent,

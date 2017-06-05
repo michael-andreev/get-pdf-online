@@ -11,3 +11,9 @@ import 'bootstrap/dist/css/bootstrap-theme.min.css';
 import 'iframe-resizer/js/iframeResizer.min.js';
 
 import 'prismjs/themes/prism-coy.css';
+
+import 'primeng/resources/themes/omega/theme.css';
+import 'primeng/resources/primeng.min.css';
+import 'font-awesome/css/font-awesome.min.css';
+
+import 'chart.js/dist/Chart.js';

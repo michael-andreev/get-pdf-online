@@ -17,7 +17,7 @@ namespace PrecizeSoft.GetPdfOnline.Domain.Converters
             {
                 JobId = job.ConvertJobId,
                 SessionId = job.SessionId,
-                ExpireDateUtc = job.ExpireDateUtc,
+                ExpireDateUtc = job.ExpireDateUtc?.UtcDateTime,
                 InputFileId = job.InputFileId,
                 OutputFileId = job.OutputFileId,
                 ErrorType = (ConvertErrorType?)job.ErrorTypeId,

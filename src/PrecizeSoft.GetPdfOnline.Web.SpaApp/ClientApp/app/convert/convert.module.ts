@@ -7,6 +7,7 @@ import { ConvertComponent } from './convert.component';
 import { ConvertRoutingModule } from './convert-routing.module';
 
 import { ConverterService } from './shared/converter.service';
+import { ErrorDescriptionPipe } from './error-description.pipe';
 
 @NgModule({
     imports: [
@@ -15,7 +16,8 @@ import { ConverterService } from './shared/converter.service';
         ConvertRoutingModule
     ],
     declarations: [
-        ConvertComponent
+        ConvertComponent,
+        ErrorDescriptionPipe
     ],
     exports: [
     ],

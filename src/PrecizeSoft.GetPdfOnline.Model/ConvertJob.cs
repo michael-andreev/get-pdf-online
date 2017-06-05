@@ -8,7 +8,7 @@ namespace PrecizeSoft.GetPdfOnline.Model
     {
         public Guid ConvertJobId { get; set; }
 
-        public DateTime? ExpireDateUtc { get; set; }
+        public DateTimeOffset? ExpireDateUtc { get; set; }
 
         public Guid? SessionId { get; set; }
 
@@ -23,5 +23,7 @@ namespace PrecizeSoft.GetPdfOnline.Model
         public int? ErrorTypeId { get; set; }
 
         public byte? Rating { get; set; }
+
+        public ConvertSession Session { get; set; }
     }
 }
