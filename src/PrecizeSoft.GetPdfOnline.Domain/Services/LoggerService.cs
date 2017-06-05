@@ -25,7 +25,7 @@ namespace PrecizeSoft.GetPdfOnline.Domain.Services
             ConvertRequestLog data = new ConvertRequestLog
             {
                 RequestId = request.RequestId,
-                RequestDateUtc = request.RequestDateUtc.UtcDateTime,
+                RequestDateUtc = request.RequestDateUtc,
                 SenderIp = request.SenderIp,
                 FileExtension = request.FileExtension,
                 FileSize = request.FileSize,
