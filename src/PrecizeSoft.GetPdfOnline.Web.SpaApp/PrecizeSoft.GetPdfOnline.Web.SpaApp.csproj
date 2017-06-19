@@ -6,13 +6,16 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DocumentationFile>bin\Debug\net462\PrecizeSoft.GetPdfOnline.Web.SpaApp.xml</DocumentationFile>
+    <NoWarn>1701;1702;1705;1591</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <DocumentationFile>bin\Release\net462\PrecizeSoft.GetPdfOnline.Web.SpaApp.xml</DocumentationFile>
+    <NoWarn>1701;1702;1705;1591</NoWarn>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore" Version="1.1.2" />
     <PackageReference Include="Microsoft.AspNetCore.Hosting.WindowsServices" Version="1.1.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Localization.Routing" Version="1.1.2" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="1.1.3" />
     <PackageReference Include="Microsoft.AspNetCore.Server.WebListener" Version="1.1.2" />
     <PackageReference Include="Microsoft.AspNetCore.SpaServices" Version="1.1.1" />
@@ -29,6 +32,9 @@
     <Content Remove="ClientApp\**" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ClientApp\tsconfig.server.json" />
+    <Content Include="ClientApp\tsconfig.client.json" />
+    <Content Include="ClientApp\tsconfig.i18n.json" />
     <Content Include="wwwroot\debug.html" />
   </ItemGroup>
   <ItemGroup>
@@ -38,12 +44,14 @@
     <ProjectReference Include="..\PrecizeSoft.GetPdfOnline.Domain\PrecizeSoft.GetPdfOnline.Domain.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="webpack\" />
-  </ItemGroup>
-  <ItemGroup>
     <None Update="usersettings.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="Resources\Views\Shared\_Layout.ru.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <Target Name="RunWebpack" AfterTargets="ComputeFilesToPublish">
     <!-- As part of publishing, ensure the JS resources are freshly built in production mode -->

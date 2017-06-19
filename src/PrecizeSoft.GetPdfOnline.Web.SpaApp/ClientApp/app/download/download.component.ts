@@ -6,6 +6,9 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class DownloadComponent implements OnInit {
+
+    datePublished: Date = new Date(2017, 5, 9);
+    
     constructor() { }
 
     ngOnInit() { }

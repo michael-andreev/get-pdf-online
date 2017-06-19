@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-md-12">
-        <div class="jumbotron">
+        <div class="jumbotron" pDroppable (onDrop)="dropFiles($event)">
                 <h1 i18n>Convert to PDF</h1>
                 <p i18n>Convert your files to PDF online and free! Just drop files here or click the button</p>
                 <form id="UploadForm" method="post" enctype="multipart/form-data" action="/">
@@ -63,25 +63,24 @@
 <div class="row">
     <div class="col-md-3">
         <h2 i18n>Excellent tool</h2>
-        <p><ng-container i18n>We can convert more than</ng-container>
-        <a href="#" data-toggle="modal" data-target="#supportedFormatsModal" i18n>250 different file types</a>
-        <ng-container i18n>&nbsp;to PDF, support all platforms and mobile devices. We do it for free, because we don't use any 3rd party commercial software. Your privacy is very important to us. We are using https protocol for encrypting all communications, and all your files will be deleted from our servers forever in an hour after the conversion.</ng-container>
+        <p><ng-container i18n>We can convert to PDF more than</ng-container>
+        <a href="#" data-toggle="modal" data-target="#supportedFormatsModal" i18n>250 different file types</a><ng-container i18n>, support all platforms and mobile devices. We do it for free, because we don't use any 3rd party commercial software. Your privacy is very important to us. We are using https for encrypting and delete all your files from our servers forever after one hour.</ng-container>
         </p>
         <p><a class="btn btn-default btn-sm" routerLink="/about" i18n>Read more »</a></p>
     </div>
     <div class="col-md-3">
         <h2 i18n>Offline App</h2>
-        <p i18n>You can download our offline application and convert files on your PC without need to send files via the Internet. It works under Windows operating system (7 and above) and installs in one click. It also can works via local area network in a browser if you will install required components.</p>
+        <p i18n>You can download our offline application and convert files on your PC without need to send files via the Internet. It works under Windows operating system (7 and above), installs in one click and doesn't require any 3rd-party software. It also can works via local area network in a browser.</p>
         <p><a class="btn btn-default btn-sm" routerLink="/download" i18n>Go to Download Page »</a></p>
     </div>
     <div class="col-md-3">
         <h2 i18n>Easy integration</h2>
-        <p i18n>If you are developer and looking for a free solution to convert files to PDF, you can easily integrate with our REST or SOAP API from any platform in just few minutes. If you need to work offline, you can install our free Offline Application, which contains the same API services, and use it locally. If you are .NET developer, just download our libraries from Nuget.</p>
+        <p i18n>If you are developer and looking for a free solution to convert files to PDF, you can easily integrate with our REST or SOAP API from any platform in just few minutes. If you need to work offline, you can install our free Offline Application, which contains the same API services, and use it locally.</p>
         <p><a class="btn btn-default btn-sm" routerLink="/developers" i18n>That's what I need! »</a></p>
     </div>
     <div class="col-md-3">
         <h2 i18n>Really excellent?</h2>
-        <p i18n>Your opinion is very important for us. Please rate the quality of generated PDF files after you convert them. We collect data about files quality, their size and the time spent for converting to analyze it and make our service more better. You can evaluate work of our service at any time by viewing statistics of its work.</p>
+        <p i18n>Your opinion is very important for us. Criticism and suggestions will be welcomed. We also collect data about files quality, their size and the time spent for converting to analyze it and make our service more better. You can evaluate work of our service at any time by viewing statistics of its work.</p>
         <p><a class="btn btn-default btn-sm" routerLink="/statistics" i18n>View statistics »</a></p>
     </div>
 </div>

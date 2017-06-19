@@ -7,7 +7,7 @@
             </div>
             <ul class="list-group">
                 <li class="list-group-item">
-                    <ng-container i18n>Total queries count:</ng-container> {{summaryStat?.totalCount}} <small class="text-muted">({{summaryStat?.positiveResultCount}} <ng-container>Good</ng-container>, {{summaryStat?.negativeResultCount}} <ng-container>Bad</ng-container>)</small>
+                    <ng-container i18n>Total queries count:</ng-container> {{summaryStat?.totalCount}} <small class="text-muted">({{summaryStat?.positiveResultCount}} <ng-container i18n>Good</ng-container>, {{summaryStat?.negativeResultCount}} <ng-container i18n>Bad</ng-container>)</small>
                 </li>
                 <li class="list-group-item">
                     <ng-container i18n>First request:</ng-container> {{summaryStat?.firstRequestDateUtc | date:'medium'}}
@@ -19,13 +19,13 @@
                     <ng-container i18n>Average query duration (sec):</ng-container> {{summaryStat?.durationInSecondsAvg | number:'1.0-2'}} <small class="text-muted">(<ng-container i18n>Min</ng-container> {{summaryStat?.durationInSecondsMin | number:'1.0-2'}}, <ng-container i18n>Max</ng-container> {{summaryStat?.durationInSecondsMax | number:'1.0-2'}})</small>
                 </li>
                 <li class="list-group-item">
-                    <ng-container i18n>Average input file size (Kb):</ng-container> {{summaryStat?.fileSizeAvg / 1024 | number:'1.0-2'}} <small class="text-muted">(<ng-container i18n>Min</ng-container> {{summaryStat?.fileSizeMin / 1024 | number:'1.0-2'}}, <ng-container>Max</ng-container> {{summaryStat?.fileSizeMax / 1024 | number:'1.0-2'}})</small>
+                    <ng-container i18n>Average input file size (Kb):</ng-container> {{summaryStat?.fileSizeAvg / 1024 | number:'1.0-2'}} <small class="text-muted">(<ng-container i18n>Min</ng-container> {{summaryStat?.fileSizeMin / 1024 | number:'1.0-2'}}, <ng-container i18n>Max</ng-container> {{summaryStat?.fileSizeMax / 1024 | number:'1.0-2'}})</small>
                 </li>
                 <li class="list-group-item">
-                    <ng-container i18n>Average output file size (Kb):</ng-container> {{summaryStat?.resultFileSizeAvg / 1024 | number:'1.0-2'}} <small class="text-muted">(<ng-container>Min</ng-container> {{summaryStat?.resultFileSizeMin / 1024 | number:'1.0-2'}}, <ng-container>Max</ng-container> {{summaryStat?.resultFileSizeMax / 1024 | number:'1.0-2'}})</small>
+                    <ng-container i18n>Average output file size (Kb):</ng-container> {{summaryStat?.resultFileSizeAvg / 1024 | number:'1.0-2'}} <small class="text-muted">(<ng-container i18n>Min</ng-container> {{summaryStat?.resultFileSizeMin / 1024 | number:'1.0-2'}}, <ng-container i18n>Max</ng-container> {{summaryStat?.resultFileSizeMax / 1024 | number:'1.0-2'}})</small>
                 </li>
                 <li class="list-group-item">
-                    <ng-container i18n>Total traffic (Kb):</ng-container> {{summaryStat?.totalFileSizeSum / 1024 | number:'1.0-2'}} <small class="text-muted">(<ng-container i18n>Input</ng-container> {{summaryStat?.fileSizeSum / 1024 | number:'1.0-2'}}, <ng-container>Output</ng-container> {{summaryStat?.resultFileSizeSum / 1024 | number:'1.0-2'}})</small>
+                    <ng-container i18n>Total traffic (Kb):</ng-container> {{summaryStat?.totalFileSizeSum / 1024 | number:'1.0-2'}} <small class="text-muted">(<ng-container i18n>Input</ng-container> {{summaryStat?.fileSizeSum / 1024 | number:'1.0-2'}}, <ng-container i18n>Output</ng-container> {{summaryStat?.resultFileSizeSum / 1024 | number:'1.0-2'}})</small>
                 </li>
             </ul>
         </div>

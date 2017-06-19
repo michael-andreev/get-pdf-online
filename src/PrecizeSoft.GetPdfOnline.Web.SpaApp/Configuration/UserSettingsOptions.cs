@@ -23,5 +23,7 @@ namespace PrecizeSoft.GetPdfOnline.Web.SpaApp.Configuration
         public StoreOptions Cache { get; set; } = new StoreOptions();
 
         public ViewOptions View { get; set; } = new ViewOptions();
+
+        public GoogleAnalyticsOptions GoogleAnalytics { get; set; } = new GoogleAnalyticsOptions();
     }
 }

@@ -1,11 +1,22 @@
-@{
-    ViewData["Title"] = "Home Page";
+@section head {
+    <base href="/en" />
 }
 
-<!--<app>Loading...</app>-->
-<app asp-prerender-module="ClientApp/dist/main-server">Loading...</app>
+<script>
+    document.locale = 'en';
+</script>
+@{
+    var serviceData = new
+    {
+        locale = "en"
+    };
+}
+@{
+    // <app>Loading...</app>
+}
+<app asp-prerender-module="ClientApp/dist/main-server.en" asp-prerender-data="serviceData" asp-prerender-timeout="60000">Loading...</app>
 
 <script src="~/dist/vendor.js" asp-append-version="true"></script>
 @section scripts {
-    <script src="~/dist/main-client.js" asp-append-version="true"></script>
+    <script src="~/dist/main-client.en.js" asp-append-version="true"></script>
 }

@@ -1,0 +1,907 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="eca53eb755b9bcbc4decc3d6c6205532008f0358" datatype="html">
+        <source>Convert to PDF</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/app.component.ts</context>
+          <context context-type="linenumber">27</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/convert/convert.component.ts</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="dc75033a5238fdc4f462212c847a45ba8018a3fd" datatype="html">
+        <source>Download</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/app.component.ts</context>
+          <context context-type="linenumber">28</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/download/download.component.ts</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="61e0f26d843eec0b33ff475e111b0c2f7a80b835" datatype="html">
+        <source>Statistics</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/app.component.ts</context>
+          <context context-type="linenumber">29</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/statistics/statistics.component.ts</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="0c7f255903e77d61fb2ed40959c63a42ab4b26e0" datatype="html">
+        <source>Developers</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/app.component.ts</context>
+          <context context-type="linenumber">30</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/developers/developers.component.ts</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="004b222ff9ef9dd4771b777950ca1d0e4cd4348a" datatype="html">
+        <source>About</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/app.component.ts</context>
+          <context context-type="linenumber">31</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/about/about.component.ts</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="c830f0f815b78d531db5b295f48f09d756fc8020" datatype="html">
+        <source>Michael Andreyev</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/app.component.ts</context>
+          <context context-type="linenumber">41</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/about/about-contact-us.component.ts</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ef5cfd218d112c968b64f9bdb965b1451fab0069" datatype="html">
+        <source>Convert your files to PDF online and free! Just drop files here or click the button</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/convert/convert.component.ts</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ae9a5141f5c6bd62cee4ce837598ea8b0904e5cf" datatype="html">
+        <source>Select files</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/convert/convert.component.ts</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="833e57703508aa25eb4413df39e85d91be21c3b6" datatype="html">
+        <source>
+    Please wait...
+  </source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/convert/convert.component.ts</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="c4d45aa856f7a583513391542efaa8fb2504dc85" datatype="html">
+        <source>Error!</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/convert/convert.component.ts</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4ee225a9add268981b6972773cbc47d34afc8856" datatype="html">
+        <source>
+                    Download all
+                </source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/convert/convert.component.ts</context>
+          <context context-type="linenumber">32</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="05d6b5d9fc065628ee5709d2074baf37a538cf7a" datatype="html">
+        <source>
+                    Delete all
+                </source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/convert/convert.component.ts</context>
+          <context context-type="linenumber">35</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="c8ef6e317e1123b3a85ca6566bf2eb9a3396649e" datatype="html">
+        <source>Converted files</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/convert/convert.component.ts</context>
+          <context context-type="linenumber">40</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="02a97212b113f9739682d0bc5e385f530de6a423" datatype="html">
+        <source>Kb</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/convert/convert.component.ts</context>
+          <context context-type="linenumber">48</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="45dd81fcbde051783b05fe60c8d0bab8e7e097a9" datatype="html">
+        <source>Error:</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/convert/convert.component.ts</context>
+          <context context-type="linenumber">55</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2fefcd2ea16b21358f4a7d4193e021d69703a498" datatype="html">
+        <source>Excellent tool</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/convert/convert.component.ts</context>
+          <context context-type="linenumber">65</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="b629624fc0ec6a4deb87523ef2ea004be6a5d766" datatype="html">
+        <source>We can convert to PDF more than</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/convert/convert.component.ts</context>
+          <context context-type="linenumber">66</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="697bea9d1fda5536f5581cb8d8fbed037caf5515" datatype="html">
+        <source>250 different file types</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/convert/convert.component.ts</context>
+          <context context-type="linenumber">67</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="854ac28867785137d6c102fee40e755b25635c60" datatype="html">
+        <source>, support all platforms and mobile devices. We do it for free, because we don&apos;t use any 3rd party commercial software. Your privacy is very important to us. We are using https for encrypting and delete all your files from our servers forever after one hour.</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/convert/convert.component.ts</context>
+          <context context-type="linenumber">67</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="879b144f707246bfeb8296143d36f7bdb8114018" datatype="html">
+        <source>Read more »</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/convert/convert.component.ts</context>
+          <context context-type="linenumber">69</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="fd57d9d70967499b9c891504ec9f689c43fda566" datatype="html">
+        <source>Offline App</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/convert/convert.component.ts</context>
+          <context context-type="linenumber">72</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="00c7a76c9374bf092c936175aaa7525bff2a78e0" datatype="html">
+        <source>You can download our offline application and convert files on your PC without need to send files via the Internet. It works under Windows operating system (7 and above), installs in one click and doesn&apos;t require any 3rd-party software. It also can works via local area network in a browser.</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/convert/convert.component.ts</context>
+          <context context-type="linenumber">73</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="cc391d058182ca97b63bf706ba43ecce51b0f2cb" datatype="html">
+        <source>Go to Download Page »</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/convert/convert.component.ts</context>
+          <context context-type="linenumber">74</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="f142980caa1be73a7099e7be842a7788e3e23034" datatype="html">
+        <source>Easy integration</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/convert/convert.component.ts</context>
+          <context context-type="linenumber">77</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="e702e04a4c50083419a75037ac4524a729181204" datatype="html">
+        <source>If you are developer and looking for a free solution to convert files to PDF, you can easily integrate with our REST or SOAP API from any platform in just few minutes. If you need to work offline, you can install our free Offline Application, which contains the same API services, and use it locally.</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/convert/convert.component.ts</context>
+          <context context-type="linenumber">78</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7b065efd69f5638582d6460896bec9a6f7efbcc3" datatype="html">
+        <source>That&apos;s what I need! »</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/convert/convert.component.ts</context>
+          <context context-type="linenumber">79</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="cce8e9f6c97555383b3279ad363ef1f2f927cbb3" datatype="html">
+        <source>Really excellent?</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/convert/convert.component.ts</context>
+          <context context-type="linenumber">82</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="dca1e980f8712d4bbae8130aede1e43a8dbb6d75" datatype="html">
+        <source>Your opinion is very important for us. Criticism and suggestions will be welcomed. We also collect data about files quality, their size and the time spent for converting to analyze it and make our service more better. You can evaluate work of our service at any time by viewing statistics of its work.</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/convert/convert.component.ts</context>
+          <context context-type="linenumber">83</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2ce88c920800377102b62de5f052852a050932ed" datatype="html">
+        <source>View statistics »</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/convert/convert.component.ts</context>
+          <context context-type="linenumber">84</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="f53530fc74ab011272e438544024530d5701fcc5" datatype="html">
+        <source>List of supported file formats:</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/convert/convert.component.ts</context>
+          <context context-type="linenumber">93</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="f4e529ae5ffd73001d1ff4bbdeeb0a72e342e5c8" datatype="html">
+        <source>Close</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/convert/convert.component.ts</context>
+          <context context-type="linenumber">99</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="b1d113cff278492bf0f65aa12bfedd4f4b2318a0" datatype="html">
+        <source>GetPDF.online Converter</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/download/download.component.ts</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="a333dd927eb0237a740b3ff38cabfd9d701676fc" datatype="html">
+        <source>Offline application for converting files to PDF that replies all functionality of the online tool. It&apos;s a web application runs as Windows Service that can works on the local PC or via Local Area Network.</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/download/download.component.ts</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ca17606ffe979fb5b411861280c33d2ad3e7a216" datatype="html">
+        <source>Version:</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/download/download.component.ts</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="14ed2d8bb4a4689828e2bcd6c93744635cd24158" datatype="html">
+        <source>Date published:</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/download/download.component.ts</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3d8ee5c792e02f1e84277da7d5f35d4f49dde197" datatype="html">
+        <source>Supported Operating System:</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/download/download.component.ts</context>
+          <context context-type="linenumber">21</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="71d8c8663a375d9346c94f8bb59ecb4e154e1ff9" datatype="html">
+        <source>Prerequisites:</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/download/download.component.ts</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1eff0bf072cc1d1c2ec31f8e06c1d8f66db7d166" datatype="html">
+        <source>Minimum Hardware Requirements:</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/download/download.component.ts</context>
+          <context context-type="linenumber">29</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="a3ed2fecfe6c6f32d9288beab82226922334da66" datatype="html">
+        <source>1 GHz or faster processor, 1 GB of RAM, 700 MB of available hard disk space</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/download/download.component.ts</context>
+          <context context-type="linenumber">30</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="38b21a77c169dc1d573d1959b82ee0d1bc2382a4" datatype="html">
+        <source>File Name:</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/download/download.component.ts</context>
+          <context context-type="linenumber">33</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="bbcd87921d19dc8354eaae57c3e28619b244fa11" datatype="html">
+        <source>File Size:</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/download/download.component.ts</context>
+          <context context-type="linenumber">37</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2ce253555e19df45d831c46b7104ff868c70408f" datatype="html">
+        <source>150 Mb</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/download/download.component.ts</context>
+          <context context-type="linenumber">38</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="04f0d4cae9f728aca4ca08fcb428e6fe33fab234" datatype="html">
+        <source>
+      <x id="START_LINK" ctype="x-a"/>Download<x id="CLOSE_LINK" ctype="x-a"/>
+  </source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/download/download.component.ts</context>
+          <context context-type="linenumber">41</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="a8233de047500bf0f0d9f9f1712ddb071501a283" datatype="html">
+        <source>Summary</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/statistics/statistics.component.ts</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="fea21973f07e7d5c6d0b72c1cb3b3669ae177ace" datatype="html">
+        <source>Total queries count:</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/statistics/statistics.component.ts</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7bd34bd120146afef0e0d8fa168d9bdabd594b6a" datatype="html">
+        <source>Good</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/statistics/statistics.component.ts</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="31c59dce114ec0a9d02552ef7b81920b3de36793" datatype="html">
+        <source>Bad</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/statistics/statistics.component.ts</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="55de2c2c480aadf965d3dcbf3011b31c35d67656" datatype="html">
+        <source>First request:</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/statistics/statistics.component.ts</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ba5bc3d2bbfffe09e78349a4a6766e9c9012c942" datatype="html">
+        <source>Last request:</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/statistics/statistics.component.ts</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="262ee4bc6f1a1daacaecb0c76742df4a68300b19" datatype="html">
+        <source>Average query duration (sec):</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/statistics/statistics.component.ts</context>
+          <context context-type="linenumber">19</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="9abcd7c82643d60c22733470463f74e4a54bc069" datatype="html">
+        <source>Min</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/statistics/statistics.component.ts</context>
+          <context context-type="linenumber">19</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/statistics/statistics.component.ts</context>
+          <context context-type="linenumber">22</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/statistics/statistics.component.ts</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="c3ced4d162a0a55ee233a187ce7208ba5e922418" datatype="html">
+        <source>Max</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/statistics/statistics.component.ts</context>
+          <context context-type="linenumber">19</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/statistics/statistics.component.ts</context>
+          <context context-type="linenumber">22</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/statistics/statistics.component.ts</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8236857fc9d0ed79e643aa9af19b80867c817166" datatype="html">
+        <source>Average input file size (Kb):</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/statistics/statistics.component.ts</context>
+          <context context-type="linenumber">22</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6c66e7f3a78c8172881b1415f0d8280412a4ff79" datatype="html">
+        <source>Average output file size (Kb):</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/statistics/statistics.component.ts</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4788ab54bbd3f001de7d883d55c360e54723b575" datatype="html">
+        <source>Total traffic (Kb):</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/statistics/statistics.component.ts</context>
+          <context context-type="linenumber">28</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3e242f213dd1a0754aad9164aa80887d67708500" datatype="html">
+        <source>Input</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/statistics/statistics.component.ts</context>
+          <context context-type="linenumber">28</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7a080851e25a41e898776a9c90cf8dbe81027f9a" datatype="html">
+        <source>Output</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/statistics/statistics.component.ts</context>
+          <context context-type="linenumber">28</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="9f67dae1fe139fbae4a5691bafbcc9dfd8c50c4f" datatype="html">
+        <source>File types</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/statistics/statistics.component.ts</context>
+          <context context-type="linenumber">37</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1294d6f2d52d5107032404d4d2e7e2fdb485eb42" datatype="html">
+        <source>Daily stat</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/statistics/statistics.component.ts</context>
+          <context context-type="linenumber">53</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="e95ae009d0bdb45fcc656e8b65248cf7396080d5" datatype="html">
+        <source>Overview</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/developers/developers.component.ts</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/developers/developers-overview.component.ts</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="50812a958e92f2acfef09917f5ec57bd12329eaf" datatype="html">
+        <source>Rest API</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/developers/developers.component.ts</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/developers/developers-overview.component.ts</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/developers/developers-overview.component.ts</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/developers/developers-rest-api.component.ts</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7d63d8fc1c4ee075fe619adfb15ec3553d763714" datatype="html">
+        <source>Soap API</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/developers/developers.component.ts</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/developers/developers-overview.component.ts</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/developers/developers-soap-api.component.ts</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="d668e93b67b64f0114e65e31599ef8b7f0daa9c9" datatype="html">
+        <source>You can easily integrate with one of two our APIs from any platform:</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/developers/developers-overview.component.ts</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="c78dadf1570f6631ac23b557c6ba1984421e1e3b" datatype="html">
+        <source>uses JSON message format and provides truly simple method of integration.</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/developers/developers-overview.component.ts</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="e76aa52b89a1f910033c6a9d2c562466cc7acacb" datatype="html">
+        <source>uses XML message format and contains a standards-based Web services that mostly used in enterpise systems.</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/developers/developers-overview.component.ts</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="618789a224a05d74d493e604c4ba00d8bef995bd" datatype="html">
+        <source>Both API can work under HTTP or HTTPS protocol. You can use our API online or you can install our free Offline Application, which contains the same API services, and use it locally.</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/developers/developers-overview.component.ts</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="0d71a618eb61d50422cc1224a157985dcea4a79c" datatype="html">
+        <source>Your first integration</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/developers/developers-overview.component.ts</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="22a8994eb5cb98f435a33a20b541aee1c52dc5e9" datatype="html">
+        <source>Create a file &quot;convert.html&quot; on your PC with the content listed below, open it and convert anything to PDF. Congratulations! You&apos;ve just successfully integrated with our</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/developers/developers-overview.component.ts</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="188f3fa05e48839a119ca2743c34c31d1bb17050" datatype="html">
+        <source>Swagger definition:</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/developers/developers-rest-api.component.ts</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ecef3c2f8f4493fbe3ed1ced8eecae26db695c7a" datatype="html">
+        <source>Available services:</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/developers/developers-soap-api.component.ts</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="25faafbd34a00a7d4cce21be938bd09cc03c74f6" datatype="html">
+        <source>Converter V1 Service</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/developers/developers-soap-api.component.ts</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8342565d18373f4c59f7be2df812f61367a4248e" datatype="html">
+        <source>Statistics V1 Service</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/developers/developers-soap-api.component.ts</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="92eee6be6de0b11c924e3ab27db30257159c0a7c" datatype="html">
+        <source>Home</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/about/about.component.ts</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6e8d3b518ff70956197265ede2b55f99b201ab76" datatype="html">
+        <source>Contact us</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/about/about.component.ts</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/about/about-contact-us.component.ts</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="937cc1e579a9825cc21109876aa8131d57891da2" datatype="html">
+        <source>Technologies</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/about/about.component.ts</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/about/about-home.component.ts</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/about/about-technologies.component.ts</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="e2864a4da150fd52dffce11b681969487cfc525a" datatype="html">
+        <source>Our goal is to create easy to use free tool for converting files to PDF with maximum possible quality.</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/about/about-home.component.ts</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="9b785aa531f1dccf5a0a82d0e7de1f95c6e27d8c" datatype="html">
+        <source>Our users can convert files to PDF with a minimum of effort and without need to pay or see ad. They also can do it offline.</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/about/about-home.component.ts</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2e588c249566f1508369c7ac402db1559fda9fb8" datatype="html">
+        <source>Our tool is oriented, first of all, to developers who need to implement export to PDF in their own pojects, which mostly causes serious problems.</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/about/about-home.component.ts</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="a7d5f9cad1a16fe3a6bbdd806934e4ac6f6d74da" datatype="html">
+        <source>The fact is that qualitative commersial offline tools are very expensive (the price can be of many tens of thousand dollars), online tools can&apos;t be applied in many situations by security directives, while free products can&apos;t provide a good quality or require a lot of efforts for implementation. That&apos;s why decided to solve this problems in our tool.</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/about/about-home.component.ts</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5becc7521597ba0759f62173f910f310277ff946" datatype="html">
+        <source>At this moment our offline tool can be installed only on Windows machines, because it have some dependencies on Windows libraries, but in the future we plan to solve this questions and release versions for Linux and MacOS. Our tool is absolutely free to use, but it&apos;s not open source.</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/about/about-home.component.ts</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="b7ae29e3524ad123080ac758cb0ab1d7cef6bb3c" datatype="html">
+        <source>At definite stage we plan to make our project open source, allowing everyone to contribute to it.</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/about/about-home.component.ts</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="e1649162c3a206592e9c52658978c5b1c6e3f46d" datatype="html">
+        <source>If you have any questions, please,</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/about/about-home.component.ts</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="f4b0d1bb4dbcff9aaeacbf234f7f3aa9735304e8" datatype="html">
+        <source>contact us</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/about/about-home.component.ts</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1e046af3846592528e6b19ad01473a8d7ce833e2" datatype="html">
+        <source>, we&apos;d be glad to answer you.</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/about/about-home.component.ts</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="36d105e8c4042317689313ddcc81622ce1d0ad96" datatype="html">
+        <source>You also can learn more about technologies that we are used on the</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/about/about-home.component.ts</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="34667ccb17afe9f6c4bcb950093b10ca4c1689bf" datatype="html">
+        <source> page.</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/about/about-home.component.ts</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="47799999bb72ece0d0fdd9073379ba741e8b9c68" datatype="html">
+        <source>Hello! My name is Michael Andreyev. I&apos;m a founder of this project and a single developer at this moment. I&apos;m glad to answer your questions, read comments or get criticism or suggestions. Please contact with me via</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/about/about-contact-us.component.ts</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ee0c2e9d884c597f9a82fe7c9e770d75c54d2f45" datatype="html">
+        <source>e-mail</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/about/about-contact-us.component.ts</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4896ef77b707a0515f51468a1ed8db72c5893209" datatype="html">
+        <source>. You also can get more information about me on my</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/about/about-contact-us.component.ts</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8a41d90a8d4baf76cd498eb8d23f7adf053db21a" datatype="html">
+        <source>web-site</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/about/about-contact-us.component.ts</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="eb8fb1393ccee18ebf01cc28335596aa8c950c49" datatype="html">
+        <source>Here is the main technologies that we are using in our tool:</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/about/about-technologies.component.ts</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="cb60d149957a2fd7fa78576b0a5c3516c4407205" datatype="html">
+        <source>- a blazing fast, lightweight and modular platform for creating web applications and services that run on Windows, Linux and Mac. It&apos;s fully open source.</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/about/about-technologies.component.ts</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="40df5b3dfbc4659559d642b283c04c4d3bc03db8" datatype="html">
+        <source>- an open source platform for building mobile and desktop web applications led by the Angular Team at Google and by a community of individuals and corporations.</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/about/about-technologies.component.ts</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="f635c4f2a34e26f9606cfc47a2315f2a01337c66" datatype="html">
+        <source>- a JavaScript runtime built on Google&apos;s Chrome V8 high-performance, open source JavaScript engine.</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/about/about-technologies.component.ts</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="b048ba575e6df975b99af6fa0ddb65ab04c3f7ef" datatype="html">
+        <source>- the most powerful Free and Open Source office suite on the market.</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/about/about-technologies.component.ts</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="15f17217a44e2d583a03cbd034cfd1f4205d9bb9" datatype="html">
+        <source>- a self-contained, high-reliability, embedded, full-featured, public-domain, SQL database engine. SQLite is the most used database engine in the world.</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/about/about-technologies.component.ts</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4efa2e57045b9d5df9d1dfde7897c75a686ebc26" datatype="html">
+        <source>- a collection of rich UI components for Angular. PrimeNG is a sibling of the popular JavaServer Faces Component Suite, PrimeFaces. All widgets are open source and free to use under MIT License.</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/about/about-technologies.component.ts</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="a38889213d012adaf8b461d9a4a13dea6a728e42" datatype="html">
+        <source>- the most popular HTML, CSS, and JS framework for developing responsive, mobile first projects on the web.</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/about/about-technologies.component.ts</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="0d804399a67c11c07899601bce3b5c8d8b698d6a" datatype="html">
+        <source>- the world’s largest framework of API developer tools for the OpenAPI Specification(OAS), enabling development across the entire API lifecycle, from design and documentation, to test and deployment.</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/about/about-technologies.component.ts</context>
+          <context context-type="linenumber">19</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7bb171f1d5aabf8485d4171b890e7ee65b9479c2" datatype="html">
+        <source>- Microsoft’s unified programming model for building service-oriented applications. It enables developers to build secure, reliable, transacted solutions that integrate across platforms, and interoperate with existing investments.</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/about/about-technologies.component.ts</context>
+          <context context-type="linenumber">21</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5efcb66f6a7e321826f9def033ca8eed3c38205f" datatype="html">
+        <source>- a powerful image manipulation library that supports over 100 major file formats (not including sub-formats).</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/about/about-technologies.component.ts</context>
+          <context context-type="linenumber">23</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="d3743ce8755494d2004ebbff2f4a80df928cd1a3" datatype="html">
+        <source>- the most powerful set of tools available to create Windows installation packages.</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/about/about-technologies.component.ts</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

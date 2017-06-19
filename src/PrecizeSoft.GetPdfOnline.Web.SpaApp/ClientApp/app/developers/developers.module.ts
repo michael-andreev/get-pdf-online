@@ -9,9 +9,6 @@ import { DevelopersRoutingModule } from './developers-routing.module';
 import { DevelopersOverviewComponent } from './developers-overview.component';
 import { DevelopersRestApiComponent } from './developers-rest-api.component';
 import { DevelopersSoapApiComponent } from './developers-soap-api.component';
-import { DevelopersUseOfflineComponent } from './developers-use-offline.component';
-import { DevelopersNetLibrariesComponent } from './developers-net-libraries.component';
-import { DevelopersSourceCodeComponent } from './developers-source-code.component';
 
 @NgModule({
     imports: [
@@ -23,10 +20,7 @@ import { DevelopersSourceCodeComponent } from './developers-source-code.componen
         DevelopersComponent,
         DevelopersOverviewComponent,
         DevelopersRestApiComponent,
-        DevelopersSoapApiComponent,
-        DevelopersUseOfflineComponent,
-        DevelopersNetLibrariesComponent,
-        DevelopersSourceCodeComponent
+        DevelopersSoapApiComponent
     ],
     providers: [/* TODO: Providers go here */]
 })

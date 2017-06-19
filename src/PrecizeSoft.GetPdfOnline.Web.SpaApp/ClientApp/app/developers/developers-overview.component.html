@@ -1,20 +1,16 @@
-<h3>Overview</h3>
+<h3 i18n>Overview</h3>
+<p i18n>You can easily integrate with one of two our APIs from any platform:</p>
 <p>
-    You can easily integrate with one of two our APIs from any platform:
+    <a routerLink="../rest-api" i18n>Rest API</a> - <ng-container i18n>uses JSON message format and provides truly simple method of integration.</ng-container>
 </p>
 <p>
-    <a asp-area="" asp-controller="Rest" asp-action="Index">Rest API</a> - uses JSON message format and provides truly simple method of integration.
+    <a routerLink="../soap-api" i18n>Soap API</a> - <ng-container i18n>uses XML message format and contains a standards-based Web services that mostly used in enterpise systems.</ng-container>
 </p>
+<p i18n>Both API can work under HTTP or HTTPS protocol. You can use our API online or you can install our free Offline Application, which contains the same API services, and use it locally.</p>
+<h3 i18n>Your first integration</h3>
 <p>
-    <a asp-area="" asp-controller="Soap" asp-action="Index">Soap API</a> - uses XML message format and contains a standards-based Web services that mostly used in enterpise systems.
-</p>
-<p>
-    You can work with our API online or you can install our free Offline Application, which contains the same API services, and use it locally.
-</p>
-<h3>Your first integration</h3>
-<p>
-    Create a file "convert.html" on your PC with the content listed below, open it and convert anything to PDF.
-    Congratulations! You've just successfully integrated with our <a asp-area="" asp-controller="Rest" asp-action="Index">Rest API</a>.
+    <ng-container i18n>Create a file "convert.html" on your PC with the content listed below, open it and convert anything to PDF. Congratulations! You've just successfully integrated with our</ng-container>
+    <a routerLink="../rest-api" i18n>Rest API</a>.
 </p>
 <pre><code class="language-html" pCode>&lt;html&gt;
     &lt;head&gt;

@@ -125,5 +125,30 @@ namespace PrecizeSoft.GetPdfOnline.Data.SQLite.Repositories
         {
             return this.context.ConvertSessions.Where(p => p.SessionId == sessionId).Any();
         }
+
+        public void DeleteExpiredData()
+        {
+            List<Guid> expiredFileIds =
+                (
+                (from P in this.context.ConvertJobs
+                 where P.ExpireDateUtc < DateTime.Now
+                 select P.InputFileId)
+                .Union(from P in this.context.ConvertJobs
+                 where P.ExpireDateUtc < DateTime.Now && P.OutputFileId.HasValue
+                 select P.OutputFileId.Value)
+                 ).ToList();
+
+            this.context.BinaryFiles.RemoveRange(
+                from P in this.context.BinaryFiles
+                where expiredFileIds.Contains(P.FileId)
+                select P);
+
+            this.context.ConvertJobs.RemoveRange(
+                from P in this.context.ConvertJobs
+                where P.ExpireDateUtc < DateTime.Now
+                select P);
+
+            this.context.SaveChanges();
+        }
     }
 }

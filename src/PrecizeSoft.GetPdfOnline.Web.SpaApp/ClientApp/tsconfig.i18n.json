@@ -1,0 +1,7 @@
+{
+  "extends": "../tsconfig.json",
+  "exclude": [
+    "./boot-server.ts",
+    "app/app.module.server.ts"
+  ]
+}

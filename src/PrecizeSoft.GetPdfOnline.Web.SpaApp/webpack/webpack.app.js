@@ -23,7 +23,7 @@ module.exports = (env) => {
                     loader: '@ngtools/webpack'
                 },
                 { test: /\.html$/, use: 'html-loader?minimize=false' },
-                {
+                /*{
                     test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)$/,
                     loader: 'file-loader?name=assets/[name].[hash].[ext]'
                 },
@@ -35,7 +35,7 @@ module.exports = (env) => {
                             fallback: 'style-loader',
                             use: 'css-loader?sourceMap&minimize'
                         })
-                },
+                },*/
                 {
                     test: /\.css$/,
                     include: helpers.root('ClientApp', 'app'),

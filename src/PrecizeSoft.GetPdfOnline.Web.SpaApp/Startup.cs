@@ -22,6 +22,13 @@ using Swashbuckle.AspNetCore.Swagger;
 using Microsoft.Extensions.PlatformAbstractions;
 using System.IO;
 using PrecizeSoft.GetPdfOnline.Web.SpaApp.Swagger;
+using Microsoft.AspNetCore.Mvc.Razor;
+using System.Globalization;
+using Microsoft.AspNetCore.Localization;
+using Microsoft.Extensions.Options;
+using Microsoft.AspNetCore.Localization.Routing;
+using PrecizeSoft.GetPdfOnline.Web.SpaApp.Localization;
+using PrecizeSoft.GetPdfOnline.Domain.Schedulers;
 
 namespace PrecizeSoft.GetPdfOnline.Web.SpaApp
 {
@@ -34,6 +41,7 @@ namespace PrecizeSoft.GetPdfOnline.Web.SpaApp
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
                 .AddJsonFile("usersettings.txt", optional: false, reloadOnChange: true)
+                .AddJsonFile("ga.json", optional: true, reloadOnChange: true)
                 .AddEnvironmentVariables();
             Configuration = builder.Build();
         }
@@ -88,14 +96,54 @@ namespace PrecizeSoft.GetPdfOnline.Web.SpaApp
                     .AllowAnyHeader()
                     .AllowAnyMethod());
             });
-            
+
+            // Add the localization services to the services container
+            services.AddLocalization(options => options.ResourcesPath = "Resources");
+
             // Add framework services.
-            services.AddMvc();
+            services.AddMvc()
+                // Add support for finding localized views, based on file name suffix, e.g. Index.fr.cshtml
+                .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
+                // Add support for localizing strings in data annotations (e.g. validation messages) via the
+                // IStringLocalizer abstractions.
+                .AddDataAnnotationsLocalization();
+
+            // Configure supported cultures and localization options
+            services.Configure<RequestLocalizationOptions>(options =>
+            {
+                var supportedCultures = new[]
+                {
+                    new CultureInfo("en"),
+                    new CultureInfo("ru")
+                };
+
+                // State what the default culture for your application is. This will be used if no specific culture
+                // can be determined for a given request.
+                options.DefaultRequestCulture = new RequestCulture(culture: "en", uiCulture: "en");
+                // options.DefaultRequestCulture = new RequestCulture(culture: "ru", uiCulture: "ru");
+
+                // You must explicitly state which cultures your application supports.
+                // These are the cultures the app supports for formatting numbers, dates, etc.
+                options.SupportedCultures = supportedCultures;
+
+                // These are the cultures the app supports for UI strings, i.e. we have localized resources for.
+                options.SupportedUICultures = supportedCultures;
+
+                // You can change which providers are configured to determine the culture for requests, or even add a custom
+                // provider with your own logic. The providers will be asked in order to provide a culture for each request,
+                // and the first to provide a non-null result that is in the configured supported cultures list will be used.
+                // By default, the following built-in providers are configured:
+                // - QueryStringRequestCultureProvider, sets culture via "culture" and "ui-culture" query string values, useful for testing
+                // - CookieRequestCultureProvider, sets culture via "ASPNET_CULTURE" cookie
+                // - AcceptLanguageHeaderRequestCultureProvider, sets culture via the "Accept-Language" request header
+                options.RequestCultureProviders.Insert(0, new UrlRequestCultureProvider());
+            });
 
             services.Configure<UserSettingsOptions>(Configuration);
             services.Configure<TitleOptions>(Configuration.GetSection("View:Title"));
             services.Configure<LibreOfficeOptions>(Configuration.GetSection("LibreOffice"));
             services.Configure<StoreOptions>(Configuration.GetSection("View:Cache"));
+            services.Configure<GoogleAnalyticsOptions>(Configuration.GetSection("GoogleAnalytics"));
 
             // Register the Swagger generator, defining one or more Swagger documents
             services.AddSwaggerGen(c =>
@@ -104,7 +152,7 @@ namespace PrecizeSoft.GetPdfOnline.Web.SpaApp
                 {
                     Title = "Rest API",
                     Version = "v1",
-                    Contact = new Contact { Name = "Mikhail Andreev", Url = "http://andreev.work", Email = "m@andreev.work" }
+                    Contact = new Contact { Name = "Michael Andreyev", Url = "http://andreyev.work", Email = "m@andreyev.work" }
                 });
 
                 //Set the comments path for the swagger json and ui.
@@ -124,10 +172,14 @@ namespace PrecizeSoft.GetPdfOnline.Web.SpaApp
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory,
-            IApplicationLifetime life, CacheDbContext cacheDbContext, GetPdfOnlineDbContext getPdfOnlineDbContext)
+            IApplicationLifetime life, CacheDbContext cacheDbContext, GetPdfOnlineDbContext getPdfOnlineDbContext,
+            ICacheRepository cacheRepository)
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
+
+            var locOptions = app.ApplicationServices.GetService<IOptions<RequestLocalizationOptions>>();
+            app.UseRequestLocalization(locOptions.Value);
 
             if (env.IsDevelopment())
             {
@@ -150,7 +202,7 @@ namespace PrecizeSoft.GetPdfOnline.Web.SpaApp
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{culture?}/{controller=Home}/{action=Index}/{id?}");
 
                 routes.MapSpaFallbackRoute(
                     name: "spa-fallback",
@@ -177,6 +229,8 @@ namespace PrecizeSoft.GetPdfOnline.Web.SpaApp
             {
                 var options = this.Configuration.Get<UserSettingsOptions>();
                 this.CreateAndOpenHosts(/*44735*/options.Host.TcpPort, options.LibreOffice.UseCustomUnoPath, options.LibreOffice.CustomUnoPath, options.Data.ConnectionString);
+
+                DeleteExpiredDataScheduler.Start(cacheRepository);
             });
         }
     }

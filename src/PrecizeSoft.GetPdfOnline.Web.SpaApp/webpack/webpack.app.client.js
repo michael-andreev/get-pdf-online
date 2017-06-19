@@ -1,7 +1,7 @@
 ﻿const webpack = require('webpack');
 const merge = require('webpack-merge');
 // const { GlobCopyWebpackPlugin } = require('@angular/cli/plugins/webpack');
-const { AotPlugin } = require('@ngtools/webpack');
+// const { AotPlugin } = require('@ngtools/webpack');
 const helpers = require('./helpers');
 const commonConfig = require('./webpack.app.js');
 
@@ -10,12 +10,6 @@ module.exports = (env) => {
 
     // Configuration for client-side bundle suitable for running in browsers
     return merge(commonConfig(env), {
-        entry: {
-            'main-client': helpers.root('ClientApp', 'boot-client.ts'),
-            'styles': [
-                helpers.root('ClientApp', 'styles.css')
-            ]
-        },
         output: { path: helpers.root('wwwroot', 'dist') },
         /*module: {
             rules: [
@@ -30,14 +24,14 @@ module.exports = (env) => {
             new webpack.DllReferencePlugin({
                 context: helpers.root(),
                 manifest: require(helpers.root('wwwroot', 'dist', 'vendor-manifest.json'))
-            }),
+            }) /*,
             new AotPlugin({
                 mainPath: helpers.root('ClientApp', 'boot-client.ts'),
-                entryModule: helpers.root('ClientApp', 'app', 'app.module.client#AppModule'),
+                entryModule: helpers.root('ClientApp', 'app', 'app.module.client#AppModuleClient'),
                 // entryModule: './ClientApp\\app\\app.module.client#AppModule',
                 tsConfigPath: helpers.root('tsconfig.json'),
                 skipCodeGeneration: true
-            })
+            })*/
         ].concat(isDevBuild ? [
             // Plugins that apply in development builds only
             new webpack.SourceMapDevToolPlugin({

@@ -1,0 +1,21 @@
+@section head {
+    <base href="/ru" />
+}
+<script>
+    document.locale = 'ru';
+</script>
+@{
+    var serviceData = new
+    {
+        locale = "ru"
+    };
+}
+@{
+    // <app>Loading...</app>
+}
+<app asp-prerender-module="ClientApp/dist/main-server.ru" asp-prerender-data="serviceData" asp-prerender-timeout="60000">Loading...</app>
+
+<script src="~/dist/vendor.js" asp-append-version="true"></script>
+@section scripts {
+    <script src="~/dist/main-client.ru.js" asp-append-version="true"></script>
+}

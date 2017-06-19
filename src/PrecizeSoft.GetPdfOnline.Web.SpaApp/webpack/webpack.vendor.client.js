@@ -12,7 +12,8 @@ module.exports = (env) => {
         entry: {
             vendor: [
                 helpers.root('ClientApp', 'client.polyfills.ts'),
-                helpers.root('ClientApp', 'client.vendor.ts')
+                helpers.root('ClientApp', 'client.vendor.ts'),
+                helpers.root('ClientApp', 'styles.css')
             ]
         },
         output: { path: helpers.root('wwwroot', 'dist') },

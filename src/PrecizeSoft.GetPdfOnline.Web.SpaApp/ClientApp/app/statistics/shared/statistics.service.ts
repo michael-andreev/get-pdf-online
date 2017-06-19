@@ -1,4 +1,5 @@
-import { Injectable, Inject } from '@angular/core';
+import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { Headers, Http } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
@@ -19,8 +20,13 @@ export class StatisticsService {
   private statByFileCategoriesUrl = '/api/statistics/v1/fileCategories';
   private statByDateUrl = '/api/statistics/v1/hours/getByDate?dateWithTimeZone=';
 
-  constructor(private http: Http, @Inject('ORIGIN_URL') private originUrl: string) { }
 
+  constructor(private http: Http, @Inject('ORIGIN_URL') private originUrl: string, @Inject(PLATFORM_ID) private platformId: Object) {
+        // Fix bug with Providers on the Client side
+        if (isPlatformBrowser(platformId)) {
+            this.originUrl = location.origin;
+        }
+  }
   /*getStatistics(): Promise<Statistics> {
       return Promise.resolve(STATISTICS);
       // return Promise.resolve(new Statistics() { summary = this.getSummaryStatistics() });

@@ -26,5 +26,7 @@ namespace PrecizeSoft.GetPdfOnline.Data
         bool SessionExists(Guid sessionId);
 
         void DeleteSession(Guid sessionId);
+
+        void DeleteExpiredData();
     }
 }

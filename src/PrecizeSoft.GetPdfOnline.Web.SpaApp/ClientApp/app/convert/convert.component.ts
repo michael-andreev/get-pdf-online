@@ -54,7 +54,14 @@ export class ConvertComponent implements OnInit {
     }
 
     convert(event): void {
-        let fileList: FileList = event.target.files;
+        this.convertFiles(event.target.files);
+    }
+
+    dropFiles(event): void {
+        this.convertFiles(event.dataTransfer.files);
+    }
+
+    convertFiles(fileList: FileList): void {
         if(fileList.length > 0) {
             for (var i = 0; i < fileList.length; i++) {
                 var file = fileList[i];

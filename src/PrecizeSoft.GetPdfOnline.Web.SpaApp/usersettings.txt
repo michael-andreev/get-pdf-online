@@ -4,7 +4,7 @@
 		"TcpPort": 9436
 	},
 	"LibreOffice": {
-		"UseCustomUnoPath": false,
+		"UseCustomUnoPath": true,
 		"CustomUnoPath": "LO\\App\\libreoffice\\program"
 	},
 	"Data": {
@@ -12,13 +12,5 @@
 	},
 	"Cache": {
 		"FileLifeTime": "01:00:00"
-	},
-	"View": {
-		"Title": {
-			// Available values: true, false
-			"IncludeSuffix": true,
-			// Suffix supports {HostName} and {Port} templates for writing Hostname and Port values
-			"Suffix": "@{HostName}:{Port}"
-		}
 	}
 }

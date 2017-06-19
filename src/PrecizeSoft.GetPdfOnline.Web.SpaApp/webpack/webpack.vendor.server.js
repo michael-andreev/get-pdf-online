@@ -10,7 +10,8 @@ module.exports = (env) => {
         entry: {
             vendor: [
                 helpers.root('ClientApp', 'server.polyfills.ts'),
-                helpers.root('ClientApp', 'server.vendor.ts')
+                helpers.root('ClientApp', 'server.vendor.ts'),
+                helpers.root('ClientApp', 'boot-server.prod-mode.ts')
             ]
         },
         target: 'node',

@@ -25,6 +25,7 @@ namespace PrecizeSoft.GetPdfOnline.Web.SpaApp.Configuration
             var builder = new ConfigurationBuilder()
                 .SetBasePath(dir)
                 .AddJsonFile("usersettings.txt", optional: false, reloadOnChange: true)
+                .AddJsonFile("ga.json", optional: true, reloadOnChange: true)
                 .AddInMemoryCollection(argsOptions);
 
             var configuration = builder.Build();

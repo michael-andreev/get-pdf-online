@@ -1,5 +1,6 @@
-import { Injectable, Inject } from '@angular/core';
+import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
 import { Headers, Http, RequestOptions } from '@angular/http';
+import { isPlatformBrowser } from '@angular/common';
 
 import 'rxjs/add/operator/toPromise';
 
@@ -17,7 +18,12 @@ export class ConverterService {
   private getJobsBySessionUrl = '/api/converter/v1/jobs/getBySession?sessionId=';
   private deleteSessionUrl = '/api/converter/v1/sessions/';
 
-  constructor(private http: Http, @Inject('ORIGIN_URL') private originUrl: string) { }
+  constructor(private http: Http, @Inject('ORIGIN_URL') private originUrl: string, @Inject(PLATFORM_ID) private platformId: Object) {
+        // Fix bug with Providers on the Client side
+        if (isPlatformBrowser(platformId)) {
+            this.originUrl = location.origin;
+        }
+  }
 
   getSupportedFormats(): Promise<string[]> {
       return this.http.get(this.originUrl + this.getSupportedFormatsUrl)

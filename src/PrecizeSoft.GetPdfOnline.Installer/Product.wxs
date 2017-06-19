@@ -104,7 +104,7 @@
         <File Id="fil825D9587FAF32F448E7E9B2DC376DCA3" KeyPath="yes" Source="$(var.WEB_APPLICATION_SOURCE)\PrecizeSoft.GetPdfOnline.Web.SpaApp.exe" />
         <ServiceInstall Id="WebApplicationServiceInstaller" Type="ownProcess" Vital="yes" Name="GetPdfOnlineWebApplication" DisplayName="GetPDF.online Web Application"
                         Description="Web application for converting files to PDF" Start="auto" ErrorControl="normal" Arguments="--run-as-service">
-          <ServiceConfig DelayedAutoStart="yes" OnInstall="yes" OnReinstall ="yes" />
+          <!--<ServiceConfig DelayedAutoStart="yes" OnInstall="yes" OnReinstall ="yes" />-->
         </ServiceInstall>
         <ServiceControl Id="WebApplicationServiceControl" Start="install" Stop="both" Remove="uninstall" Name="GetPdfOnlineWebApplication" Wait="yes" />
       </Component>
@@ -191,7 +191,7 @@
 
   <Fragment>
     <ComponentGroup Id="LibreOfficePortableComponents" Directory="LIBRE_OFFICE_PORTABLE_DIR">
-      <!--<ComponentGroupRef Id="LibreOfficePortableComponentGroup" />-->
+      <ComponentGroupRef Id="LibreOfficePortableComponentGroup" />
     </ComponentGroup>
   </Fragment>
 </Wix>

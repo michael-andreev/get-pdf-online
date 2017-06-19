@@ -4,20 +4,29 @@
 import './server.polyfills';
 import './server.vendor';
 
-import { enableProdMode, ApplicationRef, NgZone, ValueProvider } from '@angular/core';
+import { enableProdMode, isDevMode, ApplicationRef, NgZone, ValueProvider } from '@angular/core';
+import { APP_BASE_HREF } from '@angular/common';
 import { platformDynamicServer, PlatformState, INITIAL_CONFIG } from '@angular/platform-server';
 import { createServerRenderer, RenderResult } from 'aspnet-prerendering';
-import { AppModule } from './app/app.module.server';
+// import { AppModule } from './app/app.module.server';
+import { AppModuleNgFactory } from './ngfactory/app/app.module.server.ngfactory';
 
-enableProdMode();
+// import { APP_BASE_HREF } from '@angular/common';
+
+// enableProdMode(); //Don't work with multiple applications. Moved to vendor.webpack to call once on server
 
 export default createServerRenderer(params => {
     const providers = [
         { provide: INITIAL_CONFIG, useValue: { document: '<app></app>', url: params.url } },
-        { provide: 'ORIGIN_URL', useValue: params.origin }
+        { provide: 'ORIGIN_URL', useValue: params.origin },
+        { provide: 'LOCALE', useValue: params.data.locale },
+        {
+            provide: APP_BASE_HREF,
+            useValue: '/' + params.data.locale
+        }
     ];
 
-    return platformDynamicServer(providers).bootstrapModule(AppModule).then(moduleRef => {
+    return platformDynamicServer(providers).bootstrapModuleFactory(AppModuleNgFactory).then(moduleRef => {
         const appRef = moduleRef.injector.get(ApplicationRef);
         const state = moduleRef.injector.get(PlatformState);
         const zone = moduleRef.injector.get(NgZone);

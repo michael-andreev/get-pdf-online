@@ -18,6 +18,7 @@ import '@angular/forms';
 import {CodeHighlighterModule} from 'primeng/components/codehighlighter/codehighlighter';
 import {CalendarModule} from 'primeng/components/calendar/calendar';
 import {ChartModule} from 'primeng/components/chart/chart';
+import {DragDropModule} from 'primeng/components/dragdrop/dragdrop';
 // import 'primeng/primeng';
 
 /* Import prism core */

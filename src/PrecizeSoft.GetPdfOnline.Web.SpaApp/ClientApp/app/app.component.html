@@ -14,20 +14,12 @@
         </a>
       </div>
       <div class="navbar-collapse collapse">
-        <!--@{
-                        var requestCulture = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(Context.Features.Get<IRequestCultureFeature>().RequestCulture.UICulture.NativeName);
-                        var cultureItems = LocOptions.Value.SupportedUICultures
-                            .ToDictionary(p => p.Name, p => CultureInfo.CurrentCulture.TextInfo.ToTitleCase(p.NativeName));
-                    }-->
         <ul class="nav navbar-nav navbar-right">
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">English<span class="caret"></span></a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{currentLanguage}}<span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <!--@foreach (var p in cultureItems)
-                                {-->
-              <li><a href="#">English</a></li>
-              <li><a href="#">Русский</a></li>
-              <!--}-->
+              <li><a href="en{{currentPath}}">English</a></li>
+              <li><a href="ru{{currentPath}}">Русский</a></li>
             </ul>
           </li>
         </ul>
@@ -46,7 +38,7 @@
   <footer>
     <div class="row">
       <div class="col-md-12">
-        <p>&copy; 2017 - <a href="http://andreev.work" target="_blank" i18n>Mikhail Andreev</a></p>
+        <p>&copy; 2017 - <a href="https://andreyev.work" target="_blank" i18n>Michael Andreyev</a></p>
       </div>
     </div>
   </footer>
