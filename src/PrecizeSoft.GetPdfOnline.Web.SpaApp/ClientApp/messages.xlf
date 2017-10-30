@@ -176,8 +176,8 @@
           <context context-type="linenumber">67</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="854ac28867785137d6c102fee40e755b25635c60" datatype="html">
-        <source>, support all platforms and mobile devices. We do it for free, because we don&apos;t use any 3rd party commercial software. Your privacy is very important to us. We are using https for encrypting and delete all your files from our servers forever after one hour.</source>
+      <trans-unit id="ab0f0a03798a702a0c6d87a53fa47b8c1f6c06fe" datatype="html">
+        <source>, support all platforms and mobile devices. We do it for free, because we don&apos;t use any 3rd-party commercial software. Your privacy is very important to us. We are using https for encrypting and delete all your files from our servers forever after one hour.</source>
         <target/>
         <context-group purpose="location">
           <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/convert/convert.component.ts</context>
@@ -200,8 +200,8 @@
           <context context-type="linenumber">72</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="00c7a76c9374bf092c936175aaa7525bff2a78e0" datatype="html">
-        <source>You can download our offline application and convert files on your PC without need to send files via the Internet. It works under Windows operating system (7 and above), installs in one click and doesn&apos;t require any 3rd-party software. It also can works via local area network in a browser.</source>
+      <trans-unit id="ed4b134a6acd75b5a363f4054f09fa25af203474" datatype="html">
+        <source>You can download our offline application and convert files on your PC without need to send files via the Internet. It works under Windows operating system (7 and above), installs in one click and doesn&apos;t require any 3rd-party software. It also can works via local area network through a web browser.</source>
         <target/>
         <context-group purpose="location">
           <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/convert/convert.component.ts</context>

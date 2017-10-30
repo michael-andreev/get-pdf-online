@@ -99,9 +99,7 @@
         </context-group>
       </trans-unit>
       <trans-unit id="c4d45aa856f7a583513391542efaa8fb2504dc85" datatype="html" approved="yes">
-        <source>Error!</source>
-        <target state="translated">Ошибка!</target>
-        <context-group purpose="location">
+        <source>Error!</source> <target state="translated">Ошибка!</target> <context-group purpose="location">
           <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/convert/convert.component.ts</context>
           <context context-type="linenumber">25</context>
         </context-group>
@@ -174,10 +172,8 @@
           <context context-type="linenumber">67</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="854ac28867785137d6c102fee40e755b25635c60" datatype="html" approved="yes">
-        <source>, support all platforms and mobile devices. We do it for free, because we don't use any 3rd party commercial software. Your privacy is very important to us. We are using https for encrypting and delete all your files from our servers forever after one hour.</source>
-        <target state="translated">, поддерживаем любые платформы и мобильные устройства. Мы делаем это бесплатно, потому что не используем никакого стороннего платного ПО. Мы заботимся о вашей безопасности: используем https для шифрования и удаляем ваши файлы с наших серверов навсегда через один час.</target>
-        <context-group purpose="location">
+      <trans-unit id="ab0f0a03798a702a0c6d87a53fa47b8c1f6c06fe" datatype="html" approved="yes">
+        <source>, support all platforms and mobile devices. We do it for free, because we don't use any 3rd-party commercial software. Your privacy is very important to us. We are using https for encrypting and delete all your files from our servers forever after one hour.</source> <target state="translated">, поддерживаем любые платформы и мобильные устройства. Мы делаем это бесплатно, потому что не используем никакого стороннего платного ПО. Мы заботимся о вашей безопасности: используем https для шифрования и удаляем ваши файлы с наших серверов навсегда через один час.</target> <context-group purpose="location">
           <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/convert/convert.component.ts</context>
           <context context-type="linenumber">67</context>
         </context-group>
@@ -198,10 +194,8 @@
           <context context-type="linenumber">72</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="00c7a76c9374bf092c936175aaa7525bff2a78e0" datatype="html" approved="yes">
-        <source>You can download our offline application and convert files on your PC without need to send files via the Internet. It works under Windows operating system (7 and above), installs in one click and doesn't require any 3rd-party software. It also can works via local area network in a browser.</source>
-        <target state="translated">Вы можете загрузить наше оффлайн-приложение и конвертировать файлы на своём компьютере без передачи их через Интернет. Приложение работает под операционной системой Windows (версии 7 или выше), устанавливается за один клик и не требует какого-либо стороннего ПО. Оно также может работать по локальной сети через интернет-браузер.</target>
-        <context-group purpose="location">
+      <trans-unit id="ed4b134a6acd75b5a363f4054f09fa25af203474" datatype="html" approved="yes">
+        <source>You can download our offline application and convert files on your PC without need to send files via the Internet. It works under Windows operating system (7 and above), installs in one click and doesn't require any 3rd-party software. It also can works via local area network through a web browser.</source> <target state="translated">Вы можете загрузить наше оффлайн-приложение и конвертировать файлы на своём компьютере без передачи их через Интернет. Приложение работает под операционной системой Windows (версии 7 или выше), устанавливается за один клик и не требует какого-либо стороннего ПО. Оно также может работать по локальной сети через интернет-браузер.</target> <context-group purpose="location">
           <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/convert/convert.component.ts</context>
           <context context-type="linenumber">73</context>
         </context-group>
@@ -303,7 +297,9 @@
         </context-group>
       </trans-unit>
       <trans-unit id="14ed2d8bb4a4689828e2bcd6c93744635cd24158" datatype="html" approved="yes">
-        <source>Date published:</source> <target state="translated">Дата публикации:</target> <context-group purpose="location">
+        <source>Date published:</source>
+        <target state="translated">Дата публикации:</target>
+        <context-group purpose="location">
           <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/download/download.component.ts</context>
           <context context-type="linenumber">17</context>
         </context-group>
@@ -333,13 +329,17 @@
         </context-group>
       </trans-unit>
       <trans-unit id="a3ed2fecfe6c6f32d9288beab82226922334da66" datatype="html" approved="yes">
-        <source>1 GHz or faster processor, 1 GB of RAM, 700 MB of available hard disk space</source> <target state="translated">Процессор с тактовой частотой 1 ГГц или выше, ОЗУ объёмом 1 ГБ, 700 МБ доступного пространства на жёстком диске</target> <context-group purpose="location">
+        <source>1 GHz or faster processor, 1 GB of RAM, 700 MB of available hard disk space</source>
+        <target state="translated">Процессор с тактовой частотой 1 ГГц или выше, ОЗУ объёмом 1 ГБ, 700 МБ доступного пространства на жёстком диске</target>
+        <context-group purpose="location">
           <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/download/download.component.ts</context>
           <context context-type="linenumber">30</context>
         </context-group>
       </trans-unit>
       <trans-unit id="38b21a77c169dc1d573d1959b82ee0d1bc2382a4" datatype="html" approved="yes">
-        <source>File Name:</source> <target state="translated">Имя файла:</target> <context-group purpose="location">
+        <source>File Name:</source>
+        <target state="translated">Имя файла:</target>
+        <context-group purpose="location">
           <context context-type="sourcefile">D:/github/get-pdf-online/src/PrecizeSoft.GetPdfOnline.Web.SpaApp/ClientApp/app/download/download.component.ts</context>
           <context context-type="linenumber">33</context>
         </context-group>

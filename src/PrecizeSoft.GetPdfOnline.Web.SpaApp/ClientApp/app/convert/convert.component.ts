@@ -1,7 +1,8 @@
 import { Component, OnInit, PLATFORM_ID, Inject } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
-import { LocalStorageService } from 'angular-2-local-storage';
 import { UUID } from 'angular2-uuid';
+import { CookieService } from 'ngx-cookie';
+import * as moment from 'moment';
 
 import { ConverterService } from './shared/converter.service';
 import { ConvertJob } from './shared/convert-job';
@@ -27,25 +28,20 @@ export class ConvertComponent implements OnInit {
 
     errors: ConvertError[] = [];
 
-    constructor(@Inject(PLATFORM_ID) private platformId: Object, private localStorageService: LocalStorageService, private converterService: ConverterService) { }
+    constructor(@Inject(PLATFORM_ID) private platformId: Object,
+                private cookieService: CookieService, private converterService: ConverterService) { }
 
     ngOnInit() {
-        if (this.localStorageService.get('sessionId') === null) {
-            this.localStorageService.set('sessionId', UUID.UUID());
-        }
-        
-        if (isPlatformBrowser(this.platformId)) {
-            this.sessionId = this.localStorageService.get('sessionId').toString();
-        }
+        this.sessionId = this.cookieService.get('sessionId');
 
-        /*if (isPlatformBrowser(this.platformId)) {
-            alert(this.sessionId);
-        }*/
-        // hack
-        /*if (this.sessionId === null)
-        {
+        if (this.sessionId == null) {
             this.sessionId = UUID.UUID();
-        }*/
+
+            var yearFromNow = new Date();
+            yearFromNow.setFullYear(yearFromNow.getFullYear() + 1);
+
+            this.cookieService.put('sessionId', this.sessionId, { expires: yearFromNow });
+        }
 
         this.converterService.getSupportedFormatsString()
         .then(response => this.supportedFormatsString = response);

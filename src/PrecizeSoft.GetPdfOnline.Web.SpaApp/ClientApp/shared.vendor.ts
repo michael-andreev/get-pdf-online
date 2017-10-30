@@ -30,3 +30,5 @@ import 'prismjs/prism';
 // import { PrismComponent } from 'angular-prism';
 
 import { UUID } from 'angular2-uuid';
+
+import { CookieModule } from 'ngx-cookie'

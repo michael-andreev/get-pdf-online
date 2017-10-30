@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { LocalStorageModule } from 'angular-2-local-storage';
+// import { LocalStorageModule } from 'angular-2-local-storage';
+import { CookieModule } from 'ngx-cookie';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -18,10 +19,11 @@ export const sharedConfig: NgModule = {
         AppComponent
     ],
     imports: [
-        LocalStorageModule.withConfig({
+        /*LocalStorageModule.withConfig({
             prefix: 'getpdf.online',
             storageType: 'localStorage'
-        }),
+        }),*/
+        CookieModule.forRoot(),
         AppRoutingModule,
         ConvertModule,
         DownloadModule,
