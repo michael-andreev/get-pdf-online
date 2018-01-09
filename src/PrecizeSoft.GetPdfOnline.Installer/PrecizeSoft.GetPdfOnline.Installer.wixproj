@@ -59,24 +59,6 @@
       <Name>WixUIExtension</Name>
     </WixExtension>
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\PrecizeSoft.GetPdfOnline.Api.WinService\PrecizeSoft.GetPdfOnline.Api.WinService.csproj">
-      <Name>PrecizeSoft.GetPdfOnline.Api.WinService</Name>
-      <Project>{999afec3-d820-44c2-817c-4d56b2bf6756}</Project>
-      <Private>True</Private>
-      <DoNotHarvest>True</DoNotHarvest>
-      <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
-      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
-    </ProjectReference>
-    <ProjectReference Include="..\PrecizeSoft.GetPdfOnline.Win.WpfApp\PrecizeSoft.GetPdfOnline.Win.WpfApp.csproj">
-      <Name>PrecizeSoft.GetPdfOnline.Win.WpfApp</Name>
-      <Project>{3c8aba03-c01f-4a69-aa91-66f5426d9b48}</Project>
-      <Private>True</Private>
-      <DoNotHarvest>True</DoNotHarvest>
-      <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
-      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(WixTargetsPath)" Condition=" Exists('$(WixTargetsPath)') " />
   <Target Name="EnsureWixToolsetInstalled" Condition=" !Exists('$(WixTargetsPath)') ">
     <Error Text="The WiX Toolset v3 build tools must be installed to build this project. To download the WiX Toolset, see http://wixtoolset.org/releases/" />

@@ -128,14 +128,20 @@ namespace PrecizeSoft.GetPdfOnline.Data.SQLite.Repositories
 
         public void DeleteExpiredData()
         {
+            // EF can't translate DateTime.Now to DB and executes it locally.
+            // To prevent EF warnings we use variable for date comparison instead of DateTime.UtcNow value in queries
+            DateTime currentDate = DateTime.UtcNow;
+
+            // EF can't translate Union to DB and executes it locally. To prevent warnings, we manually
+            // execute Union locally (call ToList method in subqueries)
             List<Guid> expiredFileIds =
                 (
                 (from P in this.context.ConvertJobs
-                 where P.ExpireDateUtc < DateTime.Now
-                 select P.InputFileId)
-                .Union(from P in this.context.ConvertJobs
-                 where P.ExpireDateUtc < DateTime.Now && P.OutputFileId.HasValue
-                 select P.OutputFileId.Value)
+                 where P.ExpireDateUtc < currentDate
+                 select P.InputFileId).ToList()
+                .Union((from P in this.context.ConvertJobs
+                 where P.ExpireDateUtc < currentDate && P.OutputFileId.HasValue
+                 select P.OutputFileId.Value).ToList())
                  ).ToList();
 
             this.context.BinaryFiles.RemoveRange(
@@ -145,7 +151,7 @@ namespace PrecizeSoft.GetPdfOnline.Data.SQLite.Repositories
 
             this.context.ConvertJobs.RemoveRange(
                 from P in this.context.ConvertJobs
-                where P.ExpireDateUtc < DateTime.Now
+                where P.ExpireDateUtc < currentDate
                 select P);
 
             this.context.SaveChanges();

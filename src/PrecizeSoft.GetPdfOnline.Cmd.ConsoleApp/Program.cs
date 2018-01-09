@@ -1,8 +1,7 @@
 ﻿using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
-using PrecizeSoft.GetPdfOnline.Data.SQLite;
-using PrecizeSoft.GetPdfOnline.Data.SQLite.Repositories;
-using PrecizeSoft.GetPdfOnline.Model;
+using PrecizeSoft.IO;
+using PrecizeSoft.IO.Converters;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -23,10 +22,12 @@ namespace PrecizeSoft.GetPdfOnline.Cmd.ConsoleApp
 
             //ConvertBytesTest(@"d:\LO-PDF\resume.docx", @"d:\LO-PDF\resume.pdf");
 
-            //var factory = new ConverterFactory();
+            LOEnvironment.ConfigureFromRegistry();
+            // LOEnvironment.ConfigureByUnoPath(@"D:\LibreOfficePortable\App\libreoffice\program");
+            var factory = new ConverterFactory();
             //var converter = factory.CreateWcfConverterV1(new EndpointAddress("http://localhost:9436/Converter/V1/Service.svc"));
-            //var converter = factory.CreateLOToPdfConverter();
-            //converter.Convert(@"d:\LO-PDF\resume.docx", @"d:\LO-PDF\resume.pdf");
+            var converter = factory.CreateLOToPdfConverter();
+            converter.Convert(@"resume.docx", @"resume.pdf");
             /*(new Task(() => { converter.Convert(@"d:\LO-PDF\resume.docx", @"d:\LO-PDF\resume.pdf"); })).Start();
             (new Task(() => { converter.Convert(@"d:\LO-PDF\resume2.docx", @"d:\LO-PDF\resume2.pdf"); })).Start();
             (new Task(() => { converter.Convert(@"d:\LO-PDF\resume3.docx", @"d:\LO-PDF\resume3.pdf"); })).Start();
@@ -37,11 +38,11 @@ namespace PrecizeSoft.GetPdfOnline.Cmd.ConsoleApp
             (new Task(() => { converter.Convert(@"d:\LO-PDF\resume8.docx", @"d:\LO-PDF\resume8.pdf"); })).Start();
             (new Task(() => { converter.Convert(@"d:\LO-PDF\resume9.docx", @"d:\LO-PDF\resume9.pdf"); })).Start();
             (new Task(() => { converter.Convert(@"d:\LO-PDF\resume10.docx", @"d:\LO-PDF\resume10.pdf"); })).Start();*/
-            Console.WriteLine(TimeSpan.FromHours(1).ToString());
+            Console.WriteLine("Finished");
             Console.ReadKey();
         }
 
-        public static void CreateResultFileTest()
+        /*public static void CreateResultFileTest()
         {
             SqliteConnection connection = new SqliteConnection("Data Source=cache.db");
             connection.Open();
@@ -71,7 +72,7 @@ namespace PrecizeSoft.GetPdfOnline.Cmd.ConsoleApp
             };
 
             repository.CreateFile(resultFile);
-        }
+        }*/
 
         /*static public void ConvertBytesTest(string sourceFileName, string destinationFileName)
         {

@@ -1,9 +1,0 @@
-{
-  "extends": "../tsconfig.json",
-  "angularCompilerOptions": {
-    "genDir": "ngfactory"
-  },
-  "exclude": [
-    "./boot-server.ts"
-  ]
-}

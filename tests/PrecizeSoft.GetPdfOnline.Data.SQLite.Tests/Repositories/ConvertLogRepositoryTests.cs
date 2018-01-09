@@ -16,13 +16,13 @@ namespace PrecizeSoft.GetPdfOnline.Data.SQLite.Tests.Repositories
             this.fixture = fixture;
         }
 
-        public void CreateConvertRequestTest()
+        /* public void CreateConvertRequestTest()
         {
-        }
+        } */
 
-        public void CreateConvertResponseTest()
+        /* public void CreateConvertResponseTest()
         {
-        }
+        } */
 
         [Fact]
         public void GetConvertLogTest()
@@ -50,16 +50,16 @@ namespace PrecizeSoft.GetPdfOnline.Data.SQLite.Tests.Repositories
             Assert.NotNull(fixture.repository.GetConvertStatTotal());
         }
 
-        public void GetFileCategories()
+        /* public void GetFileCategories()
         {
-        }
+        } */
 
-        public void GetFileTypeByExtension()
+        /* public void GetFileTypeByExtension()
         {
-        }
+        } */
 
-        public void GetFileTypes()
+        /* public void GetFileTypes()
         {
-        }
+        } */
     }
 }

@@ -11,10 +11,10 @@ namespace PrecizeSoft.GetPdfOnline.Domain.Schedulers
 {
     public static class DeleteExpiredDataScheduler
     {
-        public static void Start(ICacheRepository cacheRepository)
+        public static async Task Start(ICacheRepository cacheRepository)
         {
-            IScheduler scheduler = StdSchedulerFactory.GetDefaultScheduler();
-            scheduler.Start();
+            IScheduler scheduler = await StdSchedulerFactory.GetDefaultScheduler();
+            await scheduler.Start();
 
             IDictionary<string, object> jobData = new Dictionary<string, object>();
             jobData.Add("CacheRepository", cacheRepository);
@@ -30,7 +30,7 @@ namespace PrecizeSoft.GetPdfOnline.Domain.Schedulers
                     .RepeatForever())
                 .Build();
 
-            scheduler.ScheduleJob(job, trigger);
+            await scheduler.ScheduleJob(job, trigger);
         }
     }
 }

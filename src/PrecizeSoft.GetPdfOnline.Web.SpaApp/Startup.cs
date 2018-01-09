@@ -19,7 +19,6 @@ using PrecizeSoft.GetPdfOnline.Domain.Services;
 using PrecizeSoft.GetPdfOnline.Data.SQLite.Repositories;
 using PrecizeSoft.GetPdfOnline.Domain.Configuration;
 using Swashbuckle.AspNetCore.Swagger;
-using Microsoft.Extensions.PlatformAbstractions;
 using System.IO;
 using PrecizeSoft.GetPdfOnline.Web.SpaApp.Swagger;
 using Microsoft.AspNetCore.Mvc.Razor;
@@ -156,7 +155,7 @@ namespace PrecizeSoft.GetPdfOnline.Web.SpaApp
                 });
 
                 //Set the comments path for the swagger json and ui.
-                var basePath = PlatformServices.Default.Application.ApplicationBasePath;
+                var basePath = AppContext.BaseDirectory; // PlatformServices.Default.Application.ApplicationBasePath;
                 c.IncludeXmlComments(Path.Combine(basePath, "PrecizeSoft.IO.WebApi.xml"));
                 c.IncludeXmlComments(Path.Combine(basePath, "PrecizeSoft.GetPdfOnline.Web.SpaApp.xml"));
 
@@ -172,8 +171,7 @@ namespace PrecizeSoft.GetPdfOnline.Web.SpaApp
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory,
-            IApplicationLifetime life, CacheDbContext cacheDbContext, GetPdfOnlineDbContext getPdfOnlineDbContext,
-            ICacheRepository cacheRepository)
+            IApplicationLifetime life, CacheDbContext cacheDbContext, GetPdfOnlineDbContext getPdfOnlineDbContext)
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
@@ -227,10 +225,12 @@ namespace PrecizeSoft.GetPdfOnline.Web.SpaApp
 
             life.ApplicationStarted.Register(() =>
             {
+                var cacheRepository = app.ApplicationServices.GetService<ICacheRepository>();
                 var options = this.Configuration.Get<UserSettingsOptions>();
-                this.CreateAndOpenHosts(/*44735*/options.Host.TcpPort, options.LibreOffice.UseCustomUnoPath, options.LibreOffice.CustomUnoPath, options.Data.ConnectionString);
+                this.CreateAndOpenHosts(options.Host.TcpPort, options.LibreOffice.UseCustomUnoPath, options.LibreOffice.CustomUnoPath, options.Data.ConnectionString);
 
-                DeleteExpiredDataScheduler.Start(cacheRepository);
+                Task task = DeleteExpiredDataScheduler.Start(cacheRepository);
+                task.Wait();
             });
         }
     }

@@ -27,7 +27,7 @@ namespace PrecizeSoft.GetPdfOnline.Data.SQLite.Tests
 
             var log = repository.GetConvertLog(new Guid("CFF29BD8-C0AB-4AC0-B932-06680205E7D2"));
 
-            Assert.Equal(log.FileCategoryCode, "Document");
+            Assert.Equal("Document", log.FileCategoryCode);
         }
     }
 }

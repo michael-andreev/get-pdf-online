@@ -10,11 +10,13 @@ namespace PrecizeSoft.GetPdfOnline.Domain.Schedulers
 {
     internal class DeleteExpiredDataJob : IJob
     {
-        public void Execute(IJobExecutionContext context)
+        public Task Execute(IJobExecutionContext context)
         {
             ICacheRepository repository = (ICacheRepository)context.JobDetail.JobDataMap["CacheRepository"];
 
             repository.DeleteExpiredData();
+
+            return Task.CompletedTask;
         }
     }
 }

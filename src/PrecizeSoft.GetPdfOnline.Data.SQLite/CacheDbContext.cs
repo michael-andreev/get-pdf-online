@@ -57,7 +57,7 @@ namespace PrecizeSoft.GetPdfOnline.Data.SQLite
             modelBuilder.Entity<BinaryFile>().Property(p => p.FileId).ValueGeneratedNever();
             modelBuilder.Entity<BinaryFile>().HasIndex(p => new { p.FileId }).IsUnique();
 
-            modelBuilder.Entity<BinaryFile>().Property(p => p.CreateDateUtc).IsRequired().ForSqliteHasColumnType("REAL");
+            modelBuilder.Entity<BinaryFile>().Property(p => p.CreateDateUtc).IsRequired().HasColumnType("REAL");
             modelBuilder.Entity<BinaryFile>().HasIndex(p => new { p.CreateDateUtc });
 
             modelBuilder.Entity<BinaryFile>().Property(p => p.FileName).IsRequired();
@@ -88,7 +88,7 @@ namespace PrecizeSoft.GetPdfOnline.Data.SQLite
             modelBuilder.Entity<ConvertSession>().Property(p => p.SessionId).ValueGeneratedNever();
             modelBuilder.Entity<ConvertSession>().HasIndex(p => new { p.SessionId }).IsUnique();
 
-            modelBuilder.Entity<ConvertSession>().Property(p => p.CreateDateUtc).IsRequired().ForSqliteHasColumnType("REAL");
+            modelBuilder.Entity<ConvertSession>().Property(p => p.CreateDateUtc).IsRequired().HasColumnType("REAL");
             modelBuilder.Entity<ConvertSession>().HasIndex(p => new { p.CreateDateUtc });
         }
 
@@ -100,7 +100,7 @@ namespace PrecizeSoft.GetPdfOnline.Data.SQLite
             modelBuilder.Entity<ConvertJob>().Property(p => p.ConvertJobId).ValueGeneratedNever();
             modelBuilder.Entity<ConvertJob>().HasIndex(p => new { p.ConvertJobId }).IsUnique();
 
-            modelBuilder.Entity<ConvertJob>().Property(p => p.ExpireDateUtc).IsRequired().ForSqliteHasColumnType("REAL");
+            modelBuilder.Entity<ConvertJob>().Property(p => p.ExpireDateUtc).IsRequired().HasColumnType("REAL");
             modelBuilder.Entity<ConvertJob>().HasIndex(p => new { p.ExpireDateUtc });
 
             modelBuilder.Entity<ConvertJob>().Property(p => p.SessionId);

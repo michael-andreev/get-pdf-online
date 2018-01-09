@@ -32,21 +32,23 @@ export class ConvertComponent implements OnInit {
                 private cookieService: CookieService, private converterService: ConverterService) { }
 
     ngOnInit() {
-        this.sessionId = this.cookieService.get('sessionId');
-
-        if (this.sessionId == null) {
-            this.sessionId = UUID.UUID();
-
-            var yearFromNow = new Date();
-            yearFromNow.setFullYear(yearFromNow.getFullYear() + 1);
-
-            this.cookieService.put('sessionId', this.sessionId, { expires: yearFromNow });
-        }
-
         this.converterService.getSupportedFormatsString()
         .then(response => this.supportedFormatsString = response);
+    
+        if (isPlatformBrowser(this.platformId)) {
+            this.sessionId = this.cookieService.get('sessionId');
 
-        this.reloadJobs();
+            if (this.sessionId == null) {
+                this.sessionId = UUID.UUID();
+
+                var yearFromNow = new Date();
+                yearFromNow.setFullYear(yearFromNow.getFullYear() + 1);
+
+                this.cookieService.put('sessionId', this.sessionId, { expires: yearFromNow });
+            }
+
+            this.reloadJobs();
+        }
     }
 
     convert(event): void {

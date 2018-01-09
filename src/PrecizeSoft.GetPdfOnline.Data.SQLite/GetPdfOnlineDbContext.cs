@@ -120,7 +120,7 @@ namespace PrecizeSoft.GetPdfOnline.Data.SQLite
             modelBuilder.Entity<ConvertRequest>().Property(p => p.ConvertRequestId).ValueGeneratedNever();
             modelBuilder.Entity<ConvertRequest>().HasIndex(p => new { p.ConvertRequestId }).IsUnique();
 
-            modelBuilder.Entity<ConvertRequest>().Property(p => p.RequestDateUtc).IsRequired().ForSqliteHasColumnType("REAL");
+            modelBuilder.Entity<ConvertRequest>().Property(p => p.RequestDateUtc).IsRequired().HasColumnType("REAL");
             modelBuilder.Entity<ConvertRequest>().HasIndex(p => new { p.RequestDateUtc });
 
             modelBuilder.Entity<ConvertRequest>().Property(p => p.SenderIp).IsRequired();
@@ -152,7 +152,7 @@ namespace PrecizeSoft.GetPdfOnline.Data.SQLite
                 .HasPrincipalKey<ConvertRequest>(p => p.ConvertRequestId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            modelBuilder.Entity<ConvertResponse>().Property(p => p.ResponseDateUtc).IsRequired().ForSqliteHasColumnType("REAL");
+            modelBuilder.Entity<ConvertResponse>().Property(p => p.ResponseDateUtc).IsRequired().HasColumnType("REAL");
             modelBuilder.Entity<ConvertResponse>().HasIndex(p => new { p.ResponseDateUtc });
 
             modelBuilder.Entity<ConvertResponse>().Property(p => p.ResultTypeId);

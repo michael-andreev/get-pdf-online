@@ -7,8 +7,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using PrecizeSoft.GetPdfOnline.Web.SpaApp.Configuration;
 using System.Diagnostics;
-using Microsoft.Net.Http.Server;
 using Microsoft.AspNetCore.Hosting.WindowsServices;
+using Microsoft.AspNetCore.Server.HttpSys;
 
 namespace PrecizeSoft.GetPdfOnline.Web.SpaApp
 {
@@ -47,10 +47,10 @@ namespace PrecizeSoft.GetPdfOnline.Web.SpaApp
                 //.UseKestrel()
                 .UseContentRoot(options.BasePath)
                 .UseStartup<Startup>()
-                .UseWebListener(opt =>
+                .UseHttpSys(opt =>
                 {
-                    opt.ListenerSettings.Authentication.Schemes = AuthenticationSchemes.None;
-                    opt.ListenerSettings.Authentication.AllowAnonymous = true;
+                    opt.Authentication.Schemes = AuthenticationSchemes.None;
+                    opt.Authentication.AllowAnonymous = true;
                 });
                 // .UseApplicationInsights();
 
