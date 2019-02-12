@@ -47,7 +47,7 @@ namespace PrecizeSoft.GetPdfOnline.Web.SpaApp
 
         public IConfigurationRoot Configuration { get; }
 
-        private SqliteConnection cacheConnection = null;
+        // private SqliteConnection cacheConnection = null;
 
         SoapApiHost soapApiHost = null;
 
@@ -59,19 +59,37 @@ namespace PrecizeSoft.GetPdfOnline.Web.SpaApp
             this.soapApiHost.Open();
         }
 
+        /// <summary>
+        /// Converts SQLite ConnectionString to Absolute Path.
+        /// Don't know why, but when the App runs as Service with "Local System" credentials,
+        /// SQLite provider uses "c:\Windows\SysWOW64\" directory as Base Path.
+        /// </summary>
+        /// <param name="connectionString"></param>
+        /// <returns></returns>
+        private string FixSqliteConnectionString(string connectionString)
+        {
+            SqliteConnectionStringBuilder builder = new SqliteConnectionStringBuilder();
+            builder.ConnectionString = connectionString;
+
+            if (!System.IO.Path.IsPathRooted(builder.DataSource))
+            {
+                builder.DataSource = Path.Combine(AppContext.BaseDirectory, builder.DataSource);
+            }
+
+            return builder.ToString();
+        }
+
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            cacheConnection = new SqliteConnection("Data Source=:memory:");
-            // cacheConnection = new SqliteConnection("Data Source=cache.db");
-            cacheConnection.Open();
-
+            // cacheConnection = new SqliteConnection("Data Source=:memory:");
+            // cacheConnection.Open();
             services.AddDbContext<CacheDbContext>(options =>
-                options.UseSqlite("Data Source=cache.db"));
+                options.UseSqlite(this.FixSqliteConnectionString("Data Source=cache.db")));
                 //options.UseSqlite(cacheConnection));
 
             services.AddDbContext<GetPdfOnlineDbContext>(options =>
-                options.UseSqlite(this.Configuration.Get<UserSettingsOptions>().Data.ConnectionString));
+                options.UseSqlite(this.FixSqliteConnectionString(this.Configuration.Get<UserSettingsOptions>().Data.ConnectionString)));
 
             services.AddTransient<ICacheRepository, CacheRepository>();
             services.AddTransient<IConvertLogRepository, ConvertLogRepository>();
